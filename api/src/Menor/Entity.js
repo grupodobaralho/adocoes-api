@@ -1,6 +1,6 @@
 "use strict";
 
-import Joi from "Joi";
+import Joi from "joi";
 
 export default class Entity {
 	constructor(deps = {}) {
