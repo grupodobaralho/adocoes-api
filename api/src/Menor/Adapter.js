@@ -7,7 +7,7 @@ export default class Adapter {
 
 	save(body) {
 		const menor = new this.Menor(body)
-
+		console.log(body)
 		return menor.save()
 	}
 
