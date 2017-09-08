@@ -25,9 +25,7 @@ const menorSchema = new Schema({
         type: Date,
         required: true
     },
-    Etnia: {
-        //type: mongoose.Schema.Types.ObjectId,
-        //ref: "etnias"
+    etnia: {
         type: String,
         enum: ["Branca", "Negra", "Parda", "Indígena", "Amarela", "Outras"],
         required: true

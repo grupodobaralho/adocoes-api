@@ -108,11 +108,9 @@ export default class Entity {
             nome: Joi.string().required(),
             sexo: Joi.string().required().regex(/M|F/),
             dataNascimento: Joi.date().required().max("now").min(new Date().setFullYear(new Date().getFullYear() - 18)), //somar data atual + 18 anos
-            Etnia: Joi.string().required(),
+            etnia: Joi.string().required(),
             certidaoNascimento: Joi.string().required(),
             familyReferences: Joi.object(),
-            menoresVinculados: Joi.object().required(),
-            adocoesConjuntas: Joi.object().required(),
             saudavel: Joi.boolean().required(),
             descricaoSaude: Joi.string().required(),
             curavel: Joi.boolean().required(),
@@ -122,8 +120,6 @@ export default class Entity {
             refCidade: Joi.string().required(),
             refAbrigo: Joi.string().required(),
             processoPoderFamiliar: Joi.string().required(),
-            interesses: Joi.string().required(),
-            visualizacoes: Joi.string().required(),
             ativo: Joi.boolean().required()
         });
 
