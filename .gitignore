@@ -1,6 +1,3 @@
-.project/
-.project
-Adocoes.iml
 node_modules/
 npm-debug.log
 /.DS_Store
@@ -11,4 +8,3 @@ Thumbs.db
 build/
 *.lock
 adocoes.sublime*
-.idea/
