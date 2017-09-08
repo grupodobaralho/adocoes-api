@@ -6,11 +6,18 @@ export default class Interactor {
 	}
 
 	create(body) {
-		const entity = new this.Entity();
+		const entity = new this.Entity()
+        console.log("Interactor")
 		return entity.validate(body).then(body => {
-			return body;
-		});
+            console.log("Interactor 0")
+			return entity.create(body);
+
+		})
+
 	}
+    save(menor) {
+        return this.Entity.save(menor)
+    }
 
 	fetchAll() {
 		const entity = new this.Entity();
@@ -98,3 +105,4 @@ export default class Interactor {
 	}
 
 }
+
