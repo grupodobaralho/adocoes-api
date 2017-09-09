@@ -40,12 +40,12 @@ export default class Translator {
 
 	getMenor(request, response) {
 		const {
-			id
+			id_menor
 		} = request.params;
 
 		const interactor = new this.Interactor();
 
-		interactor.fetchById(id)
+		interactor.fetchById(id_menor)
 			.then(message => {
 				response.send(200, message);
 			})

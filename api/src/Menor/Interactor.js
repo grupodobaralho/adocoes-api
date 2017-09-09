@@ -19,7 +19,7 @@ export default class Interactor {
 
 	fetchById(id) {
 		const entity = new this.Entity();
-		return entity.findById(id);
+		return entity.fetchById(id);
 	}
 
 	find(body) {
