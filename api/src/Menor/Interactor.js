@@ -1,100 +1,107 @@
 "use strict";
 
 export default class Interactor {
-	constructor(deps = {}) {
-		this.Entity = deps.Entity || require("./Entity").default;
-	}
+    constructor(deps = {}) {
+        this.Entity = deps.Entity || require("./Entity").default;
+    }
 
-	create(body) {
-		const entity = new this.Entity();
-		return entity.validate(body).then(body => {
-			return entity.create(body);
-		});
-	}
+    create(body) {
+        const entity = new this.Entity();
+        return entity.validate(body).then(body => {
+            return entity.create(body);
+        });
+    }
 
-	fetchAll() {
-		const entity = new this.Entity();
-		return entity.fetchAll();
-	}
+    delete(id) {
+        const entity = new this.Entity();
+        return entity.delete(id);
+    }
 
-	fetchById(id) {
-		const entity = new this.Entity();
-		return entity.fetchById(id);
-	}
+    fetchAll() {
 
-	find(body) {
-		const entity = new this.Entity();
-		return entity.fetch();
-	}
 
-	remove(body) {
-		const entity = new this.Entity();
-		return entity.delete();
-	}
+        const entity = new this.Entity();
+        return entity.fetchAll();
+    }
 
-	update(body) {
-		const entity = new this.Entity();
-		return entity.update();
-	}
+    fetchById(id) {
+        const entity = new this.Entity();
+        return entity.fetchById(id);
+    }
 
-	getOrdination(body) {
-		const entity = new this.Entity();
-		return entity.fetchOrdination();
-	}
+    find(body) {
+        const entity = new this.Entity();
+        return entity.fetch();
+    }
 
-	addIntersting(body) {
-		const entity = new this.Entity();
-		return entity.addIntersting();
-	}
+    remove(body) {
+        const entity = new this.Entity();
+        return entity.delete();
+    }
 
-	fetchAllIntersting(body) {
-		const entity = new this.Entity();
-		return entity.fetchAllIntersting();
-	}
+    update(body) {
+        const entity = new this.Entity();
+        return entity.update();
+    }
 
-	removeIntersting(body) {
-		const entity = new this.Entity();
-		return entity.removeIntersting();
-	}
+    getOrdination(body) {
+        const entity = new this.Entity();
+        return entity.fetchOrdination();
+    }
 
-	createImage(body) {
-		const entity = new this.Entity();
-		return entity.createImage(body);
-	}
+    addIntersting(body) {
+        const entity = new this.Entity();
+        return entity.addIntersting();
+    }
 
-	fetchImages(body) {
-		const entity = new this.Entity();
-		return entity.fetchAllImages(body);
-	}
+    fetchAllIntersting(body) {
+        const entity = new this.Entity();
+        return entity.fetchAllIntersting();
+    }
 
-	fetchImage(body) {
-		const entity = new this.Entity();
-		return entity.fetchImage(body);
-	}
+    removeIntersting(body) {
+        const entity = new this.Entity();
+        return entity.removeIntersting();
+    }
 
-	removeImage(body) {
-		const entity = new this.Entity();
-		return entity.removeImage();
-	}
+    createImage(body) {
+        const entity = new this.Entity();
+        return entity.createImage(body);
+    }
 
-	createVideo(body) {
-		const entity = new this.Entity();
-		return entity.createVideo();
-	}
+    fetchImages(body) {
+        const entity = new this.Entity();
+        return entity.fetchAllImages(body);
+    }
 
-	fetchAllVideo(body) {
-		const entity = new this.entity();
-		return entity.fetchAllVideo();
-	}
+    fetchImage(body) {
+        const entity = new this.Entity();
+        return entity.fetchImage(body);
+    }
 
-	fetchVideo(body) {
-		const entity = new this.Entity();
-		return entity.fetchVideo();
-	}
+    removeImage(body) {
+        const entity = new this.Entity();
+        return entity.removeImage();
+    }
 
-	removeVideo(body) {
-		const entity = new this.Entity();
-		return entity.removeVideo();
-	}
+    createVideo(body) {
+        const entity = new this.Entity();
+        return entity.createVideo();
+    }
+
+    fetchAllVideo(body) {
+        const entity = new this.entity();
+        return entity.fetchAllVideo();
+    }
+
+    fetchVideo(body) {
+        const entity = new this.Entity();
+        return entity.fetchVideo();
+    }
+
+    removeVideo(body) {
+        const entity = new this.Entity();
+        return entity.removeVideo();
+    }
 
 }
