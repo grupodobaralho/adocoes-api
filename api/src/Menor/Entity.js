@@ -32,6 +32,11 @@ export default class Entity {
         return adapter.delete(body.id);
     }
 
+    delete(id) {
+        const adapter = new this.Adapter();
+        return adapter.delete(id);
+    }
+
     update(body) {
         const adapter = new this.Adapter();
         return adapter.fetchAndUpdate(body);
