@@ -1,5 +1,7 @@
 "use strict";
 
+import Roles from '../Common/Roles';
+
 export default class Translator {
 
 	constructor(deps = {}) {
@@ -22,35 +24,51 @@ export default class Translator {
 			});
 	}
 
-	get(request, response) {
-		const {
-			body
-		} = request;
-
+    getAll(request, response) {
+		const { body } = request;
 		const interactor = new this.Interactor();
 
-		interactor.fetchAll()
+		let interactorResult;
+
+		//Validar se a requisição atual possui escopo Anônimo
+		if (request.authInfo.scope === Roles.ANONYMOUS)
+            interactorResult = interactor.fetchAllAnonymous();
+
+		//Ou se possui escopo de Usuário/Admin
+		else
+            interactorResult = interactor.fetchAll();
+
+		//Ação padrão para resultado do interactor
+        interactorResult
 			.then(message => {
 				response.send(200, message);
 			})
 			.catch(error => {
-				console.log(error);
+                response.send(500, error);
 			});
 	}
 
-	getMenor(request, response) {
-		const {
-			id_menor
-		} = request.params;
+	get(request, response) {
+		const { id_menor } = request.params;
+        const interactor = new this.Interactor();
 
-		const interactor = new this.Interactor();
+        let interactorResult;
 
-		interactor.fetchById(id_menor)
+        //Validar se a requisição atual possui escopo Anônimo
+        if (request.authInfo.scope === Roles.ANONYMOUS)
+            interactorResult = interactor.fetchByIdAnonymous(id_menor);
+
+        //Ou se possui escopo de Usuário/Admin
+        else
+            interactorResult = interactor.fetchById(id_menor);
+
+        //Ação padrão para resultado do interactor
+        interactorResult
 			.then(message => {
 				response.send(200, message);
 			})
 			.catch(error => {
-				console.log(error);
+                response.send(500, error);
 			});
 	}
 
