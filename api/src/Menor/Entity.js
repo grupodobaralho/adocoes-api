@@ -18,14 +18,14 @@ export default class Entity {
         return adapter.fetchAll();
     }
 
-    fetchAllReduced() {
+    fetchAllAnonymous() {
         const adapter = new this.Adapter();
 
         return new Promise((resolve, rjct) => {
             //Retorna entidades do banco de dados
             let body = adapter.fetchAll().then(body => {
                 //Para cada entidade, reduzir a quantidade das informações
-                return body.map(this._createNewReducedDTO);
+                return body.map(this._createNewAnonymousDTO);
             });
 
             return resolve(body);
@@ -33,7 +33,7 @@ export default class Entity {
     }
 
     //Cria "DTO" com valores reduzidos
-    _createNewReducedDTO(entity) {
+    _createNewAnonymousDTO(entity) {
         //Transforma nome em somente iniciais
         entity.nome = StringHelper.getOnlyNameInitials(entity.nome);
 

@@ -32,7 +32,7 @@ export default class Translator {
 
 		//Validar se a requisição atual possui escopo Anônimo
 		if (request.authInfo.scope === Roles.ANONYMOUS)
-            interactorResult = interactor.fetchAllReduced();
+            interactorResult = interactor.fetchAllAnonymous();
 
 		//Ou se possui escopo de Usuário/Admin
 		else
