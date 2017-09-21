@@ -242,4 +242,20 @@ export default class Translator {
 			});
 	}
 
+	getDocuments(request, response) {
+		const {
+			body
+		} = request;
+		debugger;
+		const interactor = new this.Interactor();
+
+		interactor.getDocuments(body) 
+			.then(message => {
+				response.send(200, message);
+			})
+			.catch(error => {
+				response.send(200, message);
+			})
+	}
+
 }

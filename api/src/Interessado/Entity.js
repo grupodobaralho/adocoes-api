@@ -114,4 +114,9 @@ export default class Entity {
 		return adapter.deleteInterest();
 	}
 
+	getDocuments(id) {
+		const adapter = new this.Adapter();
+		return adapter.getInteressado(id);
+	}
+
 }

@@ -94,4 +94,13 @@ export default class Interactor {
 			});
 	}
 
+
+	getDocuments(body) {
+		const entity = new this.Entity();
+		return entity.validateToken(body)
+			.then(body => {
+				entity.getDocuments(body.id);
+			})
+	}
+
 }
