@@ -15,7 +15,16 @@ export default class Entity {
 
     fetchAll() {
         const adapter = new this.Adapter();
-        return adapter.fetchAll();
+
+        return new Promise((resolve, rjct) => {
+            //Retorna entidades do banco de dados
+            let body = adapter.fetchAll().then(body => {
+                //Para cada entidade, reduzir a quantidade das informações
+                return body.map(this._createDefaultDTO);
+            });
+
+            return resolve(body);
+        });
     }
 
     fetchAllAnonymous() {
@@ -41,7 +50,7 @@ export default class Entity {
     }
 
     //Cria "DTO" com formas padrão
-    _createDefaultReducedDTO(entity) {
+    _createDefaultDTO(entity) {
         //Transforma nome em somente primeiro nome
         entity.nome = StringHelper.getOnlyFirstName(entity.nome);
 
