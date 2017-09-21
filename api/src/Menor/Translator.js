@@ -1,5 +1,7 @@
 "use strict";
 
+import Roles from '../Common/Roles';
+
 export default class Translator {
 
 	constructor(deps = {}) {
@@ -23,18 +25,26 @@ export default class Translator {
 	}
 
 	get(request, response) {
-		const {
-			body
-		} = request;
-
+		const { body } = request;
 		const interactor = new this.Interactor();
 
-		interactor.fetchAll()
+		let interactorResult;
+
+		//Validar se a requisição atual possui escopo Anônimo
+		if (request.authInfo.scope === Roles.ANONYMOUS)
+            interactorResult = interactor.fetchAllReduced();
+
+		//Ou se possui escopo de Usuário/Admin
+		else
+            interactorResult = interactor.fetchAll();
+
+		//Ação padrão para resultado do interactor
+        interactorResult
 			.then(message => {
 				response.send(200, message);
 			})
 			.catch(error => {
-				console.log(error);
+                response.send(500, error);
 			});
 	}
 

@@ -1,6 +1,7 @@
 "use strict";
 
 import Joi from "joi";
+import StringHelper from "../Common/StringHelper";
 
 export default class Entity {
     constructor(deps = {}) {
@@ -15,6 +16,36 @@ export default class Entity {
     fetchAll() {
         const adapter = new this.Adapter();
         return adapter.fetchAll();
+    }
+
+    fetchAllReduced() {
+        const adapter = new this.Adapter();
+
+        return new Promise((resolve, rjct) => {
+            //Retorna entidades do banco de dados
+            let body = adapter.fetchAll().then(body => {
+                //Para cada entidade, reduzir a quantidade das informações
+                return body.map(this._createNewReducedDTO);
+            });
+
+            return resolve(body);
+        });
+    }
+
+    //Cria "DTO" com valores reduzidos
+    _createNewReducedDTO(entity) {
+        //Transforma nome em somente iniciais
+        entity.nome = StringHelper.getOnlyNameInitials(entity.nome);
+
+        return entity;
+    }
+
+    //Cria "DTO" com formas padrão
+    _createDefaultReducedDTO(entity) {
+        //Transforma nome em somente primeiro nome
+        entity.nome = StringHelper.getOnlyFirstName(entity.nome);
+
+        return entity;
     }
 
     fetchById(id) {
