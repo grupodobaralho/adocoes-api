@@ -5,6 +5,7 @@
   "main": "server.js",
   "scripts": {
     "build": "babel api/src -d build",
+    "start-debug": "nodemon --debug babel-node ./api/src/server.js NODE_ENV=develop",
     "start-develop": "nodemon --exec babel-node ./api/src/server.js NODE_ENV=develop",
     "start-test": "cross-env mocha --recursive ./api/test --compilers js:babel-core/register --timeout 120000 NODE_ENV=test",
     "start-homo": "npm run build && node ./build/server.js NODE_ENV=homo",
