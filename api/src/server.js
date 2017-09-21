@@ -145,14 +145,14 @@ server.post("/menores", AuthManager.isAuthenticated, function (req, res) {
 // RFM06: GET /menores?idade=:idade,sexo=:sexo
 server.get("/menores", AuthManager.isAuthenticated, function (req, res) {
     const menorTranslator = new MenorTranslator();
-    menorTranslator.get(req, res);
+    menorTranslator.getAll(req, res);
 });
 
 // P0
 // RFM03: GET /menores/:id_menor
 server.get("/menores/:id_menor", AuthManager.isAuthenticated, function (req, res) {
     const menorTranslator = new MenorTranslator();
-    menorTranslator.getMenor(req, res);
+    menorTranslator.get(req, res);
 });
 
 // P1
