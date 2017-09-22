@@ -35,7 +35,7 @@ const charSet = config.charSet;
 server.get("/", function (req, res) {
     const moment = require("moment");
     var now = moment();
-    console.log("Adoções API em execução: " + req.headers);
+    console.log("Adoções API em execução h445: " + req.headers);
     res.charSet(charSet);
     res.json(200, {
         estado: "Adoções API em execução há " + process.uptime() + " segundos",
