@@ -36,14 +36,7 @@ passport.use("client-basic", new BasicStrategy(
 
 // estratégia para tokens oauth2
 passport.use(new BearerStrategy(
-	function (accessToken, callback) {
-		//#71 Adicionar permissão anônima nas rotas 
-		if (accessToken === Roles.ANONYMOUS) {
-			return callback(null, {}, {
-				scope: Roles.ANONYMOUS
-			});
-		}
-
+	(accessToken, callback) => {
 		//Caso a requisição contenha um token válido...
 		var Token = mongoose.model("Token");
 		var Usuario = mongoose.model("Usuario");
@@ -54,7 +47,7 @@ passport.use(new BearerStrategy(
 
 			if (!token)
 				return callback(null, false);
-			
+
 			Usuario.findOne({ _id: token.userId }, function (err, usuario) {
 				if (err)
 					return callback(err);
@@ -71,10 +64,18 @@ passport.use(new BearerStrategy(
 	}
 ));
 
-exports.isAuthenticated = passport.authenticate(["bearer"], {
+exports.userAuthenticated = passport.authenticate(["bearer"], {
 	session: false
 });
 
 exports.isClientAuthenticated = passport.authenticate("client-basic", {
 	session: false
 });
+
+exports.anonymousAuthenticated = (a, b, next) => {
+    //#71 Adicionar permissão anônima nas rotas
+	if (a.headers.authorization === Roles.ANONYMOUS)
+		return next();
+
+	return exports.userAuthenticated(a, b, next);
+}

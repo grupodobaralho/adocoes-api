@@ -13,23 +13,18 @@ export default class Translator {
 
         let body = {
             refMenor: request.params.id_menor,
-            refInteressado: ""
+            refInteressado: request.user._id
         };
 
-        //Validar se a requisição atual possui escopo Anônimo
-        if (request.authInfo.scope === Roles.USER) {
-            body.refInteressado = request.user._id;
-
-            //Ação padrão para resultado do interactor
-            interactor
-                .deleteInterested(body)
-                .then(message => {
-                    response.send(200, message);
-                })
-                .catch(error => {
-                    response.send(500, error);
-                });
-        }
+        //Ação padrão para resultado do interactor
+        interactor
+            .deleteInterested(body)
+            .then(message => {
+                response.send(200, message);
+            })
+            .catch(error => {
+                response.send(500, error);
+            });
     }
 
     postInterested(request, response) {
@@ -37,24 +32,19 @@ export default class Translator {
 
         let body = {
             refMenor: request.params.id_menor,
-            refInteressado: "",
+            refInteressado: request.user._id,
             tipoInteresse: request.body.tipoInteresse
         };
 
-        //Validar se a requisição atual possui escopo Anônimo
-        if (request.authInfo.scope === Roles.USER) {
-            body.refInteressado = request.user._id;
-
-            //Ação padrão para resultado do interactor
-            interactor
-                .postInterested(body)
-                .then(message => {
-                    response.send(200, message);
-                })
-                .catch(error => {
-                    response.send(500, error);
-                });
-        }
+        //Ação padrão para resultado do interactor
+        interactor
+            .postInterested(body)
+            .then(message => {
+                response.send(200, message);
+            })
+            .catch(error => {
+                response.send(500, error);
+            });
     }
 
     post(request, response) {
@@ -80,7 +70,7 @@ export default class Translator {
 		let interactorResult;
 
 		//Validar se a requisição atual possui escopo Anônimo
-		if (request.authInfo.scope === Roles.ANONYMOUS)
+		if (request.authInfo === undefined)
             interactorResult = interactor.fetchAllAnonymous();
 
 		//Ou se possui escopo de Usuário/Admin
@@ -104,7 +94,7 @@ export default class Translator {
         let interactorResult;
 
         //Validar se a requisição atual possui escopo Anônimo
-        if (request.authInfo.scope === Roles.ANONYMOUS)
+        if (request.authInfo === undefined)
             interactorResult = interactor.fetchByIdAnonymous(id_menor);
 
         //Ou se possui escopo de Usuário/Admin
