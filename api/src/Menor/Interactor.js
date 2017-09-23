@@ -18,8 +18,6 @@ export default class Interactor {
     }
 
     fetchAll() {
-
-
         const entity = new this.Entity();
         return entity.fetchAll();
     }
@@ -54,9 +52,9 @@ export default class Interactor {
         return entity.addIntersting();
     }
 
-    fetchAllIntersting(body) {
+    fetchAllIntersting(id_menor) {
         const entity = new this.Entity();
-        return entity.fetchAllIntersting();
+        return entity.fetchAllIntersting(id_menor);
     }
 
     removeIntersting(body) {

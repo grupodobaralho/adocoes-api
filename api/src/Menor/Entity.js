@@ -52,9 +52,9 @@ export default class Entity {
         return adapter.addIntersting();
     }
 
-    fetchAllIntersting(body) {
+    fetchAllIntersting(id_menor) {
         const adapter = new this.Adapter();
-        return adapter.fetchAllInstersting();
+        return adapter.fetchAllIntersting(id_menor);
     }
 
     removeIntersting(body) {

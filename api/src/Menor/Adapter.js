@@ -6,6 +6,7 @@ export default class Adapter {
 
     constructor(deps = {}) {
         this.Menor = mongoose.model("Menor");
+        this.Interesse = mongoose.model("Interesse");
     }
 
     save(body) {
@@ -54,8 +55,13 @@ export default class Adapter {
         });
     }
 
-    fetchAllIntersting() {
-
+    fetchAllIntersting(id_menor) {
+        return this.Interesse.find({
+            //refMenor: { $ne: id_menor }
+            refMenor: id_menor
+                //refMenor: { $eq: id_menor }
+                //refMenor: { $eq: "59c1c39b38115b1d9cf43c4b" }
+        });
     }
 
     removeIntersting() {

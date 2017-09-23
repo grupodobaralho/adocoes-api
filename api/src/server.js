@@ -180,7 +180,7 @@ server.post("/menores/:id_menor/interessados", AuthManager.isAuthenticated, func
 // RFM08: GET /menores/:id_menor/interessados
 server.get("/menores/:id_menor/interessados", AuthManager.isAuthenticated, function(req, res) {
     const menorTranslator = new MenorTranslator();
-    menorTranslator.getInteressado(req, res);
+    menorTranslator.fetchAllIntersting(req, res);
 });
 
 // P1

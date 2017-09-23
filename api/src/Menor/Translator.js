@@ -80,4 +80,20 @@ export default class Translator {
 
     }
 
+    fetchAllIntersting(request, response) {
+
+        const {
+            id_menor
+        } = request.params;
+
+        const interactor = new this.Interactor();
+
+        interactor.fetchAllIntersting(id_menor)
+            .then(message => {
+                response.send(200, message);
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    }
 }
