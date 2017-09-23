@@ -23,6 +23,17 @@ export default class Adapter {
             });
     }
 
+    deleteInterested(body) {
+        return this.Interesse
+            .remove({
+                refMenor: body.refMenor,
+                refInteressado: body.refInteressado
+            })
+            .then(ret => {
+                return ret.result.n > 0;
+            });
+    }
+
     fetchAll() {
         return this.Menor.find((err, doc) => {
             return new Promise((resolve, reject) => {

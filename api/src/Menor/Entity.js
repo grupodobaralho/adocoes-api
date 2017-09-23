@@ -100,6 +100,11 @@ export default class Entity {
         return adapter.delete(id);
     }
 
+    deleteInterested(body) {
+        const adapter = new this.Adapter();
+        return adapter.deleteInterested(body);
+    }
+
     update(body) {
         const adapter = new this.Adapter();
         return adapter.fetchAndUpdate(body);

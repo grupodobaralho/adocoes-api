@@ -66,6 +66,11 @@ export default class Interactor {
         return entity.postInterested(body);
     }
 
+    deleteInterested(body) {
+        const entity = new this.Entity();
+        return entity.deleteInterested(body);
+    }
+
     fetchAllIntersting(id_menor) {
         const entity = new this.Entity();
         return entity.fetchAllIntersting(id_menor);

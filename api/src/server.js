@@ -183,10 +183,10 @@ server.get("/menores/:id_menor/interessados", AuthManager.isAuthenticated, funct
 });
 
 // P1
-// RFM09: DELETE /menores/:id_menor/interessados/:id_interessado
-server.del("/menores/:id_menor/interessados/:id_interessado", AuthManager.isAuthenticated, function(req, res) {
+// RFM09: DELETE /menores/:id_menor/interessados/
+server.del("/menores/:id_menor/interessados/", AuthManager.isAuthenticated, function(req, res) {
     const menorTranslator = new MenorTranslator();
-    menorTranslator.deleteInteressado(req, res);
+    menorTranslator.deleteInterestedByToken(req, res);
 });
 
 // P1

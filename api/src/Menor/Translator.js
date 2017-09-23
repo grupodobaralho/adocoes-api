@@ -8,6 +8,30 @@ export default class Translator {
         this.Interactor = deps.Interactor || require("./Interactor").default;
     }
 
+    deleteInterestedByToken(request, response) {
+        const interactor = new this.Interactor();
+
+        let body = {
+            refMenor: request.params.id_menor,
+            refInteressado: ""
+        };
+
+        //Validar se a requisição atual possui escopo Anônimo
+        if (request.authInfo.scope === Roles.USER) {
+            body.refInteressado = request.user._id;
+
+            //Ação padrão para resultado do interactor
+            interactor
+                .deleteInterested(body)
+                .then(message => {
+                    response.send(200, message);
+                })
+                .catch(error => {
+                    response.send(500, error);
+                });
+        }
+    }
+
     postInterested(request, response) {
         const interactor = new this.Interactor();
 
