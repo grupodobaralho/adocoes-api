@@ -95,6 +95,11 @@ export default class Entity {
         return adapter.delete(body.id);
     }
 
+    delete(id) {
+        const adapter = new this.Adapter();
+        return adapter.delete(id);
+    }
+
     update(body) {
         const adapter = new this.Adapter();
         return adapter.fetchAndUpdate(body);
@@ -110,9 +115,9 @@ export default class Entity {
         return adapter.addIntersting();
     }
 
-    fetchAllIntersting(body) {
+    fetchAllIntersting(id_menor) {
         const adapter = new this.Adapter();
-        return adapter.fetchAllInstersting();
+        return adapter.fetchAllIntersting(id_menor);
     }
 
     removeIntersting(body) {

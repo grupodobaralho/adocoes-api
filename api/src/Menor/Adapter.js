@@ -4,85 +4,100 @@ import mongoose from "mongoose";
 
 export default class Adapter {
 
-	constructor(deps = {}) {
-		this.Menor = mongoose.model("Menor");
-	}
+    constructor(deps = {}) {
+        this.Menor = mongoose.model("Menor");
+        this.Interesse = mongoose.model("Interesse");
+    }
 
-	save(body) {
-		const menor = new this.Menor(body);
-		return menor.save();
-	}
+    save(body) {
+        const menor = new this.Menor(body);
+        return menor.save();
+    }
 
-	fetchAll() {
-		return this.Menor.find((err, doc) => {
-			return new Promise((resolve, reject) => {
-				resolve(doc);
-			});
-		});
-	}
+    delete(_id) {
+        return this.Menor.remove({
+                _id
+            })
+            .then(resultado => {
+                return resultado.result.n > 0;
+            });
+    }
 
-	fetchById(id) {
-		return this.Menor.findById(id);
-	}
+    fetchAll() {
+        return this.Menor.find((err, doc) => {
+            return new Promise((resolve, reject) => {
+                resolve(doc);
+            });
+        });
+    }
 
-	fetchAndUpdate() {
-		return this.Menor.findOneAndUpdate({
-			_id: body.id
-		}, {
-			new: true
-		}, body, (err, menor) => {
-			return menor;
-		});
-	}
+    fetchById(id) {
+        return this.Menor.findById(id);
+    }
 
-	fetchOrdination() {
+    fetchAndUpdate() {
+        return this.Menor.findOneAndUpdate({
+            _id: body.id
+        }, {
+            new: true
+        }, body, (err, menor) => {
+            return menor;
+        });
+    }
 
-	}
+    fetchOrdination() {
 
-	addIntersting() {
-		return this.Menor.findOneAndUpdate({
-			_id: body.id
-		});
-	}
+    }
 
-	fetchAllIntersting() {
+    addIntersting() {
+        return this.Menor.findOneAndUpdate({
+            _id: body.id
+        });
+    }
 
-	}
+    fetchAllIntersting(id_menor) {
+        return this.Interesse.find({
+            //refMenor: { $ne: id_menor }
+            refMenor: id_menor
+                //refMenor: { $eq: id_menor }
+                //refMenor: { $eq: "59c1c39b38115b1d9cf43c4b" }
+        });
+    }
 
-	removeIntersting() {
+    removeIntersting() {
 
-	}
+    }
 
-	createImage() {
+    createImage() {
 
-	}
+    }
 
-	fetchAllImage() {
+    fetchAllImage() {
 
-	}
+    }
 
-	fetchImage() {
+    fetchImage() {
 
-	}
+    }
 
-	removeImage() {
+    removeImage() {
 
-	}
+    }
 
-	createVideo() {
+    createVideo() {
 
-	}
+    }
 
-	fetchAllVideo() {
+    fetchAllVideo() {
 
-	}
+    }
 
-	fetchVideo() {
+    fetchVideo() {
 
-	}
+    }
 
-	removeVideo() {
+    removeVideo() {
 
-	}
+    }
 
 }
