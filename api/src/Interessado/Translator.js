@@ -40,13 +40,12 @@ export default class Translator {
 
 	getInteressado(request, response) {
 		const body = {
-			id: request.params.id,
+			id: request.params.id_interessado,
 			...request.body
 		}
-
 		const interactor = new this.Interactor();
 
-		interactor.findOneInteressado(body)
+		interactor.getInteressado(body)
 			.then(message => {
 				response.json(200, message);
 			})
@@ -243,13 +242,14 @@ export default class Translator {
 	}
 
 	getDocuments(request, response) {
-		const {
-			body
-		} = request;
-		debugger;
+		const body = {
+			id: request.params.id_interessado,
+			...request.body
+		}
+		console.log(body);
 		const interactor = new this.Interactor();
 
-		interactor.getDocuments(body) 
+		interactor.getDocuments(body)
 			.then(message => {
 				response.send(200, message);
 			})

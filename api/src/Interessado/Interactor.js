@@ -14,8 +14,7 @@ export default class Interactor {
 	}
 
 	getInteressado(body) {
-		const entity = new this.Entity();
-		return entity.getInteressado(body.id);
+		return this.Entity.getInteressado(body.id);
 	}
 
 	deleteInteressado(id) {
@@ -94,13 +93,8 @@ export default class Interactor {
 			});
 	}
 
-
 	getDocuments(body) {
-		const entity = new this.Entity();
-		return entity.validateToken(body)
-			.then(body => {
-				entity.getDocuments(body.id);
-			})
+		return this.Entity.getDocuments(body.id);
 	}
 
 }

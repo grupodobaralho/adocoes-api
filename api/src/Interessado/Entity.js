@@ -16,8 +16,7 @@ export default class Entity {
 	}
 
 	getInteressado(id) {
-		const adapter = new this.Adapter();
-		return adapter.getInteressado(id);
+		return this.Adapter.getInteressado(id);
 	}
 
 
@@ -50,7 +49,9 @@ export default class Entity {
 			error,
 			value
 		} = Joi.validate(body, schema);
+		console.log('Error: ' + error);
 
+		console.log('Value: ' + value);
 		return new Promise((resolve, reject) => {
 			if (error) {
 				let messages = error.details.map(e => e.message);
@@ -115,8 +116,7 @@ export default class Entity {
 	}
 
 	getDocuments(id) {
-		const adapter = new this.Adapter();
-		return adapter.getInteressado(id);
+		return this.Adapter.getDocuments(id);
 	}
 
 }
