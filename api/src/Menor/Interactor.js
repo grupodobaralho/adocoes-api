@@ -57,9 +57,13 @@ export default class Interactor {
         return entity.fetchOrdination();
     }
 
-    addIntersting(body) {
+    postInterested(body) {
+        //Adiciona a data junto com o "corpo" que veio do Translator
+        body.timeStamp = Date.now();
+
         const entity = new this.Entity();
-        return entity.addIntersting();
+
+        return entity.postInterested(body);
     }
 
     fetchAllIntersting(id_menor) {

@@ -8,6 +8,31 @@ export default class Translator {
         this.Interactor = deps.Interactor || require("./Interactor").default;
     }
 
+    postInterested(request, response) {
+        const interactor = new this.Interactor();
+
+        let body = {
+            refMenor: request.params.id_menor,
+            refInteressado: "",
+            tipoInteresse: request.body.tipoInteresse
+        };
+
+        //Validar se a requisição atual possui escopo Anônimo
+        if (request.authInfo.scope === Roles.USER) {
+            body.refInteressado = request.user._id;
+
+            //Ação padrão para resultado do interactor
+            interactor
+                .postInterested(body)
+                .then(message => {
+                    response.send(200, message);
+                })
+                .catch(error => {
+                    response.send(500, error);
+                });
+        }
+    }
+
     post(request, response) {
         const {
             body

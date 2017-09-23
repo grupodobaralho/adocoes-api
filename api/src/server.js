@@ -172,7 +172,7 @@ server.del("/menores/:id_menor", AuthManager.isAuthenticated, function(req, res)
 // RFM07: POST /menores/:id_menor/interessados
 server.post("/menores/:id_menor/interessados", AuthManager.isAuthenticated, function(req, res) {
     const menorTranslator = new MenorTranslator();
-    menorTranslator.postInteressado(req, res);
+    menorTranslator.postInterested(req, res);
 });
 
 // P1
@@ -287,6 +287,7 @@ server.put("/interessados/:id_interessado/visualizacoes", AuthManager.isAuthenti
     interessadoTranslator.updateVisualizacao(req, res);
 });
 
+/*
 // P0
 // RFI13: POST /interessados/:id_interessado}/menores
 server.post("/interessados/:id_interessado/menores", AuthManager.isAuthenticated, function(req, res) {
@@ -306,7 +307,7 @@ server.get("/interessados/:id_interessado/menores", AuthManager.isAuthenticated,
 server.del("/interessados/:id_interessado/menores/:id_menor", AuthManager.isAuthenticated, function(req, res) {
     const interessadoTranslator = new InteressadoTranslator();
     interessadoTranslator.deleteMenor(req, res);
-});
+});*/
 
 // RFI16 (2017-2): POST /interessados/:id_interessado/menores/:id_menor/compartilhamentos
 // RFI17 (2017-2): GET /interessados/:id_interessado/mensagens

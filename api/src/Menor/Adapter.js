@@ -49,10 +49,9 @@ export default class Adapter {
 
     }
 
-    addIntersting() {
-        return this.Menor.findOneAndUpdate({
-            _id: body.id
-        });
+    postInterested(body) {
+        const interesse = new this.Interesse(body);
+        return interesse.save();
     }
 
     fetchAllIntersting(id_menor) {

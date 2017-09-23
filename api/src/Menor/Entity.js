@@ -110,9 +110,9 @@ export default class Entity {
         return adapter.fetchOrdination();
     }
 
-    addIntersting(body) {
+    postInterested(body) {
         const adapter = new this.Adapter();
-        return adapter.addIntersting();
+        return adapter.postInterested(body);
     }
 
     fetchAllIntersting(id_menor) {
