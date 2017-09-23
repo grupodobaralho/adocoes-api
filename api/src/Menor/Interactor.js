@@ -66,6 +66,7 @@ export default class Interactor {
         return entity.postInterested(body);
     }
 
+    //TODO: precisamos avisar o TJ quando o usuário remover o interesse.
     deleteInterested(body) {
         const entity = new this.Entity();
         return entity.deleteInterested(body);
