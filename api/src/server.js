@@ -313,6 +313,10 @@ server.del("/interessados/:id_interessado/menores/:id_menor", AuthManager.isAuth
 // RFI17 (2017-2): GET /interessados/:id_interessado/mensagens
 // RFI18 (2017-2): PUT /usuarios/:id_usuario/mensagens
 // RFI19 (2017-2): POST /interessados/:id_interessado/documentos
+/**
+  * @api {get} /interessados/:id_interessado/documentos Request Uer documentos
+  * @api Success {String} Teste
+  */
 // RFI20 (2017-2): GET /interessados/:id_interessado/documentos
 server.get("/interessados/:id_interessado/documentos", AuthManager.isAuthenticated, (req, res) => {
   const interessadoTranslator = new InteressadoTranslator();
