@@ -22,6 +22,11 @@ export default class Interactor {
         return entity.fetchAllAnonymous();
     }
 
+    fetchAll() {
+        const entity = new this.Entity();
+        return entity.fetchAll();
+    }
+
 	fetchById(id) {
 		const entity = new this.Entity();
 		return entity.fetchById(id);
