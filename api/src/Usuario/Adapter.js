@@ -8,8 +8,8 @@ export default class Adapter {
 		this.Usuario = mongoose.model("Usuario");
 	}
 
-	save(usuario) {
-		const usr = new this.Usuario(usuario);
+	save(body) {
+		const usr = new this.Usuario(body);
 		return usr.save();
 	}
 

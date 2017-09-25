@@ -2,11 +2,13 @@
 
 export default class Interactor {
 	constructor(deps = {}) {
-		this.Entity = deps.Entity || new(require("./Entity").default)();
+		this.Entity = deps.Entity ? new deps.Entity() : new(require("./Entity").default)();
 	}
 
-	save(usuario) {
-		return this.Entity.save(usuario);
+	save(body) {
+		return this.Entity.validate(body).then(body => {
+			return this.Entity.save(body);
+		})		
 	}
 
 	fetchAll(body) {
@@ -18,7 +20,9 @@ export default class Interactor {
 	}
 
 	update(id, body) {
+		return this.Entity.validate(body).then(body => {
 		return this.Entity.update(id, body);
+		});
 	}
 
 	delete(id) {
