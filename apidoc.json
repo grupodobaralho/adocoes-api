@@ -1,0 +1,23 @@
+{
+  "name": "adocoes-api",
+  "version": "0.1.0",
+  "description": "documentacao api adocoes",
+  "title": "API Adocoes",
+  "url" : "",
+  "header": {
+    "title": "My own header title",
+    "filename": ""
+  },
+  "footer": {
+    "title": "My own footer title",
+    "filename": ""
+  },
+  "order": [
+    "GetUser",
+    "PostUser"
+  ],
+  "template": {
+  	"withCompare": true,
+  	"withGenerator": true
+  }
+}

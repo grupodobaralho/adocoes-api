@@ -103,7 +103,7 @@ server.del("/usuarios/:id_usuario", AuthManager.isAuthenticated, function (req, 
 });
 
 // P1
-// RFU06: GET /usuarios/:id_usuario/perfis 
+// RFU06: GET /usuarios/:id_usuario/perfis
 server.get("/usuarios/:id_usuario/perfis", AuthManager.isAuthenticated, function (req, res) {
     const usuarioTranslator = new UsuarioTranslator();
     usuarioTranslator.getPerfilByUsuarioId(req, res);
@@ -228,7 +228,7 @@ server.del("/menores/:id_menor/midias/:id_midia", AuthManager.isAuthenticated, f
 // RFM21 (2017-2): GET /menores/:id_menor/processos/:id_processo
 // RFM22 (2017-2): DELETE /menores/:id_menor/processos/:id_processo
 
-//    
+//
 // Resource: interessado
 //
 
@@ -313,7 +313,21 @@ server.del("/interessados/:id_interessado/menores/:id_menor", AuthManager.isAuth
 // RFI17 (2017-2): GET /interessados/:id_interessado/mensagens
 // RFI18 (2017-2): PUT /usuarios/:id_usuario/mensagens
 // RFI19 (2017-2): POST /interessados/:id_interessado/documentos
+/**
+  * @api {get} /interessados/:id_interessado/documentos Request User Documents
+  * @apiGroup Interessado
+  * @apiSuccessExample {json} Success-Response:
+  *     HTTP/1.1 200 OK
+  *     {
+  *       "firstname": "John",
+  *       "lastname": "Doe"
+  *     }
+  */
 // RFI20 (2017-2): GET /interessados/:id_interessado/documentos
+server.get("/interessados/:id_interessado/documentos", AuthManager.isAuthenticated, (req, res) => {
+  const interessadoTranslator = new InteressadoTranslator();
+  interessadoTranslator.getDocuments(req, res);
+})
 // RFI21 (2017-2): GET /interessados/:id_interessado/documentos/:id_documento
 
 //
