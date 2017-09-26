@@ -1,6 +1,7 @@
 "use strict";
 
 import Joi from "joi";
+import StringHelper from "../Common/StringHelper";
 
 export default class Entity {
     constructor(deps = {}) {
@@ -14,12 +15,74 @@ export default class Entity {
 
     fetchAll() {
         const adapter = new this.Adapter();
-        return adapter.fetchAll();
+
+        return new Promise((resolve, rjct) => {
+            //Retorna entidades do banco de dados
+            let body = adapter.fetchAll().then(body => {
+                //Para cada entidade, reduzir a quantidade das informações
+                return body.map(this._createDefaultDTO);
+            });
+
+            return resolve(body);
+        });
+    }
+
+    fetchAllAnonymous() {
+        const adapter = new this.Adapter();
+
+        return new Promise((resolve, rjct) => {
+            //Retorna entidades do banco de dados
+            let body = adapter.fetchAll().then(body => {
+                //Para cada entidade, reduzir a quantidade das informações
+                return body.map(this._createNewAnonymousDTO);
+            });
+
+            return resolve(body);
+        });
+    }
+
+    //Cria "DTO" com valores reduzidos
+    _createNewAnonymousDTO(entity) {
+        //Transforma nome em somente iniciais
+        entity.nome = StringHelper.getOnlyNameInitials(entity.nome);
+
+        return entity;
+    }
+
+    //Cria "DTO" com formas padrão
+    _createDefaultDTO(entity) {
+        //Transforma nome em somente primeiro nome
+        entity.nome = StringHelper.getOnlyFirstName(entity.nome);
+
+        return entity;
     }
 
     fetchById(id) {
         const adapter = new this.Adapter();
-        return adapter.fetchById(id);
+
+        return new Promise((resolve, rjct) => {
+            //Retorna entidades do banco de dados
+            let body = adapter.fetchById(id).then(dto => {
+                //Para cada entidade, reduzir a quantidade das informações
+                return this._createDefaultDTO(dto);
+            });
+
+            return resolve(body);
+        });
+    }
+
+    fetchByIdAnonymous(id) {
+        const adapter = new this.Adapter();
+
+        return new Promise((resolve, rjct) => {
+            //Retorna entidades do banco de dados
+            let body = adapter.fetchById(id).then(dto => {
+                //Para cada entidade, reduzir a quantidade das informações
+                return this._createNewAnonymousDTO(dto);
+            });
+
+            return resolve(body);
+        });
     }
 
     find(body) {
@@ -32,6 +95,16 @@ export default class Entity {
         return adapter.delete(body.id);
     }
 
+    delete(id) {
+        const adapter = new this.Adapter();
+        return adapter.delete(id);
+    }
+
+    deleteInterested(body) {
+        const adapter = new this.Adapter();
+        return adapter.deleteInterested(body);
+    }
+
     update(body) {
         const adapter = new this.Adapter();
         return adapter.fetchAndUpdate(body);
@@ -42,14 +115,14 @@ export default class Entity {
         return adapter.fetchOrdination();
     }
 
-    addIntersting(body) {
+    postInterested(body) {
         const adapter = new this.Adapter();
-        return adapter.addIntersting();
+        return adapter.postInterested(body);
     }
 
-    fetchAllIntersting(body) {
+    fetchAllIntersting(id_menor) {
         const adapter = new this.Adapter();
-        return adapter.fetchAllInstersting();
+        return adapter.fetchAllIntersting(id_menor);
     }
 
     removeIntersting(body) {
