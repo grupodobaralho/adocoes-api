@@ -314,8 +314,14 @@ server.del("/interessados/:id_interessado/menores/:id_menor", AuthManager.isAuth
 // RFI18 (2017-2): PUT /usuarios/:id_usuario/mensagens
 // RFI19 (2017-2): POST /interessados/:id_interessado/documentos
 /**
-  * @api {get} /interessados/:id_interessado/documentos Request Uer documentos
-  * @api Success {String} Teste
+  * @api {get} /interessados/:id_interessado/documentos Request User Documents
+  * @apiGroup Interessado
+  * @apiSuccessExample {json} Success-Response:
+  *     HTTP/1.1 200 OK
+  *     {
+  *       "firstname": "John",
+  *       "lastname": "Doe"
+  *     }
   */
 // RFI20 (2017-2): GET /interessados/:id_interessado/documentos
 server.get("/interessados/:id_interessado/documentos", AuthManager.isAuthenticated, (req, res) => {
@@ -323,7 +329,6 @@ server.get("/interessados/:id_interessado/documentos", AuthManager.isAuthenticat
   interessadoTranslator.getDocuments(req, res);
 })
 // RFI21 (2017-2): GET /interessados/:id_interessado/documentos/:id_documento
-
 //
 //resource: Conteudos
 //
