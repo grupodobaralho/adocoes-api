@@ -46,14 +46,13 @@ export default class Adapter {
         return this.Menor.findById(id);
     }
 
-    fetchAndUpdate() {
+    update(id, body) {
         return this.Menor.findOneAndUpdate({
-            _id: body.id
-        }, {
-            new: true
-        }, body, (err, menor) => {
-            return menor;
-        });
+			_id: id
+		}, body, {
+			upsert: false,
+			new: true
+		});
     }
 
     fetchOrdination() {
