@@ -4,7 +4,7 @@ import Joi from "joi";
 
 export default class Entity {
 	constructor(deps = {}) {
-		this.Adapter = deps.Adapter || new(require("./Adapter").default)();
+		this.Adapter = deps.Adapter || new require("./Adapter").default;
 	}
 
 	post(body) {
@@ -112,6 +112,12 @@ export default class Entity {
 	deleteInterest() {
 		const adapter = new this.Adapter();
 		return adapter.deleteInterest();
+	}
+
+	// RFI17 (2017-2): GET /interessados/:id_interessado/mensagens
+	getMensagens(id_interessado) {
+		const adapter = new this.Adapter();
+		return adapter.getMensagens(id_interessado);
 	}
 
 }

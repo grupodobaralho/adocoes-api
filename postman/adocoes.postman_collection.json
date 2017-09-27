@@ -591,6 +591,56 @@
 						"description": ""
 					},
 					"response": []
+				},
+				{
+					"name": "/interessados/{id_interessado}/mensagens",
+					"request": {
+						"url": "{{url}}/interessados/{id_interessado}/mensagens",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token-type}} {{access-token}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "{{content-type}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "/interessados/{id_interessado}/mensagens",
+					"request": {
+						"url": "{{url}}/interessados/{id_interessado}/mensagens",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token-type}} {{access-token}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "{{content-type}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
 				}
 			]
 		},

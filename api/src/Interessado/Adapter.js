@@ -75,4 +75,11 @@ export default class Adapter {
 
 	deleteInterest() {}
 
+	// RFI17 (2017-2): GET /interessados/:id_interessado/mensagens
+	getMensagens(id_interessado) {
+        return this.Interessado.find({
+            _id: id_interessado
+        });
+    }
+
 }

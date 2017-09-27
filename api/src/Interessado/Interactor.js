@@ -2,7 +2,7 @@
 
 export default class Interactor {
 	constructor(deps = {}) {
-		this.Entity = deps.Entity || new(require("./Entity").default)();
+		this.Entity = deps.Entity || new require("./Entity").default;
 	}
 
 	post(body) {
@@ -92,6 +92,12 @@ export default class Interactor {
 			.then(body => {
 				entity.deleteInterest();
 			});
+	}
+
+	// RFI17 (2017-2): GET /interessados/:id_interessado/mensagens
+	getMensagens(id_interessado) {
+		const entity = new this.Entity();
+		return entity.getMensagens(id_interessado);
 	}
 
 }

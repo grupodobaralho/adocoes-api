@@ -310,10 +310,18 @@ server.del("/interessados/:id_interessado/menores/:id_menor", AuthManager.userAu
 });*/
 
 // RFI16 (2017-2): POST /interessados/:id_interessado/menores/:id_menor/compartilhamentos
+
+
 // RFI17 (2017-2): GET /interessados/:id_interessado/mensagens
+server.get("/interessados/:id_interessado/mensagens", AuthManager.userAuthenticated, function(req, res) {
+    const interessadoTranslator = new InteressadoTranslator();
+    interessadoTranslator.getMensagens(req, res);
+});
+
 // RFI18 (2017-2): PUT /usuarios/:id_usuario/mensagens
 // RFI19 (2017-2): POST /interessados/:id_interessado/documentos
 // RFI20 (2017-2): GET /interessados/:id_interessado/documentos
+
 // RFI21 (2017-2): GET /interessados/:id_interessado/documentos/:id_documento
 
 //

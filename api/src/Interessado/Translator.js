@@ -242,4 +242,21 @@ export default class Translator {
 			});
 	}
 
+
+	// RFI17 (2017-2): GET /interessados/:id_interessado/mensagens
+	getMensagens(request, response) {
+		const {
+            id_interessado
+        } = request.params;
+
+		const interactor = new this.Interactor();
+		interactor.getMensagens(id_interessado)
+			.then(message => {
+				response.send(200, message);
+			})
+			.catch(error => {
+				console.log(error);
+			});
+	}
+
 }
