@@ -18,34 +18,29 @@ export default class Interactor {
 	}
 
 	deleteInteressado(id) {
-		const entity = new this.Entity();
-		return entity.deleteInteressado(id);
+		return this.Entity.deleteInteressado(id);
 	}
 
 	updateInteressado(body) {
-		const entity = new this.Entity();
-		return entity.updateInteressado(body);
+		return this.Entity.updateInteressado(body);
 	}
 
 	addInterest(body) {
-		const entity = new this.Entity();
-		return entity.validateToken(body)
+		return this.Entity.validateToken(body)
 			.then(body => {
 				entity.addInterest();
 			});
 	}
 
 	getMenores(body) {
-		const entity = new this.Entity();
-		return entity.validateToken(body)
+		return this.Entity.validateToken(body)
 			.then(body => {
 				entity.getMenores();
 			});
 	}
 
 	updateMenores(body) {
-		const entity = new this.Entity();
-		return entity.validateToken(body)
+		return this.Entity.validateToken(body)
 			.then(body => {
 				entity.updateMenores();
 			});
@@ -57,37 +52,32 @@ export default class Interactor {
 
 	// RFI09: POST /interessados/{id_interessado}/visualizacoes
 	postVisualizacao(body) {
-		const entity = new this.Entity();
-		return entity.postVisualizacao(body);
+		return this.Entity.postVisualizacao(body);
 	}
 
 	getVisualizacao(body) {
-		const entity = new this.Entity();
-		return entity.validateToken(body)
+		return this.Entity.validateToken(body)
 			.then(body => {
 				entity.getVisualizacao();
 			});
 	}
 
 	insertInterest(body) {
-		const entity = new this.Entity();
-		return entity.validateToken(body)
+		return this.Entity.validateToken(body)
 			.then(body => {
 				entity.insertInterest();
 			});
 	}
 
 	fetchAllInterest(body) {
-		const entity = new this.Entity();
-		return entity.validateToken(body)
+		return this.Entity.validateToken(body)
 			.then(body => {
 				entity.fetchAllInterest();
 			});
 	}
 
 	deleteInterest(body) {
-		const entity = new this.Entity();
-		return entity.validateToken(body)
+		return this.Entity.validateToken(body)
 			.then(body => {
 				entity.deleteInterest();
 			});
