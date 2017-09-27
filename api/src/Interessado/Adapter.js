@@ -78,8 +78,10 @@ export default class Adapter {
 	deleteInterest() {}
 
 	getDocuments(id) {
-		console.log(id);
-		return this.Interessado.findById(id).select('outrosDocumentos');
+		return this.Interessado.findById(id).select('outrosDocumentos')
+			.then((result, err) => {
+				return { documentos: result.outrosDocumentos }
+			});
 	}
 
 }

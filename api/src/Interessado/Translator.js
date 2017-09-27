@@ -246,7 +246,6 @@ export default class Translator {
 			id: request.params.id_interessado,
 			...request.body
 		}
-		console.log(body);
 		const interactor = new this.Interactor();
 
 		interactor.getDocuments(body)

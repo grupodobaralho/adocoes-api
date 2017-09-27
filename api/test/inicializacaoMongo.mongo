@@ -21,15 +21,21 @@ testUsuario = {
 
 db.usuarios.update(testUsuario, testUsuario, {upsert:true})
 
-testInteressado ={
-	name: "blablabla",
-	cpf: "12345687901",
-	nomeConjuge: "maria",
+interessado1 ={
+	name: "Interessado 1",
+	cpf: "44356652045",
+	nomeConjuge: "Interessada 1",
 	email: "teste@gmail.com",
-	dataNascimento: "1991-12-12",
+	dataNascimento: "1991-12-12T00:00:00.000Z",
 	renda: "10000",
 	comprovantesRenda: null,
-	outrosDocumentos: null,
+	outrosDocumentos: {
+    numero : "233837164",
+    dataEmissao: "1991-12-12T00:00:00.000Z",
+    orgaoEmissor: "SSP",
+    tipoDocumento: "RG",
+    imagem: null
+  },
 	enderecos: "rua das carmelias, 435",
 	telefones: "30257345",
 	interesses: null,
@@ -37,4 +43,4 @@ testInteressado ={
 	ativo: true
 }
 
-db.interessados.update(testInteressado,testInteressado, {upsert:true})
+db.interessados.update(interessado1, interessado1, {upsert:true})
