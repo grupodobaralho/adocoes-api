@@ -34,7 +34,8 @@ const interessadoSchema = new Schema({
 		midiaSchema
 	],
 	outrosDocumentos: [
-		documentoSchema
+		type: mongoose.Schema.Type.ObjectId,
+		ref: "documentos"
 	],
 	enderecos: [{
 		type: mongoose.Schema.Types.ObjectId,

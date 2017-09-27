@@ -29,18 +29,20 @@ interessado1 ={
 	dataNascimento: "1991-12-12T00:00:00.000Z",
 	renda: "10000",
 	comprovantesRenda: null,
-	outrosDocumentos: {
-    numero : "233837164",
-    dataEmissao: "1991-12-12T00:00:00.000Z",
-    orgaoEmissor: "SSP",
-    tipoDocumento: "RG",
-    imagem: null
-  },
+	outrosDocumentos: ,
 	enderecos: "rua das carmelias, 435",
 	telefones: "30257345",
 	interesses: null,
 	visualizacoes: null,
 	ativo: true
+}
+
+document1 = {
+  numero : "233837164",
+  dataEmissao: "1991-12-12T00:00:00.000Z",
+  orgaoEmissor: "SSP",
+  tipoDocumento: "RG",
+  imagem: null
 }
 
 db.interessados.update(interessado1, interessado1, {upsert:true})
