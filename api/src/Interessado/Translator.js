@@ -3,7 +3,7 @@
 export default class Translator {
 
 	constructor(deps = {}) {
-		this.Interactor = deps.Interactor || require("./Interactor").default;
+		this.Interactor = deps.Interactor || new(require("./Interactor").default)();
 	}
 
 	post(request, response) {
@@ -11,9 +11,8 @@ export default class Translator {
 			body
 		} = request;
 
-		const interactor = new this.Interactor();
 
-		interactor.post(body)
+		this.Interactor.post(body)
 			.then(message => {
 				response.send(201, message)
 			})
@@ -27,9 +26,8 @@ export default class Translator {
 			body
 		} = request;
 
-		const interactor = new this.Interactor();
 
-		interactor.getInteressados()
+		this.Interactor.getInteressados()
 			.then(message => {
 				response.send(200, message);
 			})
@@ -43,9 +41,8 @@ export default class Translator {
 			id: request.params.id_interessado,
 			...request.body
 		}
-		const interactor = new this.Interactor();
 
-		interactor.getInteressado(body)
+		this.Interactor.getInteressado(body)
 			.then(message => {
 				response.json(200, message);
 			})
@@ -62,9 +59,7 @@ export default class Translator {
 
 		delete body._id;
 
-		const interactor = new this.Interactor();
-
-		interactor.updateInteressado(body)
+		this.Interactor.updateInteressado(body)
 			.then(message => {
 				response.send(200, message);
 			})
@@ -78,9 +73,8 @@ export default class Translator {
 			body
 		} = request;
 
-		const interactor = new this.Interactor();
 
-		interactor.delete(request.params.id)
+		this.Interactor.delete(request.params.id)
 			.then(message => {
 				response.send(204, message);
 			})
@@ -94,9 +88,7 @@ export default class Translator {
 			body
 		} = request;
 
-		const interactor = new this.Interactor();
-
-		interactor.addInterest(body)
+		this.Interactor.addInterest(body)
 			.then(message => {
 				response.send(200, message);
 			})
@@ -110,9 +102,8 @@ export default class Translator {
 			body
 		} = request;
 
-		const interactor = new this.Interactor();
 
-		interactor.fetchAllMenores(request.header.accessToken)
+		this.Interator.fetchAllMenores(request.header.accessToken)
 			.then(message => {
 				response.send(200, message);
 			})
@@ -126,9 +117,7 @@ export default class Translator {
 			body
 		} = request;
 
-		const interactor = new this.Interactor();
-
-		interactor.putMenores(body)
+		this.Interactor.putMenores(body)
 			.then(message => {
 				response.send(200, message);
 			})
@@ -148,9 +137,7 @@ export default class Translator {
 			...request.body
 		}
 
-		const interactor = new this.Interactor();
-
-		interactor.postVisualizacao(body)
+		this.Interactor.postVisualizacao(body)
 			.then(message => {
 				response.send(201, message);
 			})
@@ -165,9 +152,7 @@ export default class Translator {
 			body
 		} = request;
 
-		const interactor = new this.Interactor()
-
-		interactor.getVisualizacao(request.header.accessToken)
+		this.Interactor.getVisualizacao(request.header.accessToken)
 			.then(message => {
 				response.send(200, message);
 			})
@@ -182,9 +167,7 @@ export default class Translator {
 			body
 		} = request;
 
-		const interactor = new this.Interactor();
-
-		interactor.updateVisualizacao(body)
+		this.Interactor.updateVisualizacao(body)
 			.then(message => {
 				response.send(200, message);
 			})
@@ -198,9 +181,7 @@ export default class Translator {
 			body
 		} = request;
 
-		const interactor = new this.Interactor();
-
-		interactor.insertInterest(body)
+		this.Interactor.insertInterest(body)
 			.then(message => {
 				response.send(200, message);
 			})
@@ -214,9 +195,8 @@ export default class Translator {
 			body
 		} = request;
 
-		const interactor = new this.Interactor();
 
-		interactor.fetchAllInterest(request.header.accessToken)
+		this.Interactor.fetchAllInterest(request.header.accessToken)
 			.then(message => {
 				response.send(200, message);
 			})
@@ -230,9 +210,7 @@ export default class Translator {
 			body
 		} = request;
 
-		const interactor = new this.Interactor();
-
-		interactor.deleteInterest(body)
+		this.Interactor.deleteInterest(body)
 			.then(message => {
 				response.send(200, message);
 			})
@@ -246,9 +224,8 @@ export default class Translator {
 			id: request.params.id_interessado,
 			...request.body
 		}
-		const interactor = new this.Interactor();
 
-		interactor.getDocuments(body)
+		this.Interactor.getDocuments(body)
 			.then(message => {
 				response.send(200, message);
 			})
@@ -256,5 +233,4 @@ export default class Translator {
 				response.send(200, message);
 			})
 	}
-
 }
