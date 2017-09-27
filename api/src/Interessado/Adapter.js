@@ -5,6 +5,7 @@ import mongoose from "mongoose";
 export default class Adapter {
 	constructor(deps = {}) {
 		this.Interessado = mongoose.model("Interessado");
+		this.Documento = mongoose.model("Documento");
 	}
 
 	post(body) {
@@ -38,16 +39,16 @@ export default class Adapter {
 		return this.Interessado.findOneAndUpdate({
 			_id: body.id
 		}, {
-			upsert: true,
-			new: true
-		}, body);
+				upsert: true,
+				new: true
+			}, body);
 	}
 
-	addInsert() {}
+	addInsert() { }
 
-	fetchAllMenores() {}
+	fetchAllMenores() { }
 
-	putMenores() {}
+	putMenores() { }
 
 	//
 	// Visualizacoes
@@ -58,21 +59,29 @@ export default class Adapter {
 		return this.Interessado.findOneAndUpdate({
 			_id: body.id
 		}, {
-			$pushAll: {
-				"visualizacoes": body.visualizacoes
-			}
-		}, {
-			upsert: true,
-			new: true
-		});
+				$pushAll: {
+					"visualizacoes": body.visualizacoes
+				}
+			}, {
+				upsert: true,
+				new: true
+			});
 	}
 
-	fetchAllViews() {}
+	fetchAllViews() { }
 
-	insertInterest() {}
+	insertInterest() { }
 
-	fetchAllInterest() {}
+	fetchAllInterest() { }
 
-	deleteInterest() {}
+	deleteInterest() { }
+
+	getDocumentosById(body) {
+		return this.Documento
+			.find({
+				refDocumento: body.refDocumento,
+				refInteressado: body.refInteressado
+			});
+	}
 
 }

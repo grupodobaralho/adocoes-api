@@ -4,7 +4,7 @@ import Joi from "joi";
 
 export default class Entity {
 	constructor(deps = {}) {
-		this.Adapter = deps.Adapter || new(require("./Adapter").default)();
+		this.Adapter = deps.Adapter || new (require("./Adapter").default)();
 	}
 
 	post(body) {
@@ -112,6 +112,10 @@ export default class Entity {
 	deleteInterest() {
 		const adapter = new this.Adapter();
 		return adapter.deleteInterest();
+	}
+
+	getDocumentosById(body) {
+		return this.Adapter.getDocumentosById(body);
 	}
 
 }

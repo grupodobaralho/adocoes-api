@@ -568,9 +568,9 @@
 					"response": []
 				},
 				{
-					"name": "/interessados/{id_interessado}/visualizacoes",
+					"name": "/interessados/{id_interessado}/documentos/{id_documento}",
 					"request": {
-						"url": "{{url}}/interessados/{id_interessado}/visualizacoes",
+						"url": "{{url}}/interessados/{id_interessado}/documentos/{id_documento}",
 						"method": "GET",
 						"header": [
 							{
