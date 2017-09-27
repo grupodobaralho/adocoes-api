@@ -5,11 +5,10 @@ import Roles from '../Common/Roles';
 export default class Translator {
 
     constructor(deps = {}) {
-        this.Interactor = deps.Interactor || require("./Interactor").default;
+		this.Interactor = deps.Interactor || new(require("./Interactor").default)();
     }
 
     deleteInterestedByToken(request, response) {
-        const interactor = new this.Interactor();
 
         let body = {
             refMenor: request.params.id_menor,
@@ -17,7 +16,7 @@ export default class Translator {
         };
 
         //Ação padrão para resultado do interactor
-        interactor
+        this.Interactor
             .deleteInterested(body)
             .then(message => {
                 response.send(200, message);
@@ -28,7 +27,6 @@ export default class Translator {
     }
 
     postInterested(request, response) {
-        const interactor = new this.Interactor();
 
         let body = {
             refMenor: request.params.id_menor,
@@ -37,7 +35,7 @@ export default class Translator {
         };
 
         //Ação padrão para resultado do interactor
-        interactor
+        this.Interactor
             .postInterested(body)
             .then(message => {
                 response.send(200, message);
@@ -52,9 +50,8 @@ export default class Translator {
             body
         } = request;
 
-        const interactor = new this.Interactor();
-
-        interactor.create(body)
+        
+        this.Interactor.create(body)
             .then(message => {
                 response.send(200, message);
             })
@@ -65,17 +62,16 @@ export default class Translator {
 
     getAll(request, response) {
 		const { body } = request;
-		const interactor = new this.Interactor();
-
+		
 		let interactorResult;
 
 		//Validar se a requisição atual possui escopo Anônimo
 		if (request.authInfo === undefined)
-            interactorResult = interactor.fetchAllAnonymous();
+            interactorResult = this.Interactor.fetchAllAnonymous();
 
 		//Ou se possui escopo de Usuário/Admin
 		else
-            interactorResult = interactor.fetchAll();
+            interactorResult = this.Interactor.fetchAll();
 
 		//Ação padrão para resultado do interactor
         interactorResult
@@ -89,17 +85,16 @@ export default class Translator {
 
 	get(request, response) {
 		const { id_menor } = request.params;
-        const interactor = new this.Interactor();
-
+        
         let interactorResult;
 
         //Validar se a requisição atual possui escopo Anônimo
         if (request.authInfo === undefined)
-            interactorResult = interactor.fetchByIdAnonymous(id_menor);
+            interactorResult = this.Interactor.fetchByIdAnonymous(id_menor);
 
         //Ou se possui escopo de Usuário/Admin
         else
-            interactorResult = interactor.fetchById(id_menor);
+            interactorResult = this.Interactor.fetchById(id_menor);
 
         //Ação padrão para resultado do interactor
         interactorResult
@@ -111,8 +106,22 @@ export default class Translator {
 			});
 	}
 
-    put() {
+    updateMenor(request, response) {
+        const {
+			body
+		} = request;
 
+		this.Interactor.update(request.params.id_menor, body)
+			.then(menor => {
+				if (!menor) {
+					return response.send(400, "Nenhum menor com o ID informado foi encontrado");
+				}
+				response.send(200, menor);
+			})
+			.catch(error => {
+				console.log(error);
+				response.send(500, "Ocorreu um erro ao atualizar o menor");
+			});
     }
 
     deleteMenor(request, response) {
@@ -121,9 +130,8 @@ export default class Translator {
             id_menor
         } = request.params;
 
-        const interactor = new this.Interactor();
-
-        interactor.delete(id_menor)
+        
+        this.Interactor.delete(id_menor)
             .then(sucesso => {
                 if (!sucesso) {
                     return response.send(400, "Nenhum cadastro com o ID informado foi encontrado");
@@ -143,9 +151,7 @@ export default class Translator {
             id_menor
         } = request.params;
 
-        const interactor = new this.Interactor();
-
-        interactor.fetchAllIntersting(id_menor)
+        this.Interactor.fetchAllIntersting(id_menor)
             .then(message => {
                 response.send(200, message);
             })

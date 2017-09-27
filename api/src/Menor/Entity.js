@@ -5,20 +5,17 @@ import StringHelper from "../Common/StringHelper";
 
 export default class Entity {
     constructor(deps = {}) {
-        this.Adapter = deps.Adapter || require("./Adapter").default;
+		this.Adapter = deps.Adapter || new(require("./Adapter").default)();
     }
 
     create(body) {
-        const adapter = new this.Adapter();
-        return adapter.save(body);
+        return this.Adapter.save(body);
     }
 
     fetchAll() {
-        const adapter = new this.Adapter();
-
         return new Promise((resolve, rjct) => {
             //Retorna entidades do banco de dados
-            let body = adapter.fetchAll().then(body => {
+            let body = this.Adapter.fetchAll().then(body => {
                 //Para cada entidade, reduzir a quantidade das informações
                 return body.map(this._createDefaultDTO);
             });
@@ -28,11 +25,9 @@ export default class Entity {
     }
 
     fetchAllAnonymous() {
-        const adapter = new this.Adapter();
-
         return new Promise((resolve, rjct) => {
             //Retorna entidades do banco de dados
-            let body = adapter.fetchAll().then(body => {
+            let body = this.Adapter.fetchAll().then(body => {
                 //Para cada entidade, reduzir a quantidade das informações
                 return body.map(this._createNewAnonymousDTO);
             });
@@ -58,11 +53,9 @@ export default class Entity {
     }
 
     fetchById(id) {
-        const adapter = new this.Adapter();
-
         return new Promise((resolve, rjct) => {
             //Retorna entidades do banco de dados
-            let body = adapter.fetchById(id).then(dto => {
+            let body = this.Adapter.fetchById(id).then(dto => {
                 //Para cada entidade, reduzir a quantidade das informações
                 return this._createDefaultDTO(dto);
             });
@@ -72,11 +65,9 @@ export default class Entity {
     }
 
     fetchByIdAnonymous(id) {
-        const adapter = new this.Adapter();
-
         return new Promise((resolve, rjct) => {
             //Retorna entidades do banco de dados
-            let body = adapter.fetchById(id).then(dto => {
+            let body = this.Adapter.fetchById(id).then(dto => {
                 //Para cada entidade, reduzir a quantidade das informações
                 return this._createNewAnonymousDTO(dto);
             });
@@ -86,88 +77,71 @@ export default class Entity {
     }
 
     find(body) {
-        const adapter = new this.Adapter();
-        return adapter.fetch(body.id);
+        return this.Adapter.fetch(body.id);
     }
 
     remove(body) {
-        const adapter = new this.Adapter();
-        return adapter.delete(body.id);
+        return this.Adapter.delete(body.id);
     }
 
     delete(id) {
-        const adapter = new this.Adapter();
-        return adapter.delete(id);
+        return this.Adapter.delete(id);
     }
 
     deleteInterested(body) {
-        const adapter = new this.Adapter();
-        return adapter.deleteInterested(body);
+        return this.Adapter.deleteInterested(body);
     }
 
-    update(body) {
-        const adapter = new this.Adapter();
-        return adapter.fetchAndUpdate(body);
+    update(id, body) {
+        return this.Adapter.update(id, body);
     }
 
     getOrdination(body) {
-        const adapter = new this.Adapter();
-        return adapter.fetchOrdination();
+        return this.Adapter.fetchOrdination();
     }
 
     postInterested(body) {
-        const adapter = new this.Adapter();
-        return adapter.postInterested(body);
+        return this.Adapter.postInterested(body);
     }
 
     fetchAllIntersting(id_menor) {
-        const adapter = new this.Adapter();
-        return adapter.fetchAllIntersting(id_menor);
+        return this.Adapter.fetchAllIntersting(id_menor);
     }
 
     removeIntersting(body) {
-        const adapter = new this.Adapter();
-        return adapter.removeIntersting();
+        return this.Adapter.removeIntersting();
     }
 
     createImage(body) {
-        const adapter = new this.Adapter();
-        return adapter.createImage();
+        return this.Adapter.createImage();
     }
 
     fetchImages(body) {
-        const adapter = new this.Adapter();
-        return adapter.fetchAllImage();
+        return this.Adapter.fetchAllImage();
     }
 
     fetchImage(body) {
-        const adapter = new this.Adapter();
-        return adapter.fetchImage();
+        return this.Adapter.fetchImage();
     }
 
     removeImage(body) {
-        const adapter = new this.Adapter();
-        return adapter.removeImage();
+        return this.Adapter.removeImage();
     }
 
     createVideo(body) {
-        const adapter = new this.Adapter();
-        return adapter.createVideo();
+        return this.Adapter.createVideo();
     }
 
     fetchAllVideo(body) {
-        const adapter = new this.Adapter();
-        return adapter.fetchAllVideo();
+        return this.Adapter.fetchAllVideo();
     }
 
     fetchVideo(body) {
-        const adapter = new this.Adapter();
-        return adapter.fetchVideo();
+        return this.Adapter.fetchVideo();
     }
 
     removeVideo(body) {
-        const adapter = new this.Adapter();
-        return adapter.removeVideo();
+        return this.Adapter.removeVideo();
     }
 
     validateToken(body) {
