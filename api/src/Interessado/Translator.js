@@ -214,16 +214,15 @@ export default class Translator {
 			});
 	}
 
-	getDocumentosById(request, response) {
-        const interactor = new this.Interactor();
 
+	getDocumentosById(request, response) {
         let body = {
 						refInteressado: request.user._id,
 						refDocumento: request.params.id_documento
         };
 
         //Ação padrão para resultado do interactor
-        interactor
+        this.Interactor
             .getDocumentosById(body)
             .then(message => {
                 response.send(200, message);
