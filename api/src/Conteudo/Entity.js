@@ -4,12 +4,11 @@ import Joi from "joi";
 
 export default class Entity {
 	constructor(deps = {}) {
-		this.Adapter = deps.Adapter || require("./Adapter").default;
+		this.Adapter = deps.Adapter ? new deps.Adapter() : new(require("./Adapter").default)();
 	}
 
 	create(body) {
-		const adapter = new this.Adapter();
-		return adapter.save(body);
+		return this.Adapter.save(body);
 	}
 
 	validateToken(body) {
@@ -48,48 +47,39 @@ export default class Entity {
 	}
 
 	fetchAll() {
-		let adapter = new this.Adapter();
-		return adapter.fetchAll();
+		return this.Adapter.fetchAll();
 	}
 
 	find(body) {
-		const adapter = new this.Adapter();
-		return adapter.fetch(body.id);
+		return this.Adapter.fetch(body.id);
 	}
 
 	update(body) {
-		const adapter = new this.Adapter();
-		return adapter.fetchAndUpdate(body);
+		return this.Adapter.fetchAndUpdate(body);
 	}
 
 	remove(body) {
-		const adapter = new this.Adapter();
-		return adapter.delete(body.id);
+		return this.Adapter.delete(body.id);
 	}
 
 	addImage(body) {
-		const adapter = new this.Adapter();
-		return adapter.fetchAndAddImage(body);
+		return this.Adapter.fetchAndAddImage(body);
 	}
 
 	getImage(body) {
-		const adapter = new this.Adapter();
-		return adapter.getImagem(body.id);
+		return this.Adapter.getImagem(body.id);
 	}
 
 	createVideo(body) {
-		const adapter = new this.Adapter();
-		return adapter.addVideo(body);
+		return this.Adapter.addVideo(body);
 	}
 
 	deleteVideo(body) {
-		const adapter = new this.Adapter();
-		return adapter.deleteVideo(body.id);
+		return this.Adapter.deleteVideo(body.id);
 	}
 
 	fetchAllVideos(id) {
-		const adapter = new this.Adapter();
-		return adapter.fetchAllVideos(id);
+		return this.Adapter.fetchAllVideos(id);
 	}
 
 }

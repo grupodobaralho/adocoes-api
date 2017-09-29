@@ -2,59 +2,49 @@
 
 export default class Interactor {
 	constructor(deps = {}) {
-		this.Entity = deps.Entity || require("./Entity").default;
+		this.Entity = deps.Entity ? new deps.Entity() : new(require("./Entity").default)();
 	}
 
 	create(body) {
-		let entity = new this.Entity();
-		return entity.validate(body).then(body => {
-			return entity.create(body);
+		return this.Entity.validate(body).then(body => {
+			return this.Entity.create(body);
 		});
 	}
 
 	fetchAll() {
-		let entity = new this.Entity();
-		return entity.fetchAll();
+		return this.Entity.fetchAll();
 	}
 
 	update(body) {
-		const entity = new this.Entity();
-		return entity.update(body);
+		return this.Entity.update(body);
 	}
 
 	remove(body) {
-		const entity = new this.Entity();
-		return entity.remove(body);
+		return this.Entity.remove(body);
 	}
 
 	getImage(body) {
-		const entity = new this.Entity();
-		return entity.getImagem(body);
+		return this.Entity.getImagem(body);
 	}
 
 	findConteudo(body) {
-		const entity = new this.Entity();
-		return entity.find(body);
+		return this.Entity.find(body);
 	}
 
 	deleteVideo(body) {
-		const entity = new this.Entity();
-		return entity.delete(body);
+		return this.Entity.delete(body);
 	}
 
 	addImage(body) {
-		const entity = new this.Entity();
-		return entity.addImage(body);
+		return this.Entity.addImage(body);
 	}
 
 	createVideo(body) {
-		const entity = new this.Entity();
-		return entity.createVideo(body);
+		return this.Entity.createVideo(body);
 	}
 
 	fetchAllVideos(id) {
-		const entity = new this.Entity();
-		return entity.fetchAllVideos(id);
+		return this.Entity.fetchAllVideos(id);
 	}
 
 }

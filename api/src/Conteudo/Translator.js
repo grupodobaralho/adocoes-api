@@ -2,7 +2,7 @@
 
 export default class Translator {
 	constructor(deps = {}) {
-		this.Interactor = deps.Interactor || require("./Interactor").default;
+		this.Interactor = deps.Interactor ? new deps.Interactor() : new(require("./Interactor").default)();
 	}
 
 	post(request, response) {
@@ -10,9 +10,7 @@ export default class Translator {
 			body
 		} = request;
 
-		const interactor = new this.Interactor();
-
-		interactor.create(body)
+		this.Interactor.create(body)
 			.then(message => {
 				response.send(200, message);
 			})
@@ -26,9 +24,7 @@ export default class Translator {
 			id
 		} = request.params;
 
-		const interactor = new this.Interactor();
-
-		interactor.fetchAllVideos(id)
+		this.Interactor.fetchAllVideos(id)
 			.then(message => {
 				response.send(200, message);
 			})
@@ -41,17 +37,15 @@ export default class Translator {
 		const {
 			body
 		} = request;
-		const interactor = new this.Interactor();
-
-		interactor.update(body)
+		
+		this.Interactor.update(body)
 			.then(message => {
 				response.send(200, message);
 			});
 	}
 
 	get(request, response) {
-		let interactor = new this.Interactor();
-		return interactor.fetchAll()
+		return this.Interactor.fetchAll()
 			.then(result => {
 				response.json(200, result);
 			})
@@ -65,8 +59,7 @@ export default class Translator {
 		const {
 			body
 		} = request;
-		const interactor = new this.Interactor();
-		interactor.deleteVideo(body)
+		this.Interactor.deleteVideo(body)
 			.then(message => {
 				console.log(200, message);
 			})
@@ -79,9 +72,8 @@ export default class Translator {
 		let {
 			body
 		} = request;
-		const interactor = new this.Interactor();
 		body.id = request.params.id;
-		interactor.remove(body)
+		this.Interactor.remove(body)
 			.then(message => {
 				response.send(200, message);
 			})
@@ -94,9 +86,8 @@ export default class Translator {
 		let {
 			body
 		} = request;
-		const interactor = new this.Interactor();
 		body.id = request.params.id;
-		interactor.getImage(body)
+		this.Interactor.getImage(body)
 			.then(message => {})
 			.catch(error => {
 				console.log(error);
@@ -108,8 +99,7 @@ export default class Translator {
 			body
 		} = request;
 		body.id = request.params.id;
-		const interactor = new this.Interactor();
-		interactor.addImage(body)
+		this.Interactor.addImage(body)
 			.then(message => {
 				response.send(200, message);
 			})
@@ -123,8 +113,7 @@ export default class Translator {
 			body
 		} = request;
 		body.id = request.params.id;
-		const interactor = new this.Interactor();
-		interactor.createVideo(body).then(message => {
+		this.Interactor.createVideo(body).then(message => {
 			response.send(200, message);
 		}).catch(error => {
 			console.log(error);
