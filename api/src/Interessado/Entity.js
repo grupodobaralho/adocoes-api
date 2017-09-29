@@ -4,7 +4,7 @@ import Joi from "joi";
 
 export default class Entity {
 	constructor(deps = {}) {
-		this.Interactor = deps.Interactor ? new deps.Interactor() : new(require("./Interactor").default)();
+		this.Adapter = deps.Adapter ? new deps.Adapter() : new(require("./Adapter").default)();
 	}
 
 	post(body) {
