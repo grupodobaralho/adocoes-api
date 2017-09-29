@@ -312,42 +312,42 @@ server.del("/interessados/:id_interessado/menores/:id_menor", AuthManager.userAu
 // RFI16 (2017-2): POST /interessados/:id_interessado/menores/:id_menor/compartilhamentos
 // RFI17 (2017-2): GET /interessados/:id_interessado/mensagens
 // RFI18 (2017-2): PUT /usuarios/:id_usuario/mensagens
-// RFI19 (2017-2): POST /interessados/:id_interessado/documento
+// RFI19 (2017-2): POST /interessados/:id_interessado/docmento
 /**
-  * @api {post} /interessados/:id_interessado/documento Post User Document
-  * @apiGroup Interessado
-  * @apiSuccessExample {json} Success-Response
-  *     HTTP/1.1 200 OK
-  *     {
-  *
-  *     }
-  */
-server.post("/interessados/:id_interessado/documento", AuthManager.userAuthenticated, (req, res) => {
-  const interessadoTranslator = new InteressadoTranslator();
-  interessadoTransalator.postDocument(req, res);
-});
+	* @api {post} /interessados/:id_interessado/documento Post User Document
+	* @apiGroup Interessado
+	* @apiSuccessExample {json} Success-Response
+	*     HTTP/1.1 200 OK
+	*     {
+	*
+	*     }
+	*/
+// server.post("/interessados/:id_interessado/documento", AuthManager.userAuthenticated, (req, res) => {
+// 	const interessadoTranslator = new InteressadoTranslator();
+// 	interessadoTransalator.postDocument(req, res);
+// });
 // RFI20 (2017-2): GET /interessados/:id_interessado/documentos
-/**
-  * @api {get} /interessados/:id_interessado/documentos Request User Documents
-  * @apiGroup Interessado
-  * @apiSuccessExample {json} Success-Response:
-  *     HTTP/1.1 200 OK
-  *     {
-  *      "documentos": [
-  *         {
-  *           "numero": "233837164",
-  *           "dataEmissao": "1991-12-12T00:00:00.000Z",
-  *           "orgaoEmissor": "SSP",
-  *           "tipoDocumento": "RG",
-  *           "imagem": null
-  *         }
-  *       ]
-  *     }
-  */
+	/**
+	* @api {get} /interessados/:id_interessado/documentos Request User Documents
+	* @apiGroup Interessado
+	* @apiSuccessExample {json} Success-Response:
+	*     HTTP/1.1 200 OK
+	*     {
+	*      "documentos": [
+	*         {
+	*           "numero": "233837164",
+	*           "dataEmissao": "1991-12-12T00:00:00.000Z",
+	*           "orgaoEmissor": "SSP",
+	*           "tipoDocumento": "RG",
+	*           "imagem": null
+	*         }
+	*       ]
+	*     }
+	*/
 // RFI20 (2017-2): GET /interessados/:id_interessado/documentos
 server.get("/interessados/:id_interessado/documentos", AuthManager.userAuthenticated, (req, res) => {
-  const interessadoTranslator = new InteressadoTranslator();
-  interessadoTranslator.getDocuments(req, res);
+	const interessadoTranslator = new InteressadoTranslator();
+	interessadoTranslator.getDocuments(req, res);
 });
 // RFI21 (2017-2): GET /interessados/:id_interessado/documentos/:id_documento
 

@@ -26,6 +26,15 @@ export default class Entity {
 		});
 	}
 
+	validateDocument(body) {
+		const schema = Joi.object({
+			numero: Joi.string().required(),
+			dataEmissao: Joi.date(),
+			orgaoEmissor: Joi.string(),
+			tipoDocumento: Joi.string().required()
+		});
+	}
+
 	validate(body) {
 		const schema = Joi.object({
 			refUsuario: Joi.object().required(),
@@ -38,7 +47,7 @@ export default class Entity {
 			dataNascimento: Joi.date().required(),
 			renda: Joi.number().precision(2),
 			comprovantesRenda: Joi.object().required(),
-			outrosDocumentos: Joi.object().required(),
+			outrosDocumentos: Joi.object(),
 			enderecos: Joi.string().required(),
 			telefones: Joi.string().required(),
 			interesses: Joi.object().required(),
@@ -107,6 +116,10 @@ export default class Entity {
 
 	getDocuments(id) {
 		return this.Adapter.getDocuments(id);
+	}
+
+	postDocuments(id) {
+		return this.Adapter.postDocuments();
 	}
 
 }
