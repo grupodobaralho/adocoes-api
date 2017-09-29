@@ -4,7 +4,7 @@ import Joi from "joi";
 
 export default class Entity {
 	constructor(deps = {}) {
-		this.Adapter = deps.Adapter || new (require("./Adapter").default)();
+		this.Adapter = deps.Adapter ? new deps.Adapter() : new(require("./Adapter").default)();
 	}
 
 	post(body) {
@@ -16,8 +16,7 @@ export default class Entity {
 	}
 
 	getInteressado(id) {
-		const adapter = new this.Adapter();
-		return adapter.getInteressado(id);
+		return this.Adapter.getInteressado(id);
 	}
 
 
@@ -65,53 +64,43 @@ export default class Entity {
 	}
 
 	deleteInteressado(id) {
-		const adapter = new this.Adapter();
-		return adapter.deleteInteressado(id);
+		return this.Adapter.deleteInteressado(id);
 	}
 
 	updateInteressado(body) {
-		const adapter = new this.Adapter();
-		return adapter.updateInteressado(body);
+		return this.Adapter.updateInteressado(body);
 	}
 
 	addInterest() {
-		const adapter = new this.Adapter();
-		return adapter.addInterest();
+		return this.Adapter.addInterest();
 	}
 
 	getMenores() {
-		const adapter = new this.Adapter();
-		return adapter.getMenores();
+		return this.Adapter.getMenores();
 	}
 
 	updateMenores() {
-		const adapter = new this.Adapter();
-		return adapter.updateMenores();
+		return this.Adapter.updateMenores();
 	}
 
 	postVisualizacao(body) {
-		const adapter = new this.Adapter();
-		return adapter.postVisualizacao(body);
+		return this.Adapter.postVisualizacao(body);
 	}
 
 	getVisualizacoes() {
-		const adapter = new this.Adapter();
-		return adapter.getVisualizacoes();
+		return this.Adapter.getVisualizacoes();
 	}
 
 	insertInterest() {
-		const adapter = new this.Adapter();
-		return adapter.insertInterest();
+		return this.Adapter.insertInterest();
 	}
 
 	fetchAllInterest() {
-		const adapter = new this.Adapter();
-		return adapter.fetchAllInterest();
+		return this.Adapter.fetchAllInterest();
 	}
 
 	deleteInterest() {
-		const adapter = new this.Adapter();
-		return adapter.deleteInterest();
+		return this.Adapter.deleteInterest();
 	}
 
 	getDocumentosById(body) {

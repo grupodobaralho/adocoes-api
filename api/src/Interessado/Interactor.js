@@ -2,7 +2,7 @@
 
 export default class Interactor {
 	constructor(deps = {}) {
-		this.Entity = deps.Entity || new (require("./Entity").default)();
+		this.Entity = deps.Entity ? new deps.Entity() : new(require("./Entity").default)();
 	}
 
 	post(body) {
@@ -14,41 +14,35 @@ export default class Interactor {
 	}
 
 	getInteressado(body) {
-		const entity = new this.Entity();
-		return entity.getInteressado(body.id);
+		return this.Entity.getInteressado(body.id);
 	}
 
 	deleteInteressado(id) {
-		const entity = new this.Entity();
-		return entity.deleteInteressado(id);
+		return this.Entity.deleteInteressado(id);
 	}
 
 	updateInteressado(body) {
-		const entity = new this.Entity();
-		return entity.updateInteressado(body);
+		return this.Entity.updateInteressado(body);
 	}
 
 	addInterest(body) {
-		const entity = new this.Entity();
-		return entity.validateToken(body)
+		return this.Entity.validateToken(body)
 			.then(body => {
-				entity.addInterest();
+				this.Entity.addInterest();
 			});
 	}
 
 	getMenores(body) {
-		const entity = new this.Entity();
-		return entity.validateToken(body)
+		return this.Entity.validateToken(body)
 			.then(body => {
-				entity.getMenores();
+				this.Entity.getMenores();
 			});
 	}
 
 	updateMenores(body) {
-		const entity = new this.Entity();
-		return entity.validateToken(body)
+		return this.Entity.validateToken(body)
 			.then(body => {
-				entity.updateMenores();
+				this.Entity.updateMenores();
 			});
 	}
 
@@ -58,39 +52,34 @@ export default class Interactor {
 
 	// RFI09: POST /interessados/{id_interessado}/visualizacoes
 	postVisualizacao(body) {
-		const entity = new this.Entity();
-		return entity.postVisualizacao(body);
+		return this.Entity.postVisualizacao(body);
 	}
 
 	getVisualizacao(body) {
-		const entity = new this.Entity();
-		return entity.validateToken(body)
+		return this.Entity.validateToken(body)
 			.then(body => {
-				entity.getVisualizacao();
+				this.Entity.getVisualizacao();
 			});
 	}
 
 	insertInterest(body) {
-		const entity = new this.Entity();
-		return entity.validateToken(body)
+		return this.Entity.validateToken(body)
 			.then(body => {
-				entity.insertInterest();
+				this.Entity.insertInterest();
 			});
 	}
 
 	fetchAllInterest(body) {
-		const entity = new this.Entity();
-		return entity.validateToken(body)
+		return this.Entity.validateToken(body)
 			.then(body => {
-				entity.fetchAllInterest();
+				this.Entity.fetchAllInterest();
 			});
 	}
 
 	deleteInterest(body) {
-		const entity = new this.Entity();
-		return entity.validateToken(body)
+		return this.Entity.validateToken(body)
 			.then(body => {
-				entity.deleteInterest();
+				this.Entity.deleteInterest();
 			});
 	}
 
