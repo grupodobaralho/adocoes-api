@@ -4,7 +4,7 @@ export default class StringHelper {
         let nameParts = name
             .split(" ")
             .map(str => {
-                return str.charAt(0);
+                return str.charAt(0) + ".";
             });
 
         return nameParts.join(" ");
