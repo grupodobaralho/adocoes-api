@@ -56,13 +56,23 @@ export default class Adapter {
     }
 
     fetchAllIntersting(id_menor) {
-        return this.Interesse.find({
-            //refMenor: { $ne: id_menor }
-            refMenor: id_menor
-                //refMenor: { $eq: id_menor }
-                //refMenor: { $eq: "59c1c39b38115b1d9cf43c4b" }
-        });
-    }
+
+        return this.Interesse.aggregate([
+
+            { $match: { refMenor: mongoose.Types.ObjectId(id_menor) } },
+
+            { $sort: { refInteressado: 1 } },
+
+            {
+                $lookup: {
+                    from: "interessados",
+                    localField: "refInteressado",
+                    foreignField: "refUsuario",
+                    as: "interessados"
+                }
+            }
+        ])
+    };
 
     removeIntersting() {
 
