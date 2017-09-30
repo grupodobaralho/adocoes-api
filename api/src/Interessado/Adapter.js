@@ -78,13 +78,24 @@ export default class Adapter {
 
 	deleteInterest() { }
 
+	/*
 	getDocumentsById(body) {
+	
 		return this.Documento
 			.find({
 				refDocumento: body.refDocumento,
 				refInteressado: body.refInteressado
 			});
 	}
+}*/
+	
+	getDocumentsById(body) {
+		return this.Interessado.find({'_id': body.refInteressado}, {outrosDocumentos: {$elemMatch: {_id: body.refDocumento}}})
+			.then((result, err) => {
+				return { documento: result}
+			});
+	}
+
 
 	getDocuments(id) {
 		return this.Interessado.findById(id).select('outrosDocumentos')
@@ -92,5 +103,4 @@ export default class Adapter {
 				return { documentos: result.outrosDocumentos }
 			});
 	}
-
 }

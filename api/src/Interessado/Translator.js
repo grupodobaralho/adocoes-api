@@ -235,6 +235,7 @@ export default class Translator {
 			...request.body
 		}
 
+
 		this.Interactor.postDocument(body)
 			.then(message => {
 				response.send(200, message);
