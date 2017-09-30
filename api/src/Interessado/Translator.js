@@ -36,7 +36,7 @@ export default class Translator {
 
 	getInteressado(request, response) {
 		const body = {
-			id: request.params.id,
+			id: request.params.id_interessado,
 			...request.body
 		}
 
@@ -214,4 +214,33 @@ export default class Translator {
 			});
 	}
 
+	getDocuments(request, response) {
+		const body = {
+			id: request.params.id_interessado,
+			...request.body
+		}
+
+		this.Interactor.getDocuments(body)
+			.then(message => {
+				response.send(200, message);
+			})
+			.catch(error => {
+				response.send(200, message);
+			})
+	}
+
+	postDocument(request, response) {
+		const body = {
+			id: request.params.id_interessado,
+			...request.body
+		}
+
+		this.Interactor.postDocument(body)
+			.then(message => {
+				response.send(200, message);
+			})
+			.catch(message => {
+				
+			})
+	}
 }

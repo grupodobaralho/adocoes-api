@@ -83,4 +83,12 @@ export default class Interactor {
 			});
 	}
 
+	getDocuments(body) {
+		return this.Entity.getDocuments(body.id);
+	}
+
+	postDocuments(body) {
+		return this.Entity.postDocument(body.id);
+	}
+
 }

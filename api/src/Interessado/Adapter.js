@@ -16,7 +16,9 @@ export default class Adapter {
 	getInteressado(id) {
 		console.log(id);
 		return this.Interessado.findById(id, (err, result) => {
-			console.log(result);
+			return new Promise((resolve, reject) => {
+				resolve(result);
+			})
 		});
 	}
 
@@ -74,5 +76,12 @@ export default class Adapter {
 	fetchAllInterest() {}
 
 	deleteInterest() {}
+
+	getDocuments(id) {
+		return this.Interessado.findById(id).select('outrosDocumentos')
+			.then((result, err) => {
+				return { documentos: result.outrosDocumentos }
+			});
+	}
 
 }

@@ -4,6 +4,7 @@ import Abrigo from "./abrigo.js";
 import Administrador from "./administrador.js";
 import Cidade from "./cidade.js";
 import Conteudo from "./conteudo.js";
+import Documento from "./documento.js";
 import Endereco from "./endereco.js";
 import Estado from "./estado.js";
 import Etnia from "./etnia.js";
@@ -25,6 +26,7 @@ export {
 	Administrador,
 	Cidade,
 	Conteudo,
+	Documento,
 	Endereco,
 	Estado,
 	Etnia,
