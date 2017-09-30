@@ -48,15 +48,15 @@ export default class Adapter {
     }
 
     saveMedia(body, id_menor) {
-        return this.Menor.findById(id_menor, (err, doc) => {
-            if (!err) {
-                const media = doc.midias.create(body);
-                doc.midias.push(media);
-
-                doc.save();
-            }
-        });
-    }
+        const media = new this.Midia(body);
+        media.save();
+        this.Menor.findById(id_menor, (err, menor) => {   
+        menor.refMidias.push(media._id);
+        menor.save();
+        console.log(menor.refMidias);
+    });
+        return media;                
+}
 
     update(id, body) {
         return this.Menor.findOneAndUpdate({
