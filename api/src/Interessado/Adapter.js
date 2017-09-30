@@ -76,7 +76,7 @@ export default class Adapter {
 
 	deleteInterest() { }
 
-	getDocumentosById(body) {
+	getDocumentsById(body) {
 		return this.Documento
 			.find({
 				refDocumento: body.refDocumento,

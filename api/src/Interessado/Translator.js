@@ -215,7 +215,7 @@ export default class Translator {
 	}
 
 
-	getDocumentosById(request, response) {
+	getDocumentsById(request, response) {
         let body = {
 						refInteressado: request.user._id,
 						refDocumento: request.params.id_documento
@@ -223,7 +223,7 @@ export default class Translator {
 
         //Ação padrão para resultado do interactor
         this.Interactor
-            .getDocumentosById(body)
+            .getDocumentsById(body)
             .then(message => {
                 response.send(200, message);
             })

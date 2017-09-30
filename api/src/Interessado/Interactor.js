@@ -83,8 +83,8 @@ export default class Interactor {
 			});
 	}
 
-	getDocumentosById(body) {
-		return this.Entity.getDocumentosById(body);
+	getDocumentsById(body) {
+		return this.Entity.getDocumentsById(body);
 	}
 
 }

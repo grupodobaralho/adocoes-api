@@ -319,7 +319,7 @@ server.del("/interessados/:id_interessado/menores/:id_menor", AuthManager.userAu
 // RFI21 (2017-2): GET /interessados/:id_interessado/documentos/:id_documento
 server.get("/interessados/:id_interessado/documentos/:id_documento", AuthManager.userAuthenticated, function(req, res) {
     const interessadoTranslator = new InteressadoTranslator();
-    interessadoTranslator.getDocumentosById(req, res);
+    interessadoTranslator.getDocumentsById(req, res);
 });
 
 //

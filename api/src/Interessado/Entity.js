@@ -103,8 +103,8 @@ export default class Entity {
 		return this.Adapter.deleteInterest();
 	}
 
-	getDocumentosById(body) {
-		return this.Adapter.getDocumentosById(body);
+	getDocumentsById(body) {
+		return this.Adapter.getDocumentsById(body);
 	}
 
 }
