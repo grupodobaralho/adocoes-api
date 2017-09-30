@@ -60,6 +60,19 @@ export default class Translator {
             });
     }
 
+    postMedia(request, response) {
+        const { body } = request;
+        const { id_menor } = request.params;
+        
+        this.Interactor.postMedia(body, id_menor)
+            .then(message => {
+                response.send(200, message);
+            })
+            .catch(error => {
+                response.send(500, error);
+            });
+    }
+
     getAll(request, response) {
 		const { body } = request;
 		

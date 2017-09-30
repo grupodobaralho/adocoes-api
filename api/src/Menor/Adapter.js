@@ -7,6 +7,7 @@ export default class Adapter {
     constructor(deps = {}) {
         this.Menor = mongoose.model("Menor");
         this.Interesse = mongoose.model("Interesse");
+        this.Midia = mongoose.model("Midia");
     }
 
     save(body) {
@@ -44,6 +45,17 @@ export default class Adapter {
 
     fetchById(id) {
         return this.Menor.findById(id);
+    }
+
+    saveMedia(body, id_menor) {
+        return this.Menor.findById(id_menor, (err, doc) => {
+            if (!err) {
+                const media = doc.midias.create(body);
+                doc.midias.push(media);
+
+                doc.save();
+            }
+        });
     }
 
     update(id, body) {

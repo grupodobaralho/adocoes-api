@@ -206,7 +206,7 @@ server.get("/menores/:id_menor/midias/:id_midia", AuthManager.anonymousAuthentic
 // RFM10: POST /menores/:id_menor/midias
 server.post("/menores/:id_menor/midias", AuthManager.userAuthenticated, function(req, res) {
     const menorTranslator = new MenorTranslator();
-    menorTranslator.postMidia(req, res);
+    menorTranslator.postMedia(req, res);
 });
 
 // P1
