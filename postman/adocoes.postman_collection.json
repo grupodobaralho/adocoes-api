@@ -814,9 +814,9 @@
 					"response": []
 				},
 				{
-					"name": "/menores/{id_menor}/interessados/{id_interessado}",
+					"name": "/menores/{id_menor}/interessados",
 					"request": {
-						"url": "{{url}}/menores/{id_menor}/interessados/{id_interessado}",
+						"url": "{{url}}/menores/{id_menor}/interessados",
 						"method": "DELETE",
 						"header": [
 							{
