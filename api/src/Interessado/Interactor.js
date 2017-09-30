@@ -85,8 +85,7 @@ export default class Interactor {
 
 	// RFI17 (2017-2): GET /interessados/:id_interessado/mensagens
 	getMensagens(id_interessado) {
-		const entity = new this.Entity();
-		return entity.getMensagens(id_interessado);
+		return this.Entity.getMensagens(id_interessado);
 	}
 
 }

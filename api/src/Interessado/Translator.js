@@ -221,8 +221,7 @@ export default class Translator {
             id_interessado
         } = request.params;
 
-		const interactor = new this.Interactor();
-		interactor.getMensagens(id_interessado)
+		this.Interactor.getMensagens(id_interessado)
 			.then(message => {
 				response.send(200, message);
 			})

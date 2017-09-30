@@ -84,7 +84,7 @@ export default class Entity {
 	}
 
 	postVisualizacao(body) {
-		return this.Adapter.postVisualizacao(body);
+		return this.Adapter.updateVisualizacao(body);
 	}
 
 	getVisualizacoes() {
@@ -105,8 +105,7 @@ export default class Entity {
 
 	// RFI17 (2017-2): GET /interessados/:id_interessado/mensagens
 	getMensagens(id_interessado) {
-		const adapter = new this.Adapter();
-		return adapter.getMensagens(id_interessado);
+		return this.Adapter.getMensagens(id_interessado);
 	}
 
 }
