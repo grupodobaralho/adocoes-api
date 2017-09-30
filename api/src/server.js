@@ -189,29 +189,24 @@ server.del("/menores/:id_menor/interessados/", AuthManager.anonymousAuthenticate
     menorTranslator.deleteInterestedByToken(req, res);
 });
 
-// P1
-// RFM10: POST /menores/:id_menor/midias
-server.post("/menores/:id_menor/midias", AuthManager.userAuthenticated, function(req, res) {
-    const menorTranslator = new MenorTranslator();
-    menorTranslator.postMidia(req, res);
-});
-server.post("/menores/:id_menor/midias/:id_midia/midia", AuthManager.userAuthenticated, function(req, res) {
-    const menorTranslator = new MenorTranslator();
-    menorTranslator.postMidiaConteudo(req, res);
-});
-
 // P0
 // RFM11: GET /menores/:id_menor/midias
-server.get("/menores/:id_menor/midias", AuthManager.userAuthenticated, function(req, res) {
+server.get("/menores/:id_menor/midias", AuthManager.anonymousAuthenticated, function(req, res) {
     const menorTranslator = new MenorTranslator();
     menorTranslator.getAllImagens(req, res);
 });
 
 // P0
 // RFM12: GET /menores/:id_menor/midias/:id_midia
-server.get("/menores/:id_menor/midias/:id_midia", AuthManager.userAuthenticated, function(req, res) {
+server.get("/menores/:id_menor/midias/:id_midia", AuthManager.anonymousAuthenticated, function(req, res) {
     const menorTranslator = new MenorTranslator();
     menorTranslator.getMidiaById(req, res);
+});
+
+// RFM10: POST /menores/:id_menor/midias
+server.post("/menores/:id_menor/midias", AuthManager.userAuthenticated, function(req, res) {
+    const menorTranslator = new MenorTranslator();
+    menorTranslator.postMidia(req, res);
 });
 
 // P1
