@@ -13,15 +13,7 @@ export default class Entity {
     }
 
     fetchAll() {
-        return new Promise((resolve, rjct) => {
-            //Retorna entidades do banco de dados
-            let body = this.Adapter.fetchAll().then(body => {
-                //Para cada entidade, reduzir a quantidade das informações
-                return body.map(this._createDefaultDTO);
-            });
-
-            return resolve(body);
-        });
+        return this.Adapter.fetchAll();
     }
 
     fetchAllAnonymous() {
@@ -44,24 +36,8 @@ export default class Entity {
         return entity;
     }
 
-    //Cria "DTO" com formas padrão
-    _createDefaultDTO(entity) {
-        //Transforma nome em somente primeiro nome
-        entity.nome = StringHelper.getOnlyFirstName(entity.nome);
-
-        return entity;
-    }
-
     fetchById(id) {
-        return new Promise((resolve, rjct) => {
-            //Retorna entidades do banco de dados
-            let body = this.Adapter.fetchById(id).then(dto => {
-                //Para cada entidade, reduzir a quantidade das informações
-                return this._createDefaultDTO(dto);
-            });
-
-            return resolve(body);
-        });
+        return this.Adapter.fetchById(id);
     }
 
     fetchByIdAnonymous(id) {
