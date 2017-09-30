@@ -6,7 +6,7 @@ const Schema = mongoose.Schema;
 export const midiaSchema = new Schema({
 	type: {
 		type: String,
-		enum: ["foto", "video", "carta", "html"],
+		enum: ["foto", "foto-blur", "video", "carta", "html"],
 		required: true
 	},
 	conteudo: {
