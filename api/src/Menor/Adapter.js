@@ -48,11 +48,11 @@ export default class Adapter {
 
     update(id, body) {
         return this.Menor.findOneAndUpdate({
-			_id: id
-		}, body, {
-			upsert: false,
-			new: true
-		});
+            _id: id
+        }, body, {
+            upsert: false,
+            new: true
+        });
     }
 
     fetchOrdination() {
@@ -64,11 +64,17 @@ export default class Adapter {
         return interesse.save();
     }
 
-    fetchAllIntersting(id_menor) {
 
-        return this.Interesse.aggregate([
+    fetchAllIntersting(id_menor, arr) {
 
-            { $match: { refMenor: mongoose.Types.ObjectId(id_menor) } },
+        return this.Interesse.aggregate([{
+                $match: {
+                    refMenor: mongoose.Types.ObjectId(id_menor),
+                    $and: [
+                        { tipoInteresse: { $in: arr } },
+                    ]
+                }
+            },
 
             { $sort: { refInteressado: 1 } },
 

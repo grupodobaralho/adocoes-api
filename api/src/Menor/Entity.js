@@ -5,7 +5,7 @@ import StringHelper from "../Common/StringHelper";
 
 export default class Entity {
     constructor(deps = {}) {
-		this.Adapter = deps.Adapter || new(require("./Adapter").default)();
+        this.Adapter = deps.Adapter || new(require("./Adapter").default)();
     }
 
     create(body) {
@@ -80,8 +80,8 @@ export default class Entity {
         return this.Adapter.postInterested(body);
     }
 
-    fetchAllIntersting(id_menor) {
-        return this.Adapter.fetchAllIntersting(id_menor);
+    fetchAllIntersting(id_menor, arr) {
+        return this.Adapter.fetchAllIntersting(id_menor, arr);
     }
 
     removeIntersting(body) {

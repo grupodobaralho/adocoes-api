@@ -2,7 +2,7 @@
 
 export default class Interactor {
     constructor(deps = {}) {
-		this.Entity = deps.Entity || new(require("./Entity").default)();
+        this.Entity = deps.Entity || new(require("./Entity").default)();
     }
 
     create(body) {
@@ -23,17 +23,17 @@ export default class Interactor {
         return this.Entity.fetchAll();
     }
 
-	fetchById(id) {
-		return this.Entity.fetchById(id);
-	}
+    fetchById(id) {
+        return this.Entity.fetchById(id);
+    }
 
     fetchByIdAnonymous(id) {
         return this.Entity.fetchByIdAnonymous(id);
     }
 
-	find(body) {
-		return this.Entity.fetch();
-	}
+    find(body) {
+        return this.Entity.fetch();
+    }
 
     find(body) {
         return this.Entity.fetch();
@@ -44,10 +44,10 @@ export default class Interactor {
     }
 
     update(id, body) {
-		return this.Entity.validate(body).then(body => {
+        return this.Entity.validate(body).then(body => {
             return this.Entity.update(id, body);
-    })
-}
+        })
+    }
 
     getOrdination(body) {
         return this.Entity.fetchOrdination();
@@ -56,7 +56,7 @@ export default class Interactor {
     postInterested(body) {
         //Adiciona a data junto com o "corpo" que veio do Translator
         body.timeStamp = Date.now();
-        
+
         return this.Entity.postInterested(body);
     }
 
@@ -65,8 +65,9 @@ export default class Interactor {
         return this.Entity.deleteInterested(body);
     }
 
-    fetchAllIntersting(id_menor) {
-        return this.Entity.fetchAllIntersting(id_menor);
+
+    fetchAllIntersting(id_menor, arr) {
+        return this.Entity.fetchAllIntersting(id_menor, arr);
     }
 
     removeIntersting(body) {
