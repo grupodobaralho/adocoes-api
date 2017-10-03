@@ -148,19 +148,27 @@ export default class Translator {
     fetchAllIntersting(request, response) {
 
         var arr = [];
+        var apadrinhar = request.params.apadrinhar;
+        var favoritar = request.params.favoritar;
+        var adotar = request.params.adotar;
 
-        if (request.params.apadrinhar == "true" || request.params.apadrinhar == undefined)
+        if (apadrinhar == "true")
             arr.push('apadrinhar');
 
-        if (request.params.favoritar == "true" || request.params.favoritar == undefined)
+        if (favoritar == "true")
             arr.push('favoritar');
 
-        if (request.params.adotar == "true" || request.params.adotar == undefined)
+        if (adotar == "true")
             arr.push('adotar');
 
+        if (apadrinhar == undefined &&
+            favoritar == undefined &&
+            adotar == undefined)
+            arr = ["favoritar", "apadrinhar", "adotar"];
+
         const {
-            id_menor = params.id_menor
-        } = request.params;
+            id_menor = params.id_menor,
+        } = request.params
 
         this.Interactor.fetchAllIntersting(id_menor, arr)
             .then(message => {
