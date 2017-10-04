@@ -96,6 +96,30 @@ export default class Translator {
 			});
 	}
 
+    getAllMedias(request, response) {
+        const { body } = request;
+        const { id_menor } = request.params;
+        
+        let interactorResult;
+
+        //Validar se a requisição atual possui escopo Anônimo
+        if (request.authInfo === undefined)
+            interactorResult = this.Interactor.fetchAllMediasAnonymous(id_menor);
+
+        //Ou se possui escopo de Usuário/Admin
+        else
+            interactorResult = this.Interactor.fetchAllMedias(id_menor);
+
+        //Ação padrão para resultado do interactor
+        interactorResult
+            .then(message => {
+                response.send(200, message);
+            })
+            .catch(error => {
+                response.send(500, error);
+            });
+    }
+
 	get(request, response) {
 		const { id_menor } = request.params;
         

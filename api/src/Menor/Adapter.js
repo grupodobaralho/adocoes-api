@@ -91,6 +91,24 @@ export default class Adapter {
         ])
     };
 
+    fetchAllMediasFilteringBlur(id_menor, acceptBlur) {
+        const menor = this.fetchById(id_menor);
+
+        return new Promise((resolve, rjct) => {
+            const body = menor.then((body) => {
+                return body.midias.filter((m) => {
+                    //Verifica se o tipo atual de mídia é "blur"
+                    const isBlur = (m.type === "foto-blur");
+
+                    //Habilita o filtro caso o retorno seja de blur e o tipo seja compatível (redução booleana)
+                    return acceptBlur === isBlur;
+                });
+            });
+
+            return resolve(body);
+        });
+    }
+
     removeIntersting() {
 
     }
