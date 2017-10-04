@@ -16,6 +16,14 @@ export default class Entity {
         return this.Adapter.fetchAll();
     }
 
+    fetchAllMediasAnonymous(id_menor) {
+        return this.Adapter.fetchAllMediasFilteringBlur(id_menor, true);
+    }
+
+    fetchAllMedias(id_menor) {
+        return this.Adapter.fetchAllMediasFilteringBlur(id_menor, false);
+    }
+
     fetchAllAnonymous() {
         return new Promise((resolve, rjct) => {
             //Retorna entidades do banco de dados
