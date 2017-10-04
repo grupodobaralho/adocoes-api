@@ -11,6 +11,12 @@ export default class Interactor {
         });
     }
 
+    postMedia(body, id_menor) {
+        return this.Entity.validateMedia(body).then(body => {
+            return this.Entity.postMedia(body, id_menor);
+        });   
+    }
+
     delete(id) {
         return this.Entity.delete(id);
     }

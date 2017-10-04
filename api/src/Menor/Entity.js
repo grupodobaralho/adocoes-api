@@ -12,6 +12,10 @@ export default class Entity {
         return this.Adapter.save(body);
     }
 
+    postMedia(body, id_menor) {
+        return this.Adapter.saveMedia(body, id_menor);
+    }
+
     fetchAll() {
         return this.Adapter.fetchAll();
     }
@@ -162,7 +166,28 @@ export default class Entity {
                 resolve(value);
             }
         });
-
     }
 
+    validateMedia(body) {
+        const schema = Joi.object({
+            type: Joi.string().required(),
+            conteudo: Joi.string(),
+            descricao: Joi.string(),
+            principal: Joi.boolean()
+        });
+
+        const { error, value } = Joi.validate(body, schema);
+
+        return new Promise((resolve, reject) => {
+            if (error) {
+                let messages = error.details.map(e => e.message);
+                reject({
+                    status: 400,
+                    messages
+                });
+            } else if (value) {
+                resolve(value);
+            }
+        });
+    }
 }

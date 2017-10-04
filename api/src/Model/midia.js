@@ -3,10 +3,10 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-export const midiaSchema = new Schema({
+const midiaSchema = new Schema({
 	type: {
 		type: String,
-		enum: ["foto", "video", "carta", "html"],
+		enum: ["foto", "foto-blur", "video", "carta", "html"],
 		required: true
 	},
 	conteudo: {
@@ -22,5 +22,3 @@ export const midiaSchema = new Schema({
 		required: false
 	}
 });
-
-mongoose.model("Midia", midiaSchema);

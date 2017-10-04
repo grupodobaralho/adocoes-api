@@ -46,6 +46,14 @@ export default class Adapter {
         return this.Menor.findById(id);
     }
 
+    saveMedia(body, id_menor) {
+        return this.Menor.findByIdAndUpdate(id_menor, {
+            $push: {
+                "midias": body
+            }
+        }, {upsert: true, new: true})
+    }
+
     update(id, body) {
         return this.Menor.findOneAndUpdate({
 			_id: id
