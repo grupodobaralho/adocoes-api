@@ -92,7 +92,8 @@ export default class Adapter {
     };
 
     fetchAllMediasFilteringBlur(id_menor, acceptBlur) {
-        const menor = this.fetchById(id_menor);
+        //Retorna o objeto de menor adicionado o obj mídias
+        const menor = this.Menor.findById(id_menor, "+midias");
 
         return new Promise((resolve, rjct) => {
             const body = menor.then((body) => {

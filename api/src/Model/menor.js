@@ -74,9 +74,10 @@ const menorSchema = new Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "interesses"
     }],
-    midias: [
-        midiaSchema
-    ],
+    midias: {
+        type: [midiaSchema],
+        select: false
+    },
     visualizacoes: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: "visualizacoes"
