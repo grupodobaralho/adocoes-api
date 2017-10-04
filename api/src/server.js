@@ -26,7 +26,9 @@ const port = process.env.PORT || 8888;
 
 import bodyParser from "body-parser";
 server.pre(restify.pre.sanitizePath());
-server.use(bodyParser.json());
+server.use(bodyParser.json({
+    limit: "2mb"
+}));
 server.use(bodyParser.urlencoded({
     extended: true
 }));
