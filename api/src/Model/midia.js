@@ -3,7 +3,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-export const midiaSchema = new Schema({
+const midiaSchema = new Schema({
 	refMenor: {
 		type: mongoose.Schema.Types.ObjectId,
 		ref: 'Menor'
@@ -26,3 +26,5 @@ export const midiaSchema = new Schema({
 		required: false
 	}
 });
+
+mongoose.model("Midia", midiaSchema);

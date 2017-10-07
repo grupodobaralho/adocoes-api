@@ -7,6 +7,7 @@ export default class Adapter {
     constructor(deps = {}) {
         this.Menor = mongoose.model("Menor");
         this.Interesse = mongoose.model("Interesse");
+        this.Midia = mongoose.model("Midia");
     }
 
     save(body) {
