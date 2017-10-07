@@ -889,9 +889,9 @@
 					"response": []
 				},
 				{
-					"name": "/menores/{id_menor}/imagens",
+					"name": "/menores/{id_menor}/midias",
 					"request": {
-						"url": "{{url}}/menores/{id_menor}/imagens",
+						"url": "{{url}}/menores/{id_menor}/midias",
 						"method": "GET",
 						"header": [
 							{
@@ -914,9 +914,9 @@
 					"response": []
 				},
 				{
-					"name": "/menores/{id_menor}/imagens/{id_imagem}",
+					"name": "/menores/{id_menor}/midias/{id_midias}",
 					"request": {
-						"url": "{{url}}/menores/{id_menor}/imagens/{id_imagem}",
+						"url": "{{url}}/menores/{id_menor}/midias/{id_midias}",
 						"method": "GET",
 						"header": [
 							{
