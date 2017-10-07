@@ -12,7 +12,7 @@ export default class Interactor {
     }
 
     postMedia(body, id_menor) {
-        return this.Entity.validateMedia(body).then(body => {
+        return this.Entity.validateMedia(body, id_menor).then(body => {
             return this.Entity.postMedia(body, id_menor);
         });   
     }
