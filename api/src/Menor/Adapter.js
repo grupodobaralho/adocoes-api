@@ -47,12 +47,15 @@ export default class Adapter {
     }
 
     saveMedia(body, id_menor) {
-        return this.Menor.findByIdAndUpdate(id_menor, {
-            $push: {
-                "midias": body
-            }
-        }, {upsert: true, new: true})
-    }
+        const media = new this.Midia(body);
+        media.save();
+        this.Menor.findById(id_menor, (err, menor) => {   
+        menor.refMidias.push(media._id);
+        menor.save();
+        console.log(menor.refMidias);
+    });
+        return media;                
+}
 
     update(id, body) {
         return this.Menor.findOneAndUpdate({

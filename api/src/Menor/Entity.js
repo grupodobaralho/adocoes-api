@@ -176,8 +176,9 @@ export default class Entity {
         });
     }
 
-    validateMedia(body) {
+    validateMedia(body, id_menor) {
         const schema = Joi.object({
+            refMenor: id_menor,
             type: Joi.string().required(),
             conteudo: Joi.string(),
             descricao: Joi.string(),
