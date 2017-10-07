@@ -26,7 +26,9 @@ const port = process.env.PORT || 8888;
 
 import bodyParser from "body-parser";
 server.pre(restify.pre.sanitizePath());
-server.use(bodyParser.json());
+server.use(bodyParser.json({
+    limit: "2mb"
+}));
 server.use(bodyParser.urlencoded({
     extended: true
 }));
@@ -193,14 +195,13 @@ server.del("/menores/:id_menor/interessados/", AuthManager.anonymousAuthenticate
 // RFM11: GET /menores/:id_menor/midias
 server.get("/menores/:id_menor/midias", AuthManager.anonymousAuthenticated, function(req, res) {
     const menorTranslator = new MenorTranslator();
-    menorTranslator.getAllImagens(req, res);
+    menorTranslator.getAllMedias(req, res);
 });
 
-// P0
-// RFM12: GET /menores/:id_menor/midias/:id_midia
-server.get("/menores/:id_menor/midias/:id_midia", AuthManager.anonymousAuthenticated, function(req, res) {
+// RFM10: POST /menores/:id_menor/midias
+server.post("/menores/:id_menor/midias", AuthManager.userAuthenticated, function(req, res) {
     const menorTranslator = new MenorTranslator();
-    menorTranslator.getMidiaById(req, res);
+    menorTranslator.postMedia(req, res);
 });
 
 // RFM10: POST /menores/:id_menor/midias

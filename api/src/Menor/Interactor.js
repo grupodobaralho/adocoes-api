@@ -29,6 +29,14 @@ export default class Interactor {
         return this.Entity.fetchAll();
     }
 
+    fetchAllMediasAnonymous(id_menor) {
+        return this.Entity.fetchAllMediasAnonymous(id_menor);
+    }
+
+    fetchAllMedias(id_menor) {
+        return this.Entity.fetchAllMedias(id_menor);
+    }
+
 	fetchById(id) {
 		return this.Entity.fetchById(id);
 	}
