@@ -17,8 +17,8 @@ export default class Adapter {
 
     delete(_id) {
         return this.Menor.remove({
-                _id
-            })
+            _id
+        })
             .then(resultado => {
                 return resultado.result.n > 0;
             });
@@ -50,21 +50,21 @@ export default class Adapter {
     saveMedia(body, id_menor) {
         const media = new this.Midia(body);
         media.save();
-        this.Menor.findById(id_menor, (err, menor) => {   
-        menor.refMidias.push(media._id);
-        menor.save();
-        console.log(menor.refMidias);
-    });
-        return media;                
-}
+        this.Menor.findById(id_menor, (err, menor) => {
+            menor.refMidias.push(media._id);
+            menor.save();
+            console.log(menor.refMidias);
+        });
+        return media;
+    }
 
     update(id, body) {
         return this.Menor.findOneAndUpdate({
-			_id: id
-		}, body, {
-			upsert: false,
-			new: true
-		});
+            _id: id
+        }, body, {
+                upsert: false,
+                new: true
+            });
     }
 
     fetchOrdination() {
@@ -150,4 +150,35 @@ export default class Adapter {
 
     }
 
+
+    deleteMediaById(id_menor, id_midia) {
+        console.log("id_menor" + id_menor);
+        console.log("id_midia" + id_midia);
+        try {
+            this.Midia.findById(id_midia, (err, midia) => {
+                console.log("gesi 01", midia);
+                try {
+                    midia.remove();
+                    console.log("gesiel try 01");
+                } catch (err) {
+                    console.log("gesiel catch 1");
+                    return 400;
+                }
+            });
+        } catch (err) {
+            console.log("gesiel catch 2")
+            return 400;
+        }
+        return this.Menor.findById(id_menor, (err, menor) => {
+            try {
+                var index = menor.refMidias.indexOf(id_midia);
+                menor.refMidias.splice(index, 1);
+                menor.save();
+            } catch (err) {
+                console.log("gesiel deu erro");
+            }
+        }).then(ret => {
+            return ret;
+        });
+    }
 }

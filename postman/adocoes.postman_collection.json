@@ -939,6 +939,31 @@
 					"response": []
 				},
 				{
+					"name": "/menores/{id_menor}/midias/{id_midia}",
+					"request": {
+						"url": "{{url}}/menores/{id_menor}/midias/{id_midia}",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token-type}} {{access-token}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "{{content-type}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
 					"name": "/menores/{id_menor}/imagens/{id_imagem}",
 					"request": {
 						"url": "{{url}}/menores/{id_menor}/imagens/{id_imagem}",

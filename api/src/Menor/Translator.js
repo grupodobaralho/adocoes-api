@@ -5,7 +5,7 @@ import Roles from '../Common/Roles';
 export default class Translator {
 
     constructor(deps = {}) {
-		this.Interactor = deps.Interactor || new(require("./Interactor").default)();
+        this.Interactor = deps.Interactor || new (require("./Interactor").default)();
     }
 
     deleteInterestedByToken(request, response) {
@@ -50,7 +50,7 @@ export default class Translator {
             body
         } = request;
 
-        
+
         this.Interactor.create(body)
             .then(message => {
                 response.send(200, message);
@@ -63,7 +63,7 @@ export default class Translator {
     postMedia(request, response) {
         const { body } = request;
         const { id_menor } = request.params;
-        
+
         this.Interactor.postMedia(body, id_menor)
             .then(message => {
                 response.send(200, message);
@@ -74,32 +74,32 @@ export default class Translator {
     }
 
     getAll(request, response) {
-		const { body } = request;
-		
-		let interactorResult;
+        const { body } = request;
 
-		//Validar se a requisição atual possui escopo Anônimo
-		if (request.authInfo === undefined)
+        let interactorResult;
+
+        //Validar se a requisição atual possui escopo Anônimo
+        if (request.authInfo === undefined)
             interactorResult = this.Interactor.fetchAllAnonymous();
 
-		//Ou se possui escopo de Usuário/Admin
-		else
+        //Ou se possui escopo de Usuário/Admin
+        else
             interactorResult = this.Interactor.fetchAll();
 
-		//Ação padrão para resultado do interactor
+        //Ação padrão para resultado do interactor
         interactorResult
-			.then(message => {
-				response.send(200, message);
-			})
-			.catch(error => {
+            .then(message => {
+                response.send(200, message);
+            })
+            .catch(error => {
                 response.send(500, error);
-			});
-	}
+            });
+    }
 
     getAllMedias(request, response) {
         const { body } = request;
         const { id_menor } = request.params;
-        
+
         let interactorResult;
 
         //Validar se a requisição atual possui escopo Anônimo
@@ -120,9 +120,9 @@ export default class Translator {
             });
     }
 
-	get(request, response) {
-		const { id_menor } = request.params;
-        
+    get(request, response) {
+        const { id_menor } = request.params;
+
         let interactorResult;
 
         //Validar se a requisição atual possui escopo Anônimo
@@ -135,30 +135,30 @@ export default class Translator {
 
         //Ação padrão para resultado do interactor
         interactorResult
-			.then(message => {
-				response.send(200, message);
-			})
-			.catch(error => {
+            .then(message => {
+                response.send(200, message);
+            })
+            .catch(error => {
                 response.send(500, "Nenhum cadastro com o ID informado foi encontrado");
-			});
-	}
+            });
+    }
 
     updateMenor(request, response) {
         const {
 			body
 		} = request;
 
-		this.Interactor.update(request.params.id_menor, body)
-			.then(menor => {
-				if (!menor) {
-					return response.send(400, "Nenhum menor com o ID informado foi encontrado");
-				}
-				response.send(200, menor);
-			})
-			.catch(error => {
-				console.log(error);
-				response.send(500, "Ocorreu um erro ao atualizar o menor");
-			});
+        this.Interactor.update(request.params.id_menor, body)
+            .then(menor => {
+                if (!menor) {
+                    return response.send(400, "Nenhum menor com o ID informado foi encontrado");
+                }
+                response.send(200, menor);
+            })
+            .catch(error => {
+                console.log(error);
+                response.send(500, "Ocorreu um erro ao atualizar o menor");
+            });
     }
 
     deleteMenor(request, response) {
@@ -167,7 +167,7 @@ export default class Translator {
             id_menor
         } = request.params;
 
-        
+
         this.Interactor.delete(id_menor)
             .then(sucesso => {
                 if (!sucesso) {
@@ -195,5 +195,30 @@ export default class Translator {
             .catch(error => {
                 console.log(error);
             });
+    }
+
+    deleteMediaById(request, response) {
+
+        const {
+                    id_menor
+                } = request.params;
+
+        const {
+                    id_midia
+                } = request.params;
+
+
+        this.Interactor.deleteMediaById(id_menor, id_midia)
+            .then(sucesso => {
+                if (!sucesso) {
+                    return response.send(400, "Nenhum cadastro com o ID informado foi encontrado");
+                }
+                response.send(200, "Cadastro deletado com sucesso");
+            })
+            .catch(error => {
+                console.log(error);
+                response.send(500, "Ocorreu um erro ao deletar o cadastro");
+            });
+
     }
 }

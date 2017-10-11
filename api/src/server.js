@@ -214,7 +214,7 @@ server.post("/menores/:id_menor/midias", AuthManager.userAuthenticated, function
 // RFM13: DELETE /menores/:id_menor/midias/:id_midia
 server.del("/menores/:id_menor/midias/:id_midia", AuthManager.userAuthenticated, function(req, res) {
     const menorTranslator = new MenorTranslator();
-    menorTranslator.deleteMidia(req, res);
+    menorTranslator.deleteMediaById(req, res);
 });
 
 // RFM18 (2017-2): PUT /menores/:id_menor (seta o id_abrigo)

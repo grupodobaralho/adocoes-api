@@ -119,4 +119,8 @@ export default class Interactor {
         return this.Entity.removeVideo();
     }
 
+    deleteMediaById(id_menor, id_midia) {
+        return this.Entity.deleteMediaById(id_menor, id_midia);
+    }
+
 }

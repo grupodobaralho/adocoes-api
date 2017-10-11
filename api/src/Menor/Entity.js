@@ -132,6 +132,10 @@ export default class Entity {
         return this.Adapter.removeVideo();
     }
 
+    deleteMediaById(id_menor, id_midia) {
+        return this.Adapter.deleteMediaById(id_menor, id_midia);
+    }
+
     validateToken(body) {
         return new Promise((resolve, reject) => {
             resolve(body);
