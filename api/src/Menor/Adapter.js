@@ -97,11 +97,10 @@ export default class Adapter {
 
     fetchAllMediasFilteringBlur(id_menor, acceptBlur) {
         //Retorna o objeto de menor adicionado o obj mídias
-        const menor = this.Menor.findById(id_menor, "+midias");
-
+        const menor = this.Menor.findById(id_menor);
         return new Promise((resolve, rjct) => {
             const body = menor.then((body) => {
-                return body.midias.filter((m) => {
+                return body.refMidias.filter((m) => {
                     //Verifica se o tipo atual de mídia é "blur"
                     const isBlur = (m.type === "foto-blur");
 
