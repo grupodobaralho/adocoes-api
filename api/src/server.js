@@ -39,7 +39,7 @@ server.get("/", function(req, res) {
     var now = moment();
     res.charSet(charSet);
     res.json(200, {
-        estado: "Adoções API (h445) em execução há " + process.uptime() + " segundos",
+        estado: "Adoções API (h445) em execução há " + process.uptime() + " segundos v3",
         momento: now.toString()
     });
 });
