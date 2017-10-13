@@ -151,7 +151,7 @@ export default class Adapter {
     }
 
 
-    deleteMediaById(id_menor, id_midia) {
+    /*deleteMediaById(id_menor, id_midia) {
         console.log("id_menor" + id_menor);
         console.log("id_midia" + id_midia);
         try {
@@ -180,5 +180,13 @@ export default class Adapter {
         }).then(ret => {
             return ret;
         });
+    }*/
+
+    deleteMediaById(id_menor, id_midia) {
+        return this.Menor.update(
+            { _id: id_menor },
+            { $pull: { refMidias: id_midia } },
+            { multi: false }
+        );
     }
 }
