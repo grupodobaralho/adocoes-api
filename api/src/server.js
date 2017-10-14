@@ -198,6 +198,11 @@ server.get("/menores/:id_menor/midias", AuthManager.anonymousAuthenticated, func
     menorTranslator.getAllMedias(req, res);
 });
 
+server.get("/menores/:id_menor/midias/:id_media", AuthManager.anonymousAuthenticated, function(req, res) {
+    const menorTranslator = new MenorTranslator();
+    menorTranslator.getMedia(req, res);
+});
+
 // RFM10: POST /menores/:id_menor/midias
 server.post("/menores/:id_menor/midias", AuthManager.userAuthenticated, function(req, res) {
     const menorTranslator = new MenorTranslator();

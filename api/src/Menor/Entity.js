@@ -64,6 +64,27 @@ export default class Entity {
         });
     }
 
+
+
+
+    fetchMediaAnonymous(id_menor, id_media) {
+        let media = this.fetchMedia(id_menor, id_media);
+
+        return media.then((body) => {
+            if (body.anonymous !== undefined)
+                return media;
+            else
+                return null;
+        });
+    }
+
+    fetchMedia(id_menor, id_media) {
+        return this.Adapter.fetchMediaById(id_media);
+    }
+
+
+
+
     find(body) {
         return this.Adapter.fetch(body.id);
     }

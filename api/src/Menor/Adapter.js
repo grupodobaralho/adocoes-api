@@ -47,15 +47,21 @@ export default class Adapter {
         return this.Menor.findById(id);
     }
 
+    fetchMediaById(id) {
+        return this.Midia.findById(id);
+    }
+
     saveMedia(body, id_menor) {
         const media = new this.Midia(body);
+
         media.save();
+
         this.Menor.findById(id_menor, (err, menor) => {   
-        menor.refMidias.push(media._id);
-        menor.save();
-        console.log(menor.refMidias);
-    });
-        return media;                
+            menor.refMidias.push(media._id);
+            menor.save();
+        });
+
+        return {};                
 }
 
     update(id, body) {
