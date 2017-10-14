@@ -182,7 +182,8 @@ export default class Entity {
             type: Joi.string().required(),
             conteudo: Joi.string(),
             descricao: Joi.string(),
-            principal: Joi.boolean()
+            principal: Joi.boolean(),
+            anonymous: Joi.boolean()
         });
 
         const { error, value } = Joi.validate(body, schema);

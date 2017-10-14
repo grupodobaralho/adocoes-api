@@ -24,6 +24,10 @@ const midiaSchema = new Schema({
 	principal: {
 		type: Boolean,
 		required: false
+	},
+	anonymous: {
+		type: Boolean,
+		required: false	
 	}
 });
 
