@@ -87,8 +87,8 @@ export default class Entity {
         });
     }
 
-    isMediaAnonymous(media) {
-        return media !== undefined;
+    isMediaAnonymous(anon) {
+        return (anon !== undefined && anon === true);
     }
 
     find(body) {
