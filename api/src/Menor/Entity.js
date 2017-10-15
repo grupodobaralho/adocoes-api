@@ -10,12 +10,9 @@ export default class Entity {
         this._createNewAnonymousDTO = this._createNewAnonymousDTO.bind(this);
     }
 
+    // ## MENORES ##
     create(body) {
         return this.Adapter.save(body);
-    }
-
-    postMedia(body, id_menor) {
-        return this.Adapter.saveMedia(body, id_menor);
     }
 
     fetchAll() {
@@ -38,6 +35,10 @@ export default class Entity {
         });
     }
 
+    update(id, body) {
+        return this.Adapter.update(id, body);
+    }
+
     //Cria "DTO" com valores reduzidos
     _createNewAnonymousDTO(entity) {
         //Transforma nome em somente iniciais
@@ -55,6 +56,15 @@ export default class Entity {
             //Para cada entidade, reduzir a quantidade das informações
             return this._createNewAnonymousDTO(dto);
         });
+    }
+
+    delete(id) {
+        return this.Adapter.delete(id);
+    }
+
+    // ## MEDIAS ##
+    postMedia(body, id_menor) {
+        return this.Adapter.saveMedia(body, id_menor);
     }
 
     fetchMediaAnonymous(id_media) {
@@ -91,20 +101,9 @@ export default class Entity {
         return (anon !== undefined && anon === true);
     }
 
-    remove(body) {
-        return this.Adapter.delete(body.id);
-    }
-
-    delete(id) {
-        return this.Adapter.delete(id);
-    }
-
+    // ## INTERESSES ##
     deleteInterested(body) {
         return this.Adapter.deleteInterested(body);
-    }
-
-    update(id, body) {
-        return this.Adapter.update(id, body);
     }
 
     postInterested(body) {
@@ -115,12 +114,8 @@ export default class Entity {
         return this.Adapter.fetchAllIntersting(id_menor);
     }
 
-    validateToken(body) {
-        return new Promise((resolve, reject) => {
-            resolve(body);
-        });
-    }
 
+    // ## JOI VALIDATIONS ##
     validate(body) {
         const schema = Joi.object({
             nome: Joi.string().required(),
