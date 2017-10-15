@@ -6,6 +6,8 @@ import StringHelper from "../Common/StringHelper";
 export default class Entity {
     constructor(deps = {}) {
 		this.Adapter = deps.Adapter || new(require("./Adapter").default)();
+
+        this._createNewAnonymousDTO = this._createNewAnonymousDTO.bind(this);
     }
 
     create(body) {
@@ -17,7 +19,7 @@ export default class Entity {
     }
 
     fetchAll() {
-        return this.Adapter.fetchAll();
+        return this.Adapter.fetchAll(true);
     }
 
     fetchAllMediasAnonymous(id_menor) {
@@ -29,14 +31,10 @@ export default class Entity {
     }
 
     fetchAllAnonymous() {
-        return new Promise((resolve, rjct) => {
-            //Retorna entidades do banco de dados
-            let body = this.Adapter.fetchAll().then(body => {
-                //Para cada entidade, reduzir a quantidade das informações
-                return body.map(this._createNewAnonymousDTO);
-            });
-
-            return resolve(body);
+        //Retorna entidades do banco de dados
+        return this.Adapter.fetchAll(false).then(body => {
+            //Para cada entidade, reduzir a quantidade das informações
+            return body.map(this._createNewAnonymousDTO);
         });
     }
 
@@ -64,26 +62,39 @@ export default class Entity {
         });
     }
 
-
-
-
-    fetchMediaAnonymous(id_menor, id_media) {
-        let media = this.fetchMedia(id_menor, id_media);
+    fetchMediaAnonymous(id_media) {
+        let media = this.fetchMedia(id_media);
 
         return media.then((body) => {
-            if (body.anonymous !== undefined)
+            if (this.isMediaAnonymous(body.anonymous))
                 return media;
             else
                 return null;
         });
     }
 
-    fetchMedia(id_menor, id_media) {
+    fetchMedia(id_media) {
         return this.Adapter.fetchMediaById(id_media);
     }
 
+    fetchMediaWithoutBody(id_media) {
+        return this.Adapter.fetchMediaByIdWithoutBody(id_media);
+    }
 
+    fetchMediaWithoutBodyAnonymous(id_media) {
+        let media = this.fetchMediaWithoutBody(id_media);
 
+        return media.then((body) => {
+            if (this.isMediaAnonymous(body.anonymous))
+                return media;
+            else
+                return null;
+        });
+    }
+
+    isMediaAnonymous(media) {
+        return media !== undefined;
+    }
 
     find(body) {
         return this.Adapter.fetch(body.id);
