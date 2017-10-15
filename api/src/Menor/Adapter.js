@@ -1,15 +1,16 @@
 "use strict";
 
 import mongoose from "mongoose";
+import MoongoseHelper from "../Common/MoongoseHelper";
 
 export default class Adapter {
-
     constructor(deps = {}) {
         this.Menor = mongoose.model("Menor");
         this.Interesse = mongoose.model("Interesse");
         this.Midia = mongoose.model("Midia");
     }
 
+    // ## MENORES ##
     save(body) {
         const menor = new this.Menor(body);
         return menor.save();
@@ -24,22 +25,20 @@ export default class Adapter {
             });
     }
 
-    deleteInterested(body) {
-        return this.Interesse
-            .remove({
-                refMenor: body.refMenor,
-                refInteressado: body.refInteressado
-            })
-            .then(ret => {
-                return ret.result.n > 0;
-            });
+    update(id, body) {
+        return this.Menor.findOneAndUpdate({
+            _id: id
+        }, body, {
+            upsert: false,
+            new: true
+        });
     }
 
     /*
      * @param shouldRenderAllMedias boolean. Determina se todas as mídias do menor devem ser enviadas ou somente as anônimas
      */
     fetchAll(shouldRenderAllMedias) {
-        return this.cursorMenoresAggregatingMedias(shouldRenderAllMedias);
+        return this._cursorMenoresAggregatingMedias(shouldRenderAllMedias);
     }
 
     /*
@@ -53,10 +52,10 @@ export default class Adapter {
             }
         }];
 
-        return this.cursorMenoresAggregatingMedias(shouldRenderAllMedias, aggregatePipepline);
+        return this._cursorMenoresAggregatingMedias(shouldRenderAllMedias, aggregatePipepline);
     }
 
-    cursorMenoresAggregatingMedias(shouldRenderAllMedias, aggregatePipepline = []) {
+    _cursorMenoresAggregatingMedias(shouldRenderAllMedias, aggregatePipepline = []) {
         //Faz o "inner join" com o documento de mídias
         aggregatePipepline.push({
             $lookup: {
@@ -89,22 +88,10 @@ export default class Adapter {
         });
 
 
-        return new Promise((resolve, rej) => {
-            let data = [];
-
-            this.Menor
-                .aggregate(aggregatePipepline)
-                .cursor()
-                .exec()
-                .on("data", (doc) => { 
-                    data.push(doc); 
-                })
-                .on("end", () => { 
-                    resolve(data) 
-                });
-        });
+        return MoongoseHelper.aggregate(this.Menor, aggregatePipepline);
     }
 
+    // ## MEDIAS ## 
     fetchMediaByIdWithoutBody(id) {
         let objectId = mongoose.Types.ObjectId(id);
 
@@ -150,21 +137,7 @@ export default class Adapter {
             }
         });
 
-
-        return new Promise((resolve, rej) => {
-            let data = [];
-
-            this.Midia
-                .aggregate(aggregatePipepline)
-                .cursor()
-                .exec()
-                .on("data", (doc) => { 
-                    data.push(doc); 
-                })
-                .on("end", () => { 
-                    resolve(data) 
-                });
-        });
+        return MoongoseHelper.aggregate(this.Midia, aggregatePipepline);
     }
 
     fetchMediaById(id) {
@@ -182,34 +155,29 @@ export default class Adapter {
         });
 
         return {};                
-}
-
-    update(id, body) {
-        return this.Menor.findOneAndUpdate({
-			_id: id
-		}, body, {
-			upsert: false,
-			new: true
-		});
     }
 
-    fetchOrdination() {
-
-    }
-
+    // ## INTERESSES ##
     postInterested(body) {
         const interesse = new this.Interesse(body);
         return interesse.save();
     }
+    
+    deleteInterested(body) {
+        return this.Interesse
+            .remove({
+                refMenor: body.refMenor,
+                refInteressado: body.refInteressado
+            })
+            .then(ret => {
+                return ret.result.n > 0;
+            });
+    }
 
     fetchAllIntersting(id_menor) {
-
-        return this.Interesse.aggregate([
-
+        return MoongoseHelper.aggregate(this.Interesse, [
             { $match: { refMenor: mongoose.Types.ObjectId(id_menor) } },
-
             { $sort: { refInteressado: 1 } },
-
             {
                 $lookup: {
                     from: "interessados",
@@ -218,43 +186,7 @@ export default class Adapter {
                     as: "interessados"
                 }
             }
-        ])
-    }
-
-    removeIntersting() {
-
-    }
-
-    createImage() {
-
-    }
-
-    fetchAllImage() {
-
-    }
-
-    fetchImage() {
-
-    }
-
-    removeImage() {
-
-    }
-
-    createVideo() {
-
-    }
-
-    fetchAllVideo() {
-
-    }
-
-    fetchVideo() {
-
-    }
-
-    removeVideo() {
-
+        ]);
     }
 
 }
