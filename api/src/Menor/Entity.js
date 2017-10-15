@@ -47,18 +47,13 @@ export default class Entity {
     }
 
     fetchById(id) {
-        return this.Adapter.fetchById(id);
+        return this.Adapter.fetchById(id, true);
     }
 
     fetchByIdAnonymous(id) {
-        return new Promise((resolve, rjct) => {
-            //Retorna entidades do banco de dados
-            let body = this.Adapter.fetchById(id).then(dto => {
-                //Para cada entidade, reduzir a quantidade das informações
-                return this._createNewAnonymousDTO(dto);
-            });
-
-            return resolve(body);
+        return this.Adapter.fetchById(id, false).then(dto => {
+            //Para cada entidade, reduzir a quantidade das informações
+            return this._createNewAnonymousDTO(dto);
         });
     }
 
