@@ -53,14 +53,6 @@ export default class Interactor {
         return this.Entity.fetchByIdAnonymous(id);
     }
 
-	find(body) {
-		return this.Entity.fetch();
-	}
-
-    find(body) {
-        return this.Entity.fetch();
-    }
-
     remove(body) {
         return this.Entity.delete();
     }
@@ -68,11 +60,7 @@ export default class Interactor {
     update(id, body) {
 		return this.Entity.validate(body).then(body => {
             return this.Entity.update(id, body);
-    })
-}
-
-    getOrdination(body) {
-        return this.Entity.fetchOrdination();
+        });
     }
 
     postInterested(body) {
@@ -89,42 +77,6 @@ export default class Interactor {
 
     fetchAllIntersting(id_menor) {
         return this.Entity.fetchAllIntersting(id_menor);
-    }
-
-    removeIntersting(body) {
-        return this.Entity.removeIntersting();
-    }
-
-    createImage(body) {
-        return this.Entity.createImage(body);
-    }
-
-    fetchImages(body) {
-        return this.Entity.fetchAllImages(body);
-    }
-
-    fetchImage(body) {
-        return this.Entity.fetchImage(body);
-    }
-
-    removeImage(body) {
-        return this.Entity.removeImage();
-    }
-
-    createVideo(body) {
-        return this.Entity.createVideo();
-    }
-
-    fetchAllVideo(body) {
-        return this.Entity.fetchAllVideo();
-    }
-
-    fetchVideo(body) {
-        return this.Entity.fetchVideo();
-    }
-
-    removeVideo(body) {
-        return this.Entity.removeVideo();
     }
 
 }

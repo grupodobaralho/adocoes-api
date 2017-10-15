@@ -61,7 +61,7 @@ export default class Entity {
         let media = this.fetchMedia(id_media);
 
         return media.then((body) => {
-            if (this.isMediaAnonymous(body.anonymous))
+            if (this._isMediaAnonymous(body.anonymous))
                 return media;
             else
                 return null;
@@ -80,19 +80,15 @@ export default class Entity {
         let media = this.fetchMediaWithoutBody(id_media);
 
         return media.then((body) => {
-            if (this.isMediaAnonymous(body.anonymous))
+            if (this._isMediaAnonymous(body.anonymous))
                 return media;
             else
                 return null;
         });
     }
 
-    isMediaAnonymous(anon) {
+    _isMediaAnonymous(anon) {
         return (anon !== undefined && anon === true);
-    }
-
-    find(body) {
-        return this.Adapter.fetch(body.id);
     }
 
     remove(body) {
@@ -111,52 +107,12 @@ export default class Entity {
         return this.Adapter.update(id, body);
     }
 
-    getOrdination(body) {
-        return this.Adapter.fetchOrdination();
-    }
-
     postInterested(body) {
         return this.Adapter.postInterested(body);
     }
 
     fetchAllIntersting(id_menor) {
         return this.Adapter.fetchAllIntersting(id_menor);
-    }
-
-    removeIntersting(body) {
-        return this.Adapter.removeIntersting();
-    }
-
-    createImage(body) {
-        return this.Adapter.createImage();
-    }
-
-    fetchImages(body) {
-        return this.Adapter.fetchAllImage();
-    }
-
-    fetchImage(body) {
-        return this.Adapter.fetchImage();
-    }
-
-    removeImage(body) {
-        return this.Adapter.removeImage();
-    }
-
-    createVideo(body) {
-        return this.Adapter.createVideo();
-    }
-
-    fetchAllVideo(body) {
-        return this.Adapter.fetchAllVideo();
-    }
-
-    fetchVideo(body) {
-        return this.Adapter.fetchVideo();
-    }
-
-    removeVideo(body) {
-        return this.Adapter.removeVideo();
     }
 
     validateToken(body) {
