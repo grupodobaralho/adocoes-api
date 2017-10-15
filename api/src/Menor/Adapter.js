@@ -35,16 +35,68 @@ export default class Adapter {
             });
     }
 
-    fetchAll() {
-        return this.Menor.find((err, doc) => {
-            return new Promise((resolve, reject) => {
-                resolve(doc);
+    /*
+     * @param shouldRenderAllMedias boolean. Determina se todas as mídias do menor devem ser enviadas ou somente as anônimas
+     */
+    fetchAll(shouldRenderAllMedias) {
+        let aggregatePipepline = [];
+
+        //Faz o "inner join" com o documento de mídias
+        aggregatePipepline.push({
+            $lookup: {
+                from: "midias",
+                localField: "refMidias",
+                foreignField: "_id",
+                as: "midias"
+            }
+        });
+
+        //Adiciona condição para retornar apenas mídias anônimas
+        if (!shouldRenderAllMedias)
+            aggregatePipepline.push({
+                $addFields: { 
+                    "midias": {
+                        "$filter": {
+                            "input": "$midias",
+                            "as": "midia",
+                            "cond": {
+                                "$eq": ["$$midia.anonymous", true]
+                            }
+                        }
+                    }
+                }
             });
+
+        //Remove o corpo da mídia
+        aggregatePipepline.push({
+            $project: { "midias.conteudo": 0 }
+        });
+
+
+        return new Promise((resolve, rej) => {
+            let data = [];
+
+            this.Menor
+                .aggregate(aggregatePipepline)
+                .cursor()
+                .exec()
+                .on("data", (doc) => { 
+                    data.push(doc); 
+                })
+                .on("end", () => { 
+                    resolve(data) 
+                });
         });
     }
 
     fetchById(id) {
         return this.Menor.findById(id);
+    }
+
+    fetchMediaByIdWithoutBody(id) {
+        let objectId = mongoose.Types.ObjectId(id);
+
+        return this.Midia.findById(objectId, '-conteudo');
     }
 
     fetchMediaById(id) {

@@ -18,11 +18,11 @@ export default class Interactor {
     }
 
     fetchMediaAnonymous(id_menor, id_media) {
-        return this.Entity.fetchMediaAnonymous(id_menor, id_media);
+        return this.Entity.fetchMediaAnonymous(id_media);
     }
 
     fetchMedia(id_menor, id_media) {
-        return this.Entity.fetchMedia(id_menor, id_media);
+        return this.Entity.fetchMedia(id_media);
     }
 
     delete(id) {
