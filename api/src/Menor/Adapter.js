@@ -39,8 +39,24 @@ export default class Adapter {
      * @param shouldRenderAllMedias boolean. Determina se todas as mídias do menor devem ser enviadas ou somente as anônimas
      */
     fetchAll(shouldRenderAllMedias) {
-        let aggregatePipepline = [];
+        return this.cursorMenoresAggregatingMedias(shouldRenderAllMedias);
+    }
 
+    /*
+     * @param shouldRenderAllMedias boolean. Determina se todas as mídias do menor devem ser enviadas ou somente as anônimas
+     */
+    fetchById(id, shouldRenderAllMedias) {
+        //Busca pelo ID
+        let aggregatePipepline = [{
+            $match: {
+                "_id": mongoose.Types.ObjectId(id)
+            }
+        }];
+
+        return this.cursorMenoresAggregatingMedias(shouldRenderAllMedias, aggregatePipepline);
+    }
+
+    cursorMenoresAggregatingMedias(shouldRenderAllMedias, aggregatePipepline = []) {
         //Faz o "inner join" com o documento de mídias
         aggregatePipepline.push({
             $lookup: {
@@ -87,10 +103,6 @@ export default class Adapter {
                     resolve(data) 
                 });
         });
-    }
-
-    fetchById(id) {
-        return this.Menor.findById(id);
     }
 
     fetchMediaByIdWithoutBody(id) {
