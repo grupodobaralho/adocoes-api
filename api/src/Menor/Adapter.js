@@ -1,6 +1,7 @@
 "use strict";
 
 import mongoose from "mongoose";
+import MoongoseHelper from "../Common/MoongoseHelper";
 
 export default class Adapter {
 
@@ -89,20 +90,7 @@ export default class Adapter {
         });
 
 
-        return new Promise((resolve, rej) => {
-            let data = [];
-
-            this.Menor
-                .aggregate(aggregatePipepline)
-                .cursor()
-                .exec()
-                .on("data", (doc) => { 
-                    data.push(doc); 
-                })
-                .on("end", () => { 
-                    resolve(data) 
-                });
-        });
+        return MoongoseHelper.aggregate(this.Menor, aggregatePipepline);
     }
 
     fetchMediaByIdWithoutBody(id) {
@@ -150,21 +138,7 @@ export default class Adapter {
             }
         });
 
-
-        return new Promise((resolve, rej) => {
-            let data = [];
-
-            this.Midia
-                .aggregate(aggregatePipepline)
-                .cursor()
-                .exec()
-                .on("data", (doc) => { 
-                    data.push(doc); 
-                })
-                .on("end", () => { 
-                    resolve(data) 
-                });
-        });
+        return MoongoseHelper.aggregate(this.Midia, aggregatePipepline);
     }
 
     fetchMediaById(id) {
@@ -182,7 +156,7 @@ export default class Adapter {
         });
 
         return {};                
-}
+    }
 
     update(id, body) {
         return this.Menor.findOneAndUpdate({
@@ -193,23 +167,15 @@ export default class Adapter {
 		});
     }
 
-    fetchOrdination() {
-
-    }
-
     postInterested(body) {
         const interesse = new this.Interesse(body);
         return interesse.save();
     }
 
     fetchAllIntersting(id_menor) {
-
-        return this.Interesse.aggregate([
-
+        return MoongoseHelper.aggregate(this.Interesse, [
             { $match: { refMenor: mongoose.Types.ObjectId(id_menor) } },
-
             { $sort: { refInteressado: 1 } },
-
             {
                 $lookup: {
                     from: "interessados",
@@ -218,43 +184,7 @@ export default class Adapter {
                     as: "interessados"
                 }
             }
-        ])
-    }
-
-    removeIntersting() {
-
-    }
-
-    createImage() {
-
-    }
-
-    fetchAllImage() {
-
-    }
-
-    fetchImage() {
-
-    }
-
-    removeImage() {
-
-    }
-
-    createVideo() {
-
-    }
-
-    fetchAllVideo() {
-
-    }
-
-    fetchVideo() {
-
-    }
-
-    removeVideo() {
-
+        ]);
     }
 
 }
