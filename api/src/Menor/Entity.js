@@ -23,11 +23,11 @@ export default class Entity {
     }
 
     fetchAllMediasAnonymous(id_menor) {
-        return this.Adapter.fetchAllMediasFilteringBlur(id_menor, true);
+        return this.Adapter.fetchAllMediasByMenor(id_menor, false);
     }
 
     fetchAllMedias(id_menor) {
-        return this.Adapter.fetchAllMediasFilteringBlur(id_menor, false);
+        return this.Adapter.fetchAllMediasByMenor(id_menor, true);
     }
 
     fetchAllAnonymous() {

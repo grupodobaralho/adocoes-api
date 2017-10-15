@@ -111,6 +111,62 @@ export default class Adapter {
         return this.Midia.findById(objectId, '-conteudo');
     }
 
+    /*
+     * @param shouldRenderAllMedias boolean. Determina se todas as mídias do menor devem ser enviadas ou somente as anônimas
+     */
+    fetchAllMediasByMenor(id_menor, shouldRenderAllMedias) {
+        let aggregatePipepline = [];
+
+        if (!shouldRenderAllMedias)
+            aggregatePipepline.push({
+                $match: {
+                    "anonymous": true
+                }
+            });
+
+        //Faz o "inner join" com o documento de mídias
+        aggregatePipepline.push({
+            $lookup: {
+                from: "menors",
+                localField: "_id",
+                foreignField: "refMidias",
+                as: "menor"
+            }
+        });
+
+        aggregatePipepline.push({
+            $match: {
+                "menor._id": mongoose.Types.ObjectId(id_menor)
+            }
+        });
+
+        //Habilitar somente os campos que serão úteis
+        aggregatePipepline.push({
+            $project: {
+                type: 1,
+                descricao: 1,
+                principal: 1,
+                anonymous: 1
+            }
+        });
+
+
+        return new Promise((resolve, rej) => {
+            let data = [];
+
+            this.Midia
+                .aggregate(aggregatePipepline)
+                .cursor()
+                .exec()
+                .on("data", (doc) => { 
+                    data.push(doc); 
+                })
+                .on("end", () => { 
+                    resolve(data) 
+                });
+        });
+    }
+
     fetchMediaById(id) {
         return this.Midia.findById(id);
     }
