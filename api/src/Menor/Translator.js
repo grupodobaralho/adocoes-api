@@ -209,16 +209,16 @@ export default class Translator {
 
 
         this.Interactor.deleteMediaById(id_menor, id_midia)
-            .then(sucesso => {
-                if (!sucesso) {
-                    return response.send(400, "Nenhum cadastro com o ID informado foi encontrado");
-                }
-                response.send(200, "Cadastro deletado com sucesso");
-            })
-            .catch(error => {
-                console.log(error);
-                response.send(500, "Ocorreu um erro ao deletar o cadastro");
-            });
+        .then(sucesso => {
+            if (!sucesso) {
+                return response.send(400, "Nenhum cadastro com o ID informado foi encontrado");
+            }
+            response.send(200, "Cadastro deletado com sucesso");
+        })
+        .catch(error => {
+            console.log(error);
+            response.send(500, "Ocorreu um erro ao deletar o cadastro");
+        });
 
     }
 }

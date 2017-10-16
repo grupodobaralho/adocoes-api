@@ -187,6 +187,8 @@ export default class Adapter {
             { _id: id_menor },
             { $pull: { refMidias: id_midia } },
             { multi: false }
-        );
+        ).then(resultado => {
+            return resultado.nModified > 0
+        });
     }
 }
