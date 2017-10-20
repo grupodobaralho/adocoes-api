@@ -146,14 +146,16 @@ export default class Adapter {
     saveMedia(body, id_menor) {
         const media = new this.Midia(body);
 
+        //save the media
         media.save();
 
-        this.Menor.findById(id_menor, (err, menor) => {   
-            menor.refMidias.push(media._id);
-            menor.save();
+        return this.Menor.update(
+            { _id: id_menor },
+            { $push: { refMidias: media._id } },
+            { multi: false }
+        ).then(result => {
+            return {};
         });
-
-        return {};                
     }
 
     deleteMediaById(id_menor, id_midia) {
