@@ -18,8 +18,8 @@ export default class Adapter {
 
     delete(_id) {
         return this.Menor.remove({
-                _id
-            })
+            _id
+        })
             .then(resultado => {
                 return resultado.result.n > 0;
             });
@@ -156,6 +156,16 @@ export default class Adapter {
         return {};                
     }
 
+    deleteMediaById(id_menor, id_midia) {
+        return this.Menor.update(
+            { _id: id_menor },
+            { $pull: { refMidias: id_midia } },
+            { multi: false }
+        ).then(resultado => {
+            return resultado.nModified > 0
+        });
+    }
+
     // ## INTERESSES ##
     postInterested(body) {
         const interesse = new this.Interesse(body);
@@ -187,5 +197,4 @@ export default class Adapter {
             }
         ]);
     }
-
 }

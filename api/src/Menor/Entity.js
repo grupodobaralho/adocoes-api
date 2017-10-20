@@ -97,6 +97,10 @@ export default class Entity {
         });
     }
 
+    deleteMediaById(id_menor, id_midia) {
+        return this.Adapter.deleteMediaById(id_menor, id_midia);
+    }
+
     _isMediaAnonymous(anon) {
         return (anon !== undefined && anon === true);
     }

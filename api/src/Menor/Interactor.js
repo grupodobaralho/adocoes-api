@@ -61,6 +61,9 @@ export default class Interactor {
         return this.Entity.fetchAllMedias(id_menor);
     }
 
+    deleteMediaById(id_menor, id_midia) {
+        return this.Entity.deleteMediaById(id_menor, id_midia);
+    }
 
     // ## INTERESSES ##
     postInterested(body) {

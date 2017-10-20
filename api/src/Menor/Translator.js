@@ -4,7 +4,7 @@ import Roles from '../Common/Roles';
 
 export default class Translator {
     constructor(deps = {}) {
-		this.Interactor = deps.Interactor || new(require("./Interactor").default)();
+        this.Interactor = deps.Interactor || new (require("./Interactor").default)();
     }
 
     // ## MENORES ##
@@ -129,7 +129,7 @@ export default class Translator {
     getAllMedias(request, response) {
         const { body } = request;
         const { id_menor } = request.params;
-        
+
         let interactorResult;
 
         //Validar se a requisição atual possui escopo Anônimo
@@ -214,5 +214,30 @@ export default class Translator {
             .catch(error => {
                 console.log(error);
             });
+    }
+
+    deleteMediaById(request, response) {
+
+        const {
+                    id_menor
+                } = request.params;
+
+        const {
+                    id_midia
+                } = request.params;
+
+
+        this.Interactor.deleteMediaById(id_menor, id_midia)
+        .then(sucesso => {
+            if (!sucesso) {
+                return response.send(400, "Nenhum cadastro com o ID informado foi encontrado");
+            }
+            response.send(200, "Cadastro deletado com sucesso");
+        })
+        .catch(error => {
+            console.log(error);
+            response.send(500, "Ocorreu um erro ao deletar o cadastro");
+        });
+
     }
 }
