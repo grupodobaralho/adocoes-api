@@ -114,6 +114,9 @@ export default class Entity {
         return this.Adapter.fetchAllIntersting(id_menor);
     }
 
+    fetchAllInterstingFiltered(id, type) {
+        return this.Adapter.fetchAllInterstingFiltered(id, type);
+    }
 
     // ## JOI VALIDATIONS ##
     validate(body) {

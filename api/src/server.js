@@ -184,6 +184,11 @@ server.get("/menores/:id_menor/interessados", AuthManager.userAuthenticated, fun
     menorTranslator.fetchAllIntersting(req, res);
 });
 
+server.get("menores/interessado/:id_interessado/:tipo", AuthManager.userAuthenticated, function(req, res){
+    const menorTranslator = new MenorTranslator(req, res);
+    menorTranslator.fetchAllInterstingFiltered(req, res);
+})
+
 // P1
 // RFM09: DELETE /menores/:id_menor/interessados/
 server.del("/menores/:id_menor/interessados/", AuthManager.anonymousAuthenticated, function(req, res) {
