@@ -52,10 +52,10 @@ export default class Adapter {
             }
         }];
 
-        return this._cursorMenoresAggregatingMedias(shouldRenderAllMedias, aggregatePipepline);
+        return this._cursorMenoresAggregatingMedias(shouldRenderAllMedias, aggregatePipepline, true);
     }
 
-    _cursorMenoresAggregatingMedias(shouldRenderAllMedias, aggregatePipepline = []) {
+    _cursorMenoresAggregatingMedias(shouldRenderAllMedias, aggregatePipepline = [], isSingleRecord = false) {
         //Faz o "inner join" com o documento de mídias
         aggregatePipepline.push({
             $lookup: {
@@ -87,8 +87,7 @@ export default class Adapter {
             $project: { "midias.conteudo": 0 }
         });
 
-
-        return MoongoseHelper.aggregate(this.Menor, aggregatePipepline);
+        return MoongoseHelper.aggregate(this.Menor, aggregatePipepline, isSingleRecord);
     }
 
     // ## MEDIAS ## 

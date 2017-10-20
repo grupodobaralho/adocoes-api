@@ -63,7 +63,7 @@ export default class Translator {
                 response.send(200, message);
             })
             .catch(error => {
-                response.send(500, "Nenhum cadastro com o ID informado foi encontrado");
+                response.send(500, error);
             });
     }
 

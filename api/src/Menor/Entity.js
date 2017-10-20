@@ -19,14 +19,6 @@ export default class Entity {
         return this.Adapter.fetchAll(true);
     }
 
-    fetchAllMediasAnonymous(id_menor) {
-        return this.Adapter.fetchAllMediasByMenor(id_menor, false);
-    }
-
-    fetchAllMedias(id_menor) {
-        return this.Adapter.fetchAllMediasByMenor(id_menor, true);
-    }
-
     fetchAllAnonymous() {
         //Retorna entidades do banco de dados
         return this.Adapter.fetchAll(false).then(body => {
@@ -37,14 +29,6 @@ export default class Entity {
 
     update(id, body) {
         return this.Adapter.update(id, body);
-    }
-
-    //Cria "DTO" com valores reduzidos
-    _createNewAnonymousDTO(entity) {
-        //Transforma nome em somente iniciais
-        entity.nome = StringHelper.getOnlyNameInitials(entity.nome);
-
-        return entity;
     }
 
     fetchById(id) {
@@ -62,7 +46,23 @@ export default class Entity {
         return this.Adapter.delete(id);
     }
 
+    //Cria "DTO" com valores reduzidos
+    _createNewAnonymousDTO(entity) {
+        //Transforma nome em somente iniciais
+        entity.nome = StringHelper.getOnlyNameInitials(entity.nome);
+
+        return entity;
+    }
+
     // ## MEDIAS ##
+    fetchAllMediasAnonymous(id_menor) {
+        return this.Adapter.fetchAllMediasByMenor(id_menor, false);
+    }
+
+    fetchAllMedias(id_menor) {
+        return this.Adapter.fetchAllMediasByMenor(id_menor, true);
+    }
+
     postMedia(body, id_menor) {
         return this.Adapter.saveMedia(body, id_menor);
     }
