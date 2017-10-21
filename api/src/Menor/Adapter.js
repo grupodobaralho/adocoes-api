@@ -70,19 +70,18 @@ export default class Adapter {
                 foreignField: "_id",
                 as: "midias"
             }
-          }
-        }
-      });
+          })
+        
 
     //Remove o corpo da mídia
     aggregatePipepline.push({
       $project: { "midias.conteudo": 0 }
     });
 
-    return MoongoseHelper.aggregate(this.Menor, aggregatePipepline);
-  }
+    return MoongoseHelper.aggregate(this.Menor, aggregatePipepline); //Acho que ficou em um conflito de merge
+  
 
-        return MoongoseHelper.aggregate(this.Menor, aggregatePipepline, isSingleRecord);
+     return MoongoseHelper.aggregate(this.Menor, aggregatePipepline, isSingleRecord);
     }
 
   /*

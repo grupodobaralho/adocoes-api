@@ -212,12 +212,6 @@ server.post("/menores/:id_menor/midias", AuthManager.userAuthenticated, function
     menorTranslator.postMedia(req, res);
 });
 
-// RFM10: POST /menores/:id_menor/midias
-server.post("/menores/:id_menor/midias", AuthManager.userAuthenticated, function(req, res) {
-    const menorTranslator = new MenorTranslator();
-    menorTranslator.postMedia(req, res);
-});
-
 // P1
 // RFM13: DELETE /menores/:id_menor/midias/:id_midia
 server.del("/menores/:id_menor/midias/:id_midia", AuthManager.userAuthenticated, function(req, res) {
