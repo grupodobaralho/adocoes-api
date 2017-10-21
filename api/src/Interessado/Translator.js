@@ -129,8 +129,8 @@ export default class Translator {
 	// #94 RFI14: GET /interessados/{id_interessado}/menores?tipo=favorito|apadrinhamento|adocao
 	fetchAllTypeInterest(request, response) {
 		const id = request.params.id_interessado;
-			if(request.query.tipo) {
-				const type = request.query.tipo;            
+			if(request.query.interesse) {
+				const type = request.query.interesse;            
 				this.Interactor.fetchAllTypeInterestFiltered(id, type)
 								.then(message => {
 										response.send(200, message);

@@ -231,7 +231,7 @@
 		},
 		{
 			"id": "1991eea4-0bac-1f70-9bc7-6eeee655dc30",
-			"name": "/interessados/{id_interessado}/menores",
+			"name": "/interessados/{id_interessado}/menores?interesse=favoritar|adotar|apadrinhar",
 			"description": "",
 			"collectionId": "5923063c-ba64-888c-b8d8-93889492f0d6",
 			"method": "GET",
