@@ -199,26 +199,5 @@ export default class Adapter {
         }
       }
     ]);
-  }
-
-  fetchAllInterstingFiltered(id, type) {
-    return MoongoseHelper.aggregate(this.Interesse, [
-      { $match: { refInteressado: mongoose.Types.ObjectId(id) } },
-      { $match: { tipoInteresse: type } },
-      {
-        $lookup: {
-          from: "menors",
-          localField: "refMenor",
-          foreignField: "_id",
-          as: "menores"
-        }
-      },
-      {
-        $project: {
-            _id: 0,
-          menores: 1
-        }
-      }
-    ]);
-  }
+  }  
 }

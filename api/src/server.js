@@ -24,6 +24,9 @@ const server = restify.createServer({
 });
 const port = process.env.PORT || 8888;
 
+//converte os parametros da rota para os parametros da req 
+server.use(restify.plugins.queryParser()); 
+
 import bodyParser from "body-parser";
 server.pre(restify.pre.sanitizePath());
 server.use(bodyParser.json({
@@ -170,11 +173,6 @@ server.del("/menores/:id_menor", AuthManager.userAuthenticated, function(req, re
     menorTranslator.deleteMenor(req, res);
 });
 
-server.get("menores/interesse/:tipo", AuthManager.userAuthenticated, function(req, res){
-    const menorTranslator = new MenorTranslator(req, res);
-    menorTranslator.fetchMenoresByTypeInterest(req, res);
-})
-
 // P0
 // RFM07: POST /menores/:id_menor/interessados
 server.post("/menores/:id_menor/interessados", AuthManager.userAuthenticated, function(req, res) {
@@ -188,12 +186,6 @@ server.get("/menores/:id_menor/interessados", AuthManager.userAuthenticated, fun
     const menorTranslator = new MenorTranslator();
     menorTranslator.fetchAllIntersting(req, res);
 });
-
-// #94 RFI14: GET /interessados/{id_interessado}/menores?tipo=favorito|apadrinhamento|adocao
-server.get("/interessado/:id_interessado/menores?tipo", AuthManager.userAuthenticated, function(req, res){
-    const menorTranslator = new MenorTranslator(req, res);
-    menorTranslator.fetchAllTypeInterest(req, res);
-})
 
 // P1
 // RFM09: DELETE /menores/:id_menor/interessados/
@@ -277,6 +269,12 @@ server.del("/interessados/:id_interessado", AuthManager.userAuthenticated, funct
     let interessadoTranslator = new InteressadoTranslator();
     interessadoTranslator.deleteInteressado(req, res);
 });
+
+// #94 RFI14: GET /interessados/{id_interessado}/menores?tipo=favorito|apadrinhamento|adocao
+server.get("/interessados/:id_interessado/menores?type=favoritar|adotar|apadrinhar", AuthManager.userAuthenticated, function(req, res){
+    const interessadoTranslator = new InteressadoTranslator(req, res);
+    interessadoTranslator.fetchAllTypeInterest(req, res);
+})
 
 // P0
 // RFI09: POST /interessados/:id_interessado/visualizacoes

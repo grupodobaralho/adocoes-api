@@ -1,10 +1,11 @@
 "use strict";
-
+import mongoose from "mongoose";
 import Joi from "joi";
 
 export default class Entity {
 	constructor(deps = {}) {
 		this.Adapter = deps.Adapter ? new deps.Adapter() : new(require("./Adapter").default)();
+		this.Interesse = mongoose.model("Interesse");
 	}
 
 	post(body) {
@@ -19,6 +20,17 @@ export default class Entity {
 		return this.Adapter.getInteressado(id);
 	}
 
+	//
+	// Menores
+	//
+
+	fetchAllTypeInterest(id) {
+		return this.Adapter.fetchAllTypeInterest(id);
+}
+
+fetchAllTypeInterestFiltered(id, type) {
+		return this.Adapter.fetchAllTypeInterestFiltered(id, type);
+}
 
 	validateToken(body) {
 		return new Promise((resolve, reject) => {

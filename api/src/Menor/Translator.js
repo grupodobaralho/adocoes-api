@@ -215,27 +215,5 @@ export default class Translator {
                 console.log(error);
             });
     }
-
-    fetchAllInterstingFiltered(request, response) {
-        const id = request.params.id_interessado;
-        if(request.params.tipo) {
-            const type = request.params.tipo;             
-            this.Interactor.fetchAllTypeInterest(id, type)
-                    .then(message => {
-                        response.send(200, message);
-                    })
-                    .catch(error => {
-                        console.log(error);
-                    });
-                }
-                else{
-                    this.Interactor.fetchAllTypeInterestFiltered(id)
-                    .then(message => {
-                        response.send(200, message);
-                    })
-                    .catch(error => {
-                        console.log(error);
-                    });
-                }
-            }
+    
 }

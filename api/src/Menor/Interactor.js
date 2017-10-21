@@ -79,7 +79,4 @@ export default class Interactor {
         return this.Entity.fetchAllIntersting(id_menor);
     }
 
-    fetchAllInterstingFiltered(id, type) {
-        return this.Entity.fetchAllInterstingFiltered(id, type);
-    }
 }
