@@ -7,7 +7,6 @@ import Conteudo from "./conteudo.js";
 import Documento from "./documento.js";
 import Endereco from "./endereco.js";
 import Estado from "./estado.js";
-import Etnia from "./etnia.js";
 import Familiar from "./familiar.js";
 import Interessado from "./interessado.js";
 import Interesse from "./interesse.js";
@@ -29,7 +28,6 @@ export {
 	Documento,
 	Endereco,
 	Estado,
-	Etnia,
 	Familiar,
 	Interessado,
 	Interesse,

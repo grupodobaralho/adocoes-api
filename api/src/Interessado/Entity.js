@@ -1,11 +1,9 @@
 "use strict";
-import mongoose from "mongoose";
 import Joi from "joi";
 
 export default class Entity {
 	constructor(deps = {}) {
 		this.Adapter = deps.Adapter ? new deps.Adapter() : new(require("./Adapter").default)();
-		this.Interesse = mongoose.model("Interesse");
 	}
 
 	post(body) {
@@ -21,8 +19,16 @@ export default class Entity {
 	}
 
 	//
-	// Menores
+	// Interesse
 	//
+
+	deleteInterested(_id) {
+		return this.Adapter.deleteInterested(_id);
+}
+
+	postInterested(body) {
+		return this.Adapter.postInterested(body);
+}
 
 	// #94 RFI14: GET /interessados/{id_interessado}/menores?tipo=favorito|apadrinhamento|adocao
 	fetchAllTypeInterest(id) {

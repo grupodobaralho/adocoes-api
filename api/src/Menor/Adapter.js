@@ -161,6 +161,16 @@ export default class Adapter {
     return interesse.save();
   }
 
+  deleteInterested(_id) { 
+    return this.Interesse 
+        .remove({ 
+          _id           
+        }) 
+        .then(ret => { 
+            return ret.result.n > 0; 
+        }); 
+} 
+
     fetchAllIntersting(id_menor) {
         return MoongoseHelper.aggregate(this.Interesse, [
             { $match: { refMenor: mongoose.Types.ObjectId(id_menor) } },

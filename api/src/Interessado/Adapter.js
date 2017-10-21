@@ -48,8 +48,23 @@ export default class Adapter {
 	}
 
 	//
-	// Menores
+	// Interesse
 	//
+
+	postInterested(body) {
+    const interesse = new this.Interesse(body);
+    return interesse.save();
+	}
+	
+	deleteInterested(_id) { 
+    return this.Interesse 
+        .remove({ 
+          _id           
+        }) 
+        .then(ret => { 
+            return ret.result.n > 0; 
+				}); 
+			}
 
 	// #94 RFI14: GET /interessados/{id_interessado}/menores?tipo=favorito|apadrinhamento|adocao
 	fetchAllTypeInterest(id) {

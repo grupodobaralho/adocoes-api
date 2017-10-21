@@ -74,8 +74,8 @@ export default class Interactor {
     }
 
     //TODO: precisamos avisar o TJ quando o usuário remover o interesse.
-    deleteInterested(body) {
-        return this.Entity.deleteInterested(body);
+    deleteInterested(_id) {
+        return this.Entity.deleteInterested(_id);
     }
 
     fetchAllIntersting(id_menor) {

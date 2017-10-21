@@ -123,8 +123,43 @@ export default class Translator {
 	}
 
 	//
-	// Menores
+	// Interesse
 	//
+
+	// RFI13: POST /interessados/:id_interessado}/menores
+	postInterested(request, response) {
+		
+						let body = {
+								refMenor: request.body.refMenor,
+								refInteressado: request.params.id_interessado,
+								tipoInteresse: request.body.tipoInteresse
+						};
+		
+						//Ação padrão para resultado do interactor
+						this.Interactor
+								.postInterested(body)
+								.then(message => {
+										response.send(200, message);
+								})
+								.catch(error => {
+										response.send(500, error);
+								});
+				}
+				
+// RFI15: DELETE /interessados/:id_interesse/menores/
+				deleteInterested(request, response) {
+					let _id = request.params.id_interesse          
+ 
+				 //Ação padrão para resultado do interactor
+				 this.Interactor
+						 .deleteInterested(_id)
+						 .then(message => {
+								 response.send(200, message);
+						 })
+						 .catch(error => {
+								 response.send(500, error);
+						 });
+		 }
 
 	// #94 RFI14: GET /interessados/{id_interessado}/menores?tipo=favorito|apadrinhamento|adocao
 	fetchAllTypeInterest(request, response) {

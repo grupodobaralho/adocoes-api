@@ -47,8 +47,20 @@ export default class Interactor {
 	}
 
 	//
-	// Menores
+	// Interesse
 	//
+
+	postInterested(body) {
+		//Adiciona a data junto com o "corpo" que veio do Translator
+		body.timeStamp = Date.now();
+		
+		return this.Entity.postInterested(body);
+}
+
+//TODO: precisamos avisar o TJ quando o usuário remover o interesse.
+deleteInterested(_id) {
+	return this.Entity.deleteInterested(_id);
+}
 
 	// #94 RFI14: GET /interessados/{id_interessado}/menores?tipo=favorito|apadrinhamento|adocao
 	fetchAllTypeInterest(id) {

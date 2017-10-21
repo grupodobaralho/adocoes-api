@@ -164,16 +164,12 @@ export default class Translator {
     }
 
     // ## INTERESSES ##
-    deleteInterestedByToken(request, response) {
-
-        let body = {
-            refMenor: request.params.id_menor,
-            refInteressado: request.user._id
-        };
+    deleteInterested(request, response) {
+         let _id = request.params.id_interesse          
 
         //Ação padrão para resultado do interactor
         this.Interactor
-            .deleteInterested(body)
+            .deleteInterested(_id)
             .then(message => {
                 response.send(200, message);
             })
@@ -201,20 +197,30 @@ export default class Translator {
             });
     }
 
-    fetchAllIntersting(request, response) {
-
-        const {
-            id_menor
-        } = request.params;
-
-        this.Interactor.fetchAllIntersting(id_menor)
-            .then(message => {
-                response.send(200, message);
-            })
-            .catch(error => {
-                console.log(error);
-            });
-    }
+    fetchAllTypeInterest(request, response) {
+		const id = request.params.id_menor;
+			if(request.query.interesse) {
+				const type = request.query.interesse;            
+				this.Interactor.fetchAllTypeInterestFiltered(id, type)
+								.then(message => {
+										response.send(200, message);
+								})
+								.catch(error => {
+										console.log(error);
+										response.send(400, error)
+								});
+						}
+						else{
+								this.Interactor.fetchAllTypeInterest(id)
+								.then(message => {
+										response.send(200, message);
+								})
+								.catch(error => {
+										console.log(error);
+										response.send(400, error)
+								});
+						}
+				}
 
     deleteMediaById(request, response) {
 
