@@ -24,6 +24,7 @@ export default class Entity {
 	// Menores
 	//
 
+	// #94 RFI14: GET /interessados/{id_interessado}/menores?tipo=favorito|apadrinhamento|adocao
 	fetchAllTypeInterest(id) {
 		return this.Adapter.fetchAllTypeInterest(id);
 }
@@ -33,6 +34,7 @@ fetchAllTypeInterestFiltered(id, type) {
 		return this.Adapter.fetchAllTypeInterestFiltered(id, type);
 }
 
+// #94 RFI14: GET /interessados/{id_interessado}/menores?tipo=favorito|apadrinhamento|adocao
 validateTypeInterest(type){
 	const schema = Joi.object({
 		type: Joi.string().required().regex(/adotar|apadrinhar|favoritar/)

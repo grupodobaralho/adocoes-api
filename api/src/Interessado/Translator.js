@@ -126,6 +126,7 @@ export default class Translator {
 	// Menores
 	//
 
+	// #94 RFI14: GET /interessados/{id_interessado}/menores?tipo=favorito|apadrinhamento|adocao
 	fetchAllTypeInterest(request, response) {
 		const id = request.params.id_interessado;
 			if(request.query.tipo) {

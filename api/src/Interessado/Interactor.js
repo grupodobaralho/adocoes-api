@@ -50,10 +50,12 @@ export default class Interactor {
 	// Menores
 	//
 
+	// #94 RFI14: GET /interessados/{id_interessado}/menores?tipo=favorito|apadrinhamento|adocao
 	fetchAllTypeInterest(id) {
 		return this.Entity.fetchAllTypeInterest(id);
 }
 
+// #94 RFI14: GET /interessados/{id_interessado}/menores?tipo=favorito|apadrinhamento|adocao
 fetchAllTypeInterestFiltered(id, type) {	
 		return this.Entity.validateTypeInterest(type).then(type => {
 			return this.Entity.fetchAllTypeInterestFiltered(id, type);

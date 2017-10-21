@@ -51,6 +51,7 @@ export default class Adapter {
 	// Menores
 	//
 
+	// #94 RFI14: GET /interessados/{id_interessado}/menores?tipo=favorito|apadrinhamento|adocao
 	fetchAllTypeInterest(id) {
     return MoongoseHelper.aggregate(this.Interesse, [
       { $match: { refInteressado: mongoose.Types.ObjectId(id) } },
@@ -71,6 +72,7 @@ export default class Adapter {
     ]);
   }
 
+	// #94 RFI14: GET /interessados/{id_interessado}/menores?tipo=favorito|apadrinhamento|adocao
   fetchAllTypeInterestFiltered(id, type) {
 		return MoongoseHelper.aggregate(this.Interesse, [
 			{ $match: { refInteressado: mongoose.Types.ObjectId(id) } },
