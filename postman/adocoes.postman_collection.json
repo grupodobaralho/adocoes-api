@@ -764,6 +764,31 @@
 					"response": []
 				},
 				{
+					"name": "/menores/{interesse}",
+					"request": {
+						"url": "{{url}}/menores/{interesse}",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token-type}} {{access-token}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "{{content-type}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
 					"name": "/menores/{id_menor}/interessados",
 					"request": {
 						"url": "{{url}}/menores/{id_menor}/interessados",
