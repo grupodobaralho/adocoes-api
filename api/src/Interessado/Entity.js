@@ -1,10 +1,11 @@
 "use strict";
-
+import mongoose from "mongoose";
 import Joi from "joi";
 
 export default class Entity {
 	constructor(deps = {}) {
 		this.Adapter = deps.Adapter ? new deps.Adapter() : new(require("./Adapter").default)();
+		this.Interesse = mongoose.model("Interesse");
 	}
 
 	post(body) {
@@ -19,6 +20,42 @@ export default class Entity {
 		return this.Adapter.getInteressado(id);
 	}
 
+	//
+	// Menores
+	//
+
+	fetchAllTypeInterest(id) {
+		return this.Adapter.fetchAllTypeInterest(id);
+}
+
+fetchAllTypeInterestFiltered(id, type) {
+	console.log(type)
+		return this.Adapter.fetchAllTypeInterestFiltered(id, type);
+}
+
+validateTypeInterest(type){
+	const schema = Joi.object({
+		type: Joi.string().required().regex(/adotar|apadrinhar|favoritar/)
+	});
+
+	const {
+		error,
+		value
+	} = Joi.validate({type}, schema);
+
+	return new Promise((resolve, reject) => {
+		if (error) {
+			let messages = error.details.map(e => e.message);
+			reject({
+				status: 400,
+				messages
+			});
+		} else if (value) {
+			let type = value.type
+			resolve(type);
+		}
+	});
+}
 
 	validateToken(body) {
 		return new Promise((resolve, reject) => {

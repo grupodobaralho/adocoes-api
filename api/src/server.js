@@ -24,6 +24,9 @@ const server = restify.createServer({
 });
 const port = process.env.PORT || 8888;
 
+//converte os parametros da rota para os parametros da req 
+server.use(restify.plugins.queryParser()); 
+
 import bodyParser from "body-parser";
 server.pre(restify.pre.sanitizePath());
 server.use(bodyParser.json({
@@ -266,6 +269,12 @@ server.del("/interessados/:id_interessado", AuthManager.userAuthenticated, funct
     let interessadoTranslator = new InteressadoTranslator();
     interessadoTranslator.deleteInteressado(req, res);
 });
+
+// #94 RFI14: GET /interessados/{id_interessado}/menores?tipo=favorito|apadrinhamento|adocao
+server.get("/interessados/:id_interessado/menores?tipo=favoritar|adotar|apadrinhar", AuthManager.userAuthenticated, function(req, res){
+    const interessadoTranslator = new InteressadoTranslator(req, res);
+    interessadoTranslator.fetchAllTypeInterest(req, res);
+})
 
 // P0
 // RFI09: POST /interessados/:id_interessado/visualizacoes

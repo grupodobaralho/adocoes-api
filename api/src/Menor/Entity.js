@@ -118,7 +118,6 @@ export default class Entity {
         return this.Adapter.fetchAllIntersting(id_menor);
     }
 
-
     // ## JOI VALIDATIONS ##
     validate(body) {
         const schema = Joi.object({

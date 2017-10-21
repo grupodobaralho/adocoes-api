@@ -123,6 +123,35 @@ export default class Translator {
 	}
 
 	//
+	// Menores
+	//
+
+	fetchAllTypeInterest(request, response) {
+		const id = request.params.id_interessado;
+			if(request.query.tipo) {
+				const type = request.query.tipo;            
+				this.Interactor.fetchAllTypeInterestFiltered(id, type)
+								.then(message => {
+										response.send(200, message);
+								})
+								.catch(error => {
+										console.log(error);
+										response.send(400, error)
+								});
+						}
+						else{
+								this.Interactor.fetchAllTypeInterest(id)
+								.then(message => {
+										response.send(200, message);
+								})
+								.catch(error => {
+										console.log(error);
+										response.send(400, error)
+								});
+						}
+				}
+
+	//
 	// Visualizacoes
 	//
 

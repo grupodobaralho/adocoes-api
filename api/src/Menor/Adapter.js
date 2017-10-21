@@ -4,17 +4,17 @@ import mongoose from "mongoose";
 import MoongoseHelper from "../Common/MoongoseHelper";
 
 export default class Adapter {
-    constructor(deps = {}) {
-        this.Menor = mongoose.model("Menor");
-        this.Interesse = mongoose.model("Interesse");
-        this.Midia = mongoose.model("Midia");
-    }
+  constructor(deps = {}) {
+    this.Menor = mongoose.model("Menor");
+    this.Interesse = mongoose.model("Interesse");
+    this.Midia = mongoose.model("Midia");
+  }
 
-    // ## MENORES ##
-    save(body) {
-        const menor = new this.Menor(body);
-        return menor.save();
-    }
+  // ## MENORES ##
+  save(body) {
+    const menor = new this.Menor(body);
+    return menor.save();
+  }
 
     delete(_id) {
         return this.Menor.remove({
@@ -25,32 +25,38 @@ export default class Adapter {
             });
     }
 
-    update(id, body) {
-        return this.Menor.findOneAndUpdate({
-            _id: id
-        }, body, {
-            upsert: false,
-            new: true
-        });
-    }
+  update(id, body) {
+    return this.Menor.findOneAndUpdate(
+      {
+        _id: id
+      },
+      body,
+      {
+        upsert: false,
+        new: true
+      }
+    );
+  }
 
-    /*
+  /*
      * @param shouldRenderAllMedias boolean. Determina se todas as mídias do menor devem ser enviadas ou somente as anônimas
      */
-    fetchAll(shouldRenderAllMedias) {
-        return this._cursorMenoresAggregatingMedias(shouldRenderAllMedias);
-    }
+  fetchAll(shouldRenderAllMedias) {
+    return this._cursorMenoresAggregatingMedias(shouldRenderAllMedias);
+  }
 
-    /*
+  /*
      * @param shouldRenderAllMedias boolean. Determina se todas as mídias do menor devem ser enviadas ou somente as anônimas
      */
-    fetchById(id, shouldRenderAllMedias) {
-        //Busca pelo ID
-        let aggregatePipepline = [{
-            $match: {
-                "_id": mongoose.Types.ObjectId(id)
-            }
-        }];
+  fetchById(id, shouldRenderAllMedias) {
+    //Busca pelo ID
+    let aggregatePipepline = [
+      {
+        $match: {
+          _id: mongoose.Types.ObjectId(id)
+        }
+      }
+    ];
 
         return this._cursorMenoresAggregatingMedias(shouldRenderAllMedias, aggregatePipepline, true);
     }
@@ -64,87 +70,69 @@ export default class Adapter {
                 foreignField: "_id",
                 as: "midias"
             }
-        });
+          }
+        }
+      });
 
-        //Adiciona condição para retornar apenas mídias anônimas
-        if (!shouldRenderAllMedias)
-            aggregatePipepline.push({
-                $addFields: { 
-                    "midias": {
-                        "$filter": {
-                            "input": "$midias",
-                            "as": "midia",
-                            "cond": {
-                                "$eq": ["$$midia.anonymous", true]
-                            }
-                        }
-                    }
-                }
-            });
+    //Remove o corpo da mídia
+    aggregatePipepline.push({
+      $project: { "midias.conteudo": 0 }
+    });
 
-        //Remove o corpo da mídia
-        aggregatePipepline.push({
-            $project: { "midias.conteudo": 0 }
-        });
+    return MoongoseHelper.aggregate(this.Menor, aggregatePipepline);
+  }
 
         return MoongoseHelper.aggregate(this.Menor, aggregatePipepline, isSingleRecord);
     }
 
-    // ## MEDIAS ## 
-    fetchMediaByIdWithoutBody(id) {
-        let objectId = mongoose.Types.ObjectId(id);
-
-        return this.Midia.findById(objectId, '-conteudo');
-    }
-
-    /*
+  /*
      * @param shouldRenderAllMedias boolean. Determina se todas as mídias do menor devem ser enviadas ou somente as anônimas
      */
-    fetchAllMediasByMenor(id_menor, shouldRenderAllMedias) {
-        let aggregatePipepline = [];
+  fetchAllMediasByMenor(id_menor, shouldRenderAllMedias) {
+    let aggregatePipepline = [];
 
-        if (!shouldRenderAllMedias)
-            aggregatePipepline.push({
-                $match: {
-                    "anonymous": true
-                }
-            });
+    if (!shouldRenderAllMedias)
+      aggregatePipepline.push({
+        $match: {
+          anonymous: true
+        }
+      });
 
-        //Faz o "inner join" com o documento de mídias
-        aggregatePipepline.push({
-            $lookup: {
-                from: "menors",
-                localField: "_id",
-                foreignField: "refMidias",
-                as: "menor"
-            }
-        });
+    //Faz o "inner join" com o documento de mídias
+    aggregatePipepline.push({
+      $lookup: {
+        from: "menors",
+        localField: "_id",
+        foreignField: "refMidias",
+        as: "menor"
+      }
+    });
 
-        aggregatePipepline.push({
-            $match: {
-                "menor._id": mongoose.Types.ObjectId(id_menor)
-            }
-        });
+    aggregatePipepline.push({
+      $match: {
+        "menor._id": mongoose.Types.ObjectId(id_menor)
+      }
+    });
 
-        //Habilitar somente os campos que serão úteis
-        aggregatePipepline.push({
-            $project: {
-                type: 1,
-                descricao: 1,
-                principal: 1,
-                anonymous: 1
-            }
-        });
+    //Habilitar somente os campos que serão úteis
+    aggregatePipepline.push({
+      $project: {
+        type: 1,
+        descricao: 1,
+        principal: 1,
+        anonymous: 1
+      }
+    });
 
-        return MoongoseHelper.aggregate(this.Midia, aggregatePipepline);
-    }
+    return MoongoseHelper.aggregate(this.Midia, aggregatePipepline);
+  }
 
-    fetchMediaById(id) {
-        return this.Midia.findById(id);
-    }
+  fetchMediaById(id) {
+    return this.Midia.findById(id);
+  }
 
-    saveMedia(body, id_menor) {
-        const media = new this.Midia(body);
+  saveMedia(body, id_menor) {
+    const media = new this.Midia(body);
 
         //save the media
         media.save();
@@ -168,22 +156,11 @@ export default class Adapter {
         });
     }
 
-    // ## INTERESSES ##
-    postInterested(body) {
-        const interesse = new this.Interesse(body);
-        return interesse.save();
-    }
-    
-    deleteInterested(body) {
-        return this.Interesse
-            .remove({
-                refMenor: body.refMenor,
-                refInteressado: body.refInteressado
-            })
-            .then(ret => {
-                return ret.result.n > 0;
-            });
-    }
+  // ## INTERESSES ##
+  postInterested(body) {
+    const interesse = new this.Interesse(body);
+    return interesse.save();
+  }
 
     fetchAllIntersting(id_menor) {
         return MoongoseHelper.aggregate(this.Interesse, [

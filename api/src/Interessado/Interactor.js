@@ -47,6 +47,20 @@ export default class Interactor {
 	}
 
 	//
+	// Menores
+	//
+
+	fetchAllTypeInterest(id) {
+		return this.Entity.fetchAllTypeInterest(id);
+}
+
+fetchAllTypeInterestFiltered(id, type) {	
+		return this.Entity.validateTypeInterest(type).then(type => {
+			return this.Entity.fetchAllTypeInterestFiltered(id, type);
+		})		
+}
+
+	//
 	// Visualizacoes
 	//
 

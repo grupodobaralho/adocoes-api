@@ -1,10 +1,12 @@
 "use strict";
 
 import mongoose from "mongoose";
+import MoongoseHelper from "../Common/MoongoseHelper";
 
 export default class Adapter {
 	constructor(deps = {}) {
 		this.Interessado = mongoose.model("Interessado");
+		this.Interesse = mongoose.model("Interesse");
 	}
 
 	post(body) {
@@ -44,6 +46,51 @@ export default class Adapter {
 			new: true
 		}, body);
 	}
+
+	//
+	// Menores
+	//
+
+	fetchAllTypeInterest(id) {
+    return MoongoseHelper.aggregate(this.Interesse, [
+      { $match: { refInteressado: mongoose.Types.ObjectId(id) } },
+      {
+        $lookup: {
+          from: "menors",
+          localField: "refMenor",
+          foreignField: "_id",
+          as: "menores"
+        }
+      },
+      {
+        $project: {
+            _id: 0,
+          menores: 1
+        }
+      }
+    ]);
+  }
+
+  fetchAllTypeInterestFiltered(id, type) {
+		return MoongoseHelper.aggregate(this.Interesse, [
+			{ $match: { refInteressado: mongoose.Types.ObjectId(id) } },
+			{ $match: { tipoInteresse: type } },
+      {
+        $lookup: {
+          from: "menors",
+          localField: "refMenor",
+          foreignField: "_id",
+          as: "menores"
+        }
+      },
+      {
+        $project: {
+            _id: 0,
+          menores: 1
+        }
+      }
+    ]);
+  }
 
 	addInsert() {}
 
