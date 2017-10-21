@@ -136,6 +136,7 @@ export default class Translator {
 								})
 								.catch(error => {
 										console.log(error);
+										response.send(400, error)
 								});
 						}
 						else{
@@ -145,6 +146,7 @@ export default class Translator {
 								})
 								.catch(error => {
 										console.log(error);
+										response.send(400, error)
 								});
 						}
 				}

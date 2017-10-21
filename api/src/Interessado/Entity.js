@@ -29,7 +29,32 @@ export default class Entity {
 }
 
 fetchAllTypeInterestFiltered(id, type) {
+	console.log(type)
 		return this.Adapter.fetchAllTypeInterestFiltered(id, type);
+}
+
+validateTypeInterest(type){
+	const schema = Joi.object({
+		type: Joi.string().required().regex(/adotar|apadrinhar|favoritar/)
+	});
+
+	const {
+		error,
+		value
+	} = Joi.validate({type}, schema);
+
+	return new Promise((resolve, reject) => {
+		if (error) {
+			let messages = error.details.map(e => e.message);
+			reject({
+				status: 400,
+				messages
+			});
+		} else if (value) {
+			let type = value.type
+			resolve(type);
+		}
+	});
 }
 
 	validateToken(body) {
