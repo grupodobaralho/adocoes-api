@@ -271,7 +271,7 @@ server.del("/interessados/:id_interessado", AuthManager.userAuthenticated, funct
 });
 
 // #94 RFI14: GET /interessados/{id_interessado}/menores?tipo=favorito|apadrinhamento|adocao
-server.get("/interessados/:id_interessado/menores?type=favoritar|adotar|apadrinhar", AuthManager.userAuthenticated, function(req, res){
+server.get("/interessados/:id_interessado/menores?tipo=favoritar|adotar|apadrinhar", AuthManager.userAuthenticated, function(req, res){
     const interessadoTranslator = new InteressadoTranslator(req, res);
     interessadoTranslator.fetchAllTypeInterest(req, res);
 })

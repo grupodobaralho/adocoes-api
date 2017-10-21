@@ -493,7 +493,7 @@
 					"response": []
 				},
 				{
-					"name": "/interessados/{id_interessado}/menores?type=favoritar|adotar|apadrinhar",
+					"name": "/interessados/{id_interessado}/menores?tipo=favoritar|adotar|apadrinhar",
 					"request": {
 						"url": "{{url}}/interessados/{id_interessado}/menores",
 						"method": "GET",
