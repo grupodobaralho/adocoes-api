@@ -217,15 +217,25 @@ export default class Translator {
     }
 
     fetchAllInterstingFiltered(request, response) {
-        const type = request.params.tipo;
         const id = request.params.id_interessado;
-        
-                this.Interactor.fetchAllInterstingFiltered(id, type)
+        if(request.params.tipo) {
+            const type = request.params.tipo;             
+            this.Interactor.fetchAllTypeInterest(id, type)
                     .then(message => {
                         response.send(200, message);
                     })
                     .catch(error => {
                         console.log(error);
                     });
+                }
+                else{
+                    this.Interactor.fetchAllTypeInterestFiltered(id)
+                    .then(message => {
+                        response.send(200, message);
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    });
+                }
             }
 }

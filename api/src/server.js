@@ -189,9 +189,10 @@ server.get("/menores/:id_menor/interessados", AuthManager.userAuthenticated, fun
     menorTranslator.fetchAllIntersting(req, res);
 });
 
-server.get("menores/interessado/:id_interessado/:tipo", AuthManager.userAuthenticated, function(req, res){
+// #94 RFI14: GET /interessados/{id_interessado}/menores?tipo=favorito|apadrinhamento|adocao
+server.get("/interessado/:id_interessado/menores?tipo", AuthManager.userAuthenticated, function(req, res){
     const menorTranslator = new MenorTranslator(req, res);
-    menorTranslator.fetchAllInterstingFiltered(req, res);
+    menorTranslator.fetchAllTypeInterest(req, res);
 })
 
 // P1
