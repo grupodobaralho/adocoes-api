@@ -170,6 +170,11 @@ server.del("/menores/:id_menor", AuthManager.userAuthenticated, function(req, re
     menorTranslator.deleteMenor(req, res);
 });
 
+server.get("menores/interesse/:tipo", AuthManager.userAuthenticated, function(req, res){
+    const menorTranslator = new MenorTranslator(req, res);
+    menorTranslator.fetchMenoresByTypeInterest(req, res);
+})
+
 // P0
 // RFM07: POST /menores/:id_menor/interessados
 server.post("/menores/:id_menor/interessados", AuthManager.userAuthenticated, function(req, res) {
