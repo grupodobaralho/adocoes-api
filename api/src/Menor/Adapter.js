@@ -202,18 +202,23 @@ export default class Adapter {
   }
 
   fetchAllInterstingFiltered(id, type) {
-    return this.Interesse.find(
-      { refInteressado: id, tipoInteresse: type },
-      (err, resp) => {
-        if (err) return err;
-        else {
-            console.log(resp)
-          this.Menor.find({ _id: { $in: resp.refMenor } }, (err, result) => {
-            if (err) return err;
-            else return result;
-          });
+    return MoongoseHelper.aggregate(this.Interesse, [
+      { $match: { refInteressado: mongoose.Types.ObjectId(id) } },
+      { $match: { tipoInteresse: type } },
+      {
+        $lookup: {
+          from: "menors",
+          localField: "refMenor",
+          foreignField: "_id",
+          as: "menores"
+        }
+      },
+      {
+        $project: {
+            _id: 0,
+          menores: 1
         }
       }
-    );
+    ]);
   }
 }
