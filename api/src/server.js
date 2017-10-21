@@ -222,6 +222,12 @@ server.del("/menores/:id_menor/midias/:id_midia", AuthManager.userAuthenticated,
     menorTranslator.deleteMediaById(req, res);
 });
 
+
+server.del("/menores/:id_menor/midias", AuthManager.userAuthenticated, function(req, res) { 
+    const menorTranslator = new MenorTranslator(); 
+    menorTranslator.deleteAllMedia(req, res); 
+}); 
+
 // RFM18 (2017-2): PUT /menores/:id_menor (seta o id_abrigo)
 // RFM09 (2017-2): POST /menores/:id_menor/processos
 // RFM20 (2017-2): GET /menores/:id_menor/processos

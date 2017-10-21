@@ -65,6 +65,10 @@ export default class Interactor {
         return this.Entity.deleteMediaById(id_menor, id_midia);
     }
 
+    deleteAllMedia(id_menor) { 
+        return this.Entity.deleteAllMedia(id_menor); 
+    } 
+
     // ## INTERESSES ##
     postInterested(body) {
         //Adiciona a data junto com o "corpo" que veio do Translator

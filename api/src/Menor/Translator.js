@@ -240,4 +240,25 @@ export default class Translator {
         });
 
     }
+
+    deleteAllMedia(request, response) { 
+        
+               const { 
+                   id_menor 
+               } = request.params; 
+        
+        
+               this.Interactor.deleteAllMedia(id_menor) 
+                   .then(sucesso => { 
+                       if (!sucesso) { 
+                           return response.send(400, "Nenhum cadastro com o ID informado foi encontrado"); 
+                       } 
+                       response.send(200, "Cadastro deletado com sucesso"); 
+                   }) 
+                   .catch(error => { 
+                       console.log(error); 
+                       response.send(500, "Ocorreu um erro ao deletar o cadastro"); 
+                   }); 
+        
+           } 
 }

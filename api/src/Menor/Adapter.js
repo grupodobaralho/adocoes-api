@@ -29,9 +29,9 @@ export default class Adapter {
         return this.Menor.findOneAndUpdate({
             _id: id
         }, body, {
-            upsert: false,
-            new: true
-        });
+                upsert: false,
+                new: true
+            });
     }
 
     /*
@@ -69,7 +69,7 @@ export default class Adapter {
         //Adiciona condição para retornar apenas mídias anônimas
         if (!shouldRenderAllMedias)
             aggregatePipepline.push({
-                $addFields: { 
+                $addFields: {
                     "midias": {
                         "$filter": {
                             "input": "$midias",
@@ -168,12 +168,21 @@ export default class Adapter {
         });
     }
 
+    deleteAllMedia(id_menor) {
+        return this.Menor.update(
+            { _id: id_menor },
+            { $set: { refMidias: [] }})
+        .then(resultado => {
+            return resultado.nModified > 0
+        });
+    }
+
     // ## INTERESSES ##
     postInterested(body) {
         const interesse = new this.Interesse(body);
         return interesse.save();
     }
-    
+
     deleteInterested(body) {
         return this.Interesse
             .remove({

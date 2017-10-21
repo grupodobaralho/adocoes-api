@@ -730,6 +730,35 @@
 			"folder": "81deb2c0-430f-0098-4410-4f4a1d21565b"
 		},
 		{
+			"id": "5dcd415f-ba9a-8bfc-df60-f3445d27b6a4",
+			"name": "/menores/{id_menor}/midias",
+			"description": "",
+			"collectionId": "5923063c-ba64-888c-b8d8-93889492f0d6",
+			"method": "DELETE",
+			"headers": "Authorization: {{token-type}} {{access-token}}\nContent-Type: {{content-type}}",
+			"dataMode": "raw",
+			"data": [],
+			"rawModeData": "",
+			"url": "{{url}}/menores/{id_menor}/midias",
+			"responses": [],
+			"pathVariableData": [],
+			"queryParams": [],
+			"headerData": [
+				{
+					"key": "Authorization",
+					"value": "{{token-type}} {{access-token}}",
+					"description": ""
+				},
+				{
+					"key": "Content-Type",
+					"value": "{{content-type}}",
+					"description": ""
+				}
+			],
+			"collection_id": "5923063c-ba64-888c-b8d8-93889492f0d6",
+			"folder": "81deb2c0-430f-0098-4410-4f4a1d21565b"
+		},
+		{
 			"id": "62980286-00a4-6b0d-f63b-8e31159e42b7",
 			"name": "/conteudos/{id_conteudo}",
 			"description": "",
