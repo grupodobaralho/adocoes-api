@@ -70,19 +70,18 @@ export default class Adapter {
                 foreignField: "_id",
                 as: "midias"
             }
-          }
-        }
-      });
+          })
+        
 
     //Remove o corpo da mídia
     aggregatePipepline.push({
       $project: { "midias.conteudo": 0 }
     });
 
-    return MoongoseHelper.aggregate(this.Menor, aggregatePipepline);
-  }
+    return MoongoseHelper.aggregate(this.Menor, aggregatePipepline); //Acho que ficou em um conflito de merge
+  
 
-        return MoongoseHelper.aggregate(this.Menor, aggregatePipepline, isSingleRecord);
+     return MoongoseHelper.aggregate(this.Menor, aggregatePipepline, isSingleRecord);
     }
 
   /*
@@ -161,6 +160,16 @@ export default class Adapter {
     const interesse = new this.Interesse(body);
     return interesse.save();
   }
+
+  deleteInterested(_id) { 
+    return this.Interesse 
+        .remove({ 
+          _id           
+        }) 
+        .then(ret => { 
+            return ret.result.n > 0; 
+        }); 
+} 
 
     fetchAllIntersting(id_menor) {
         return MoongoseHelper.aggregate(this.Interesse, [

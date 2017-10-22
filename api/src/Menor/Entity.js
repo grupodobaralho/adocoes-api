@@ -106,8 +106,8 @@ export default class Entity {
     }
 
     // ## INTERESSES ##
-    deleteInterested(body) {
-        return this.Adapter.deleteInterested(body);
+    deleteInterested(_id) {
+        return this.Adapter.deleteInterested(_id);
     }
 
     postInterested(body) {

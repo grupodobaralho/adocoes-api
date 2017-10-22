@@ -182,16 +182,16 @@ server.post("/menores/:id_menor/interessados", AuthManager.userAuthenticated, fu
 
 // P1
 // RFM08: GET /menores/:id_menor/interessados
-server.get("/menores/:id_menor/interessados", AuthManager.userAuthenticated, function(req, res) {
+server.get("/menores/:id_menor/interessados?interesse=favoritar|adotar|apadrinhar", AuthManager.userAuthenticated, function(req, res) {
     const menorTranslator = new MenorTranslator();
-    menorTranslator.fetchAllIntersting(req, res);
+    menorTranslator.fetchAllTypeInterest(req, res);
 });
 
 // P1
-// RFM09: DELETE /menores/:id_menor/interessados/
-server.del("/menores/:id_menor/interessados/", AuthManager.anonymousAuthenticated, function(req, res) {
+// RFM09: DELETE /menores/:id_interesse/interessados/
+server.del("/menores/:id_interesse/interessados/", AuthManager.anonymousAuthenticated, function(req, res) {
     const menorTranslator = new MenorTranslator();
-    menorTranslator.deleteInterestedByToken(req, res);
+    menorTranslator.deleteInterested(req, res);
 });
 
 // P0
@@ -204,12 +204,6 @@ server.get("/menores/:id_menor/midias", AuthManager.anonymousAuthenticated, func
 server.get("/menores/:id_menor/midias/:id_media", AuthManager.anonymousAuthenticated, function(req, res) {
     const menorTranslator = new MenorTranslator();
     menorTranslator.getMedia(req, res);
-});
-
-// RFM10: POST /menores/:id_menor/midias
-server.post("/menores/:id_menor/midias", AuthManager.userAuthenticated, function(req, res) {
-    const menorTranslator = new MenorTranslator();
-    menorTranslator.postMedia(req, res);
 });
 
 // RFM10: POST /menores/:id_menor/midias
@@ -270,11 +264,25 @@ server.del("/interessados/:id_interessado", AuthManager.userAuthenticated, funct
     interessadoTranslator.deleteInteressado(req, res);
 });
 
+// P0
+// RFI13: POST /interessados/:id_interessado}/menores
+server.post("/interessados/:id_interessado/menores", AuthManager.userAuthenticated, function(req, res) {
+    const interessadoTranslator = new InteressadoTranslator();
+    interessadoTranslator.postInterested(req, res);
+});
+
 // #94 RFI14: GET /interessados/{id_interessado}/menores?tipo=favorito|apadrinhamento|adocao
 server.get("/interessados/:id_interessado/menores?interesse=favoritar|adotar|apadrinhar", AuthManager.userAuthenticated, function(req, res){
     const interessadoTranslator = new InteressadoTranslator(req, res);
     interessadoTranslator.fetchAllTypeInterest(req, res);
 })
+
+// P1
+// RFI15: DELETE /interessados/:id_interesse/menores/
+server.del("/interessados/:id_interesse/menores/", AuthManager.anonymousAuthenticated, function(req, res) {
+    const interessadoTranslator = new InteressadoTranslator();
+    interessadoTranslator.deleteInterested(req, res);
+});
 
 // P0
 // RFI09: POST /interessados/:id_interessado/visualizacoes
@@ -297,27 +305,6 @@ server.put("/interessados/:id_interessado/visualizacoes", AuthManager.userAuthen
     interessadoTranslator.updateVisualizacao(req, res);
 });
 
-/*
-// P0
-// RFI13: POST /interessados/:id_interessado}/menores
-server.post("/interessados/:id_interessado/menores", AuthManager.userAuthenticated, function(req, res) {
-    const interessadoTranslator = new InteressadoTranslator();
-    interessadoTranslator.postMenor(req, res);
-});
-
-// P0
-// RFI14: GET /interessados/:id_interessado/menores
-server.get("/interessados/:id_interessado/menores", AuthManager.userAuthenticated, function(req, res) {
-    const interessadoTranslator = new InteressadoTranslator();
-    interessadoTranslator.getMenores(req, res);
-});
-
-// P0
-// RFI15: DELETE /interessados/:id_interessado/menores/:id_menor
-server.del("/interessados/:id_interessado/menores/:id_menor", AuthManager.userAuthenticated, function(req, res) {
-    const interessadoTranslator = new InteressadoTranslator();
-    interessadoTranslator.deleteMenor(req, res);
-});*/
 
 // RFI16 (2017-2): POST /interessados/:id_interessado/menores/:id_menor/compartilhamentos
 // RFI17 (2017-2): GET /interessados/:id_interessado/mensagens
