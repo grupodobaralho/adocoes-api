@@ -171,18 +171,44 @@ export default class Adapter {
         }); 
 } 
 
-    fetchAllIntersting(id_menor) {
-        return MoongoseHelper.aggregate(this.Interesse, [
-            { $match: { refMenor: mongoose.Types.ObjectId(id_menor) } },
-            { $sort: { refInteressado: 1 } },
-            {
-                $lookup: {
-                    from: "interessados",
-                    localField: "refInteressado",
-                    foreignField: "refUsuario",
-                    as: "interessados"
-                }
-            }
-        ]);
-    }
+	fetchAllTypeInterest(id) {
+    return MoongoseHelper.aggregate(this.Interesse, [
+      { $match: { refInteressado : mongoose.Types.ObjectId(id) } },
+      {
+        $lookup: {
+          from: "menors",
+          localField: "refMenor",
+          foreignField: "_id",
+          as: "menores"
+        }
+      },
+      {
+        $project: {
+            _id: 0,
+          menores: 1
+        }
+      }
+    ]);
+  }
+
+  fetchAllTypeInterestFiltered(id, type) {
+		return MoongoseHelper.aggregate(this.Interesse, [
+			{ $match: { refInteressado: mongoose.Types.ObjectId(id) } },
+			{ $match: { tipoInteresse: type } },
+      {
+        $lookup: {
+          from: "menors",
+          localField: "refMenor",
+          foreignField: "_id",
+          as: "menores"
+        }
+      },
+      {
+        $project: {
+            _id: 0,
+          menores: 1
+        }
+      }
+    ]);
+  }
 }

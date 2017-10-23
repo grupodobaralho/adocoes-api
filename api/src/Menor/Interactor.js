@@ -78,8 +78,14 @@ export default class Interactor {
         return this.Entity.deleteInterested(_id);
     }
 
-    fetchAllIntersting(id_menor) {
-        return this.Entity.fetchAllIntersting(id_menor);
-    }
+	fetchAllTypeInterest(id) {
+		return this.Entity.fetchAllTypeInterest(id);
+}
+
+fetchAllTypeInterestFiltered(id, type) {	
+		return this.Entity.validateTypeInterest(type).then(type => {
+			return this.Entity.fetchAllTypeInterestFiltered(id, type);
+		})		
+}
 
 }

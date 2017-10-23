@@ -181,8 +181,8 @@ server.post("/menores/:id_menor/interessados", AuthManager.userAuthenticated, fu
 });
 
 // P1
-// RFM08: GET /menores/:id_menor/interessados
-server.get("/menores/:id_menor/interessados?interesse=favoritar|adotar|apadrinhar", AuthManager.userAuthenticated, function(req, res) {
+// RFM08: GET /menores/:id_interessado/interessados
+server.get("/menores/:id_interessado/interessados?interesse=favoritar|adotar|apadrinhar", AuthManager.userAuthenticated, function(req, res) {
     const menorTranslator = new MenorTranslator();
     menorTranslator.fetchAllTypeInterest(req, res);
 });
