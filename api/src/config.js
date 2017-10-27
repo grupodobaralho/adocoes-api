@@ -8,7 +8,7 @@ export const config = {
     databaseUri: "mongodb://localhost:27017/AdocoesTest"
   },
   "homo": {
-    databaseUri: "mongodb://ages-adocoes:ages-adocoes@ds235775.mlab.com:35775/ages-adocoes"
+    databaseUri: "mongodb://localhost:27017/Adocoes"
   },
   "prod": {
     databaseUri: "mongodb://administrador:adocoesages2017@123@ds119302.mlab.com:19302/adocoes"
