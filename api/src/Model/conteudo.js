@@ -11,7 +11,7 @@ const conteudoSchema = new Schema({
 		required: true
 	},
 	pagina: {
-		type: midiaSchema,
+		type: String,
 		required: true
 	},
 	midia: [

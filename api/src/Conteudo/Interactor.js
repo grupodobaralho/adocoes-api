@@ -23,28 +23,8 @@ export default class Interactor {
 		return this.Entity.remove(body);
 	}
 
-	getImage(body) {
-		return this.Entity.getImagem(body);
-	}
-
 	findConteudo(body) {
 		return this.Entity.find(body);
-	}
-
-	deleteVideo(body) {
-		return this.Entity.delete(body);
-	}
-
-	addImage(body) {
-		return this.Entity.addImage(body);
-	}
-
-	createVideo(body) {
-		return this.Entity.createVideo(body);
-	}
-
-	fetchAllVideos(id) {
-		return this.Entity.fetchAllVideos(id);
 	}
 
 }
