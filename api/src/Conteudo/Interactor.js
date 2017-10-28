@@ -6,7 +6,6 @@ export default class Interactor {
 	}
 
 	createContent(body) {
-		console.log("react boy");
 		return this.Entity.createContent(body);
 	}
 

@@ -8,7 +8,6 @@ export default class Adapter {
 	}
 
 	save(body) {
-		console.log("gesiel do adapter");
 		const conteudo = new this.Conteudo(body);
 
 		return new Promise((resolve, reject) => {
