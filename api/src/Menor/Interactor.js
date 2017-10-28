@@ -1,5 +1,7 @@
 "use strict";
 
+import MenorScore from '../Common/MenorScore';
+
 export default class Interactor {
     constructor(deps = {}) {
 		this.Entity = deps.Entity || new(require("./Entity").default)();
@@ -16,12 +18,18 @@ export default class Interactor {
         return this.Entity.delete(id);
     }
 
-    fetchAllAnonymous() {
-        return this.Entity.fetchAllAnonymous();
+    fetchAllAnonymous(agePoint, genderPoint) {
+        return this._orderMenorsByPoints(
+            this.Entity.fetchAllAnonymous(),
+            agePoint,
+            genderPoint);
     }
 
-    fetchAll() {
-        return this.Entity.fetchAll();
+    fetchAll(agePoint, genderPoint) {
+        return this._orderMenorsByPoints(
+            this.Entity.fetchAll(),
+            agePoint,
+            genderPoint);
     }
 
     fetchAllMediasAnonymous(id_menor) {
@@ -39,6 +47,17 @@ export default class Interactor {
     update(id, body) {
         return this.Entity.validate(body).then(body => {
             return this.Entity.update(id, body);
+        });
+    }
+
+    _orderMenorsByPoints(bag, agePoint, genderPoint) {
+        return bag.then(entities => {
+            return entities.sort((a, b) => {
+                let scoreA = MenorScore.calculate(a.dataNascimento, a.sexo, agePoint, genderPoint);
+                let scoreB = MenorScore.calculate(b.dataNascimento, b.sexo, agePoint, genderPoint);
+
+                return scoreA > scoreB;
+            });
         });
     }
 

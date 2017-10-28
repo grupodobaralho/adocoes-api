@@ -23,16 +23,22 @@ export default class Translator {
 
     getAll(request, response) {
         const { body } = request;
-        
+
+        //check undefined and default values for age
+        const agePoint = this._normalizeAgePoint(request.query.agePoint) || 9;
+
+        //check undefined and default values for gender
+        const genderPoint = this._normalizeGenderPoint(request.query.genderPoint) || 0.5;
+
         let interactorResult;
 
         //Validar se a requisição atual possui escopo Anônimo
         if (request.authInfo === undefined)
-            interactorResult = this.Interactor.fetchAllAnonymous();
+            interactorResult = this.Interactor.fetchAllAnonymous(agePoint, genderPoint);
 
         //Ou se possui escopo de Usuário/Admin
         else
-            interactorResult = this.Interactor.fetchAll();
+            interactorResult = this.Interactor.fetchAll(agePoint, genderPoint);
 
         //Ação padrão para resultado do interactor
         interactorResult
@@ -98,7 +104,14 @@ export default class Translator {
                 console.log(error);
                 response.send(500, "Ocorreu um erro ao deletar o cadastro");
             });
+    }
 
+    _normalizeAgePoint(agePoint) {
+        return (agePoint < 0 || agePoint > 18) ? undefined : agePoint;
+    }
+
+    _normalizeGenderPoint(genderPoint) {
+        return (genderPoint < 0 || genderPoint > 1) ? undefined : genderPoint;
     }
 
     // ## MEDIAS ##
@@ -244,6 +257,5 @@ export default class Translator {
             console.log(error);
             response.send(500, "Ocorreu um erro ao deletar o cadastro");
         });
-
     }
 }
