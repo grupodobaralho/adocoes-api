@@ -5,10 +5,9 @@ export default class Interactor {
 		this.Entity = deps.Entity ? new deps.Entity() : new(require("./Entity").default)();
 	}
 
-	create(body) {
-		return this.Entity.validate(body).then(body => {
-			return this.Entity.create(body);
-		});
+	createContent(body) {
+		console.log("react boy");
+		return this.Entity.createContent(body);
 	}
 
 	fetchAll() {
