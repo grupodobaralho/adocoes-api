@@ -377,7 +377,7 @@ server.put("/conteudos/:id_conteudo", AuthManager.userAuthenticated, function(re
 // RFC04: DELETE /conteudos/:id_conteudo
 server.del("/conteudos/:id_conteudo", AuthManager.userAuthenticated, function(req, res) {
     const conteudoTranslator = new ConteudoTranslator();
-    conteudoTranslator.deleteConteudo(req, res);
+    conteudoTranslator.deleteContentById(req, res);
 });
 
 // P1

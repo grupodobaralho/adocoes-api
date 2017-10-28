@@ -2,7 +2,7 @@
 
 export default class Translator {
 	constructor(deps = {}) {
-		this.Interactor = deps.Interactor ? new deps.Interactor() : new(require("./Interactor").default)();
+		this.Interactor = deps.Interactor ? new deps.Interactor() : new (require("./Interactor").default)();
 	}
 
 	postContent(request, response) {
@@ -26,7 +26,7 @@ export default class Translator {
 		const {
 			body
 		} = request;
-		
+
 		this.Interactor.update(body)
 			.then(message => {
 				response.send(200, message);
@@ -44,18 +44,19 @@ export default class Translator {
 			});
 	}
 
-	delete(request, response) {
-		let {
-			body
-		} = request;
-		body.id = request.params.id;
-		this.Interactor.remove(body)
-			.then(message => {
-				response.send(200, message);
+	deleteContentById(request, response) {
+		const { id_conteudo } = request.params;
+
+		this.Interactor.deleteContentById(id_conteudo)
+			.then(sucesso => {
+				if (!sucesso) {
+					return response.send(400, "Nenhum cadastro com o ID informado foi encontrado");
+				}
+				response.send(200, "Cadastro deletado com sucesso");
 			})
 			.catch(error => {
 				console.log(error);
+				response.send(500, "Ocorreu um erro ao deletar o cadastro");
 			});
 	}
-	
 }

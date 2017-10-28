@@ -4,7 +4,7 @@ import Joi from "joi";
 
 export default class Entity {
 	constructor(deps = {}) {
-		this.Adapter = deps.Adapter ? new deps.Adapter() : new(require("./Adapter").default)();
+		this.Adapter = deps.Adapter ? new deps.Adapter() : new (require("./Adapter").default)();
 	}
 
 	createContent(body) {
@@ -59,8 +59,8 @@ export default class Entity {
 		return this.Adapter.fetchAndUpdate(body);
 	}
 
-	remove(body) {
-		return this.Adapter.delete(body.id);
+	deleteContentById(id_conteudo) {
+		return this.Adapter.deleteContentById(id_conteudo);
 	}
 
 }

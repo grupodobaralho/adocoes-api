@@ -2,7 +2,7 @@
 
 export default class Interactor {
 	constructor(deps = {}) {
-		this.Entity = deps.Entity ? new deps.Entity() : new(require("./Entity").default)();
+		this.Entity = deps.Entity ? new deps.Entity() : new (require("./Entity").default)();
 	}
 
 	createContent(body) {
@@ -18,8 +18,8 @@ export default class Interactor {
 		return this.Entity.update(body);
 	}
 
-	remove(body) {
-		return this.Entity.remove(body);
+	deleteContentById(id_conteudo) {
+		return this.Entity.deleteContentById(id_conteudo);
 	}
 
 	findConteudo(body) {
