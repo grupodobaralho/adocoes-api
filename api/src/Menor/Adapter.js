@@ -16,14 +16,14 @@ export default class Adapter {
     return menor.save();
   }
 
-    delete(_id) {
-        return this.Menor.remove({
-            _id
-        })
-            .then(resultado => {
-                return resultado.result.n > 0;
-            });
-    }
+  delete(_id) {
+    return this.Menor.remove({
+      _id
+    })
+      .then(resultado => {
+        return resultado.result.n > 0;
+      });
+  }
 
   update(id, body) {
     return this.Menor.findOneAndUpdate(
@@ -58,20 +58,20 @@ export default class Adapter {
       }
     ];
 
-        return this._cursorMenoresAggregatingMedias(shouldRenderAllMedias, aggregatePipepline, true);
-    }
+    return this._cursorMenoresAggregatingMedias(shouldRenderAllMedias, aggregatePipepline, true);
+  }
 
-    _cursorMenoresAggregatingMedias(shouldRenderAllMedias, aggregatePipepline = [], isSingleRecord = false) {
-        //Faz o "inner join" com o documento de mídias
-        aggregatePipepline.push({
-            $lookup: {
-                from: "midias",
-                localField: "refMidias",
-                foreignField: "_id",
-                as: "midias"
-            }
-          })
-        
+  _cursorMenoresAggregatingMedias(shouldRenderAllMedias, aggregatePipepline = [], isSingleRecord = false) {
+    //Faz o "inner join" com o documento de mídias
+    aggregatePipepline.push({
+      $lookup: {
+        from: "midias",
+        localField: "refMidias",
+        foreignField: "_id",
+        as: "midias"
+      }
+    })
+
 
     //Remove o corpo da mídia
     aggregatePipepline.push({
@@ -79,10 +79,10 @@ export default class Adapter {
     });
 
     return MoongoseHelper.aggregate(this.Menor, aggregatePipepline); //Acho que ficou em um conflito de merge
-  
 
-     return MoongoseHelper.aggregate(this.Menor, aggregatePipepline, isSingleRecord);
-    }
+
+    return MoongoseHelper.aggregate(this.Menor, aggregatePipepline, isSingleRecord);
+  }
 
   /*
      * @param shouldRenderAllMedias boolean. Determina se todas as mídias do menor devem ser enviadas ou somente as anônimas
@@ -133,27 +133,27 @@ export default class Adapter {
   saveMedia(body, id_menor) {
     const media = new this.Midia(body);
 
-        //save the media
-        media.save();
+    //save the media
+    media.save();
 
-        return this.Menor.update(
-            { _id: id_menor },
-            { $push: { refMidias: media._id } },
-            { multi: false }
-        ).then(result => {
-            return {};
-        });
-    }
+    return this.Menor.update(
+      { _id: id_menor },
+      { $push: { refMidias: media._id } },
+      { multi: false }
+    ).then(result => {
+      return {};
+    });
+  }
 
-    deleteMediaById(id_menor, id_midia) {
-        return this.Menor.update(
-            { _id: id_menor },
-            { $pull: { refMidias: id_midia } },
-            { multi: false }
-        ).then(resultado => {
-            return resultado.nModified > 0
-        });
-    }
+  deleteMediaById(id_menor, id_midia) {
+    return this.Menor.update(
+      { _id: id_menor },
+      { $pull: { refMidias: id_midia } },
+      { multi: false }
+    ).then(resultado => {
+      return resultado.nModified > 0
+    });
+  }
 
   // ## INTERESSES ##
   postInterested(body) {
@@ -161,19 +161,19 @@ export default class Adapter {
     return interesse.save();
   }
 
-  deleteInterested(_id) { 
-    return this.Interesse 
-        .remove({ 
-          _id           
-        }) 
-        .then(ret => { 
-            return ret.result.n > 0; 
-        }); 
-} 
+  deleteInterested(_id) {
+    return this.Interesse
+      .remove({
+        _id
+      })
+      .then(ret => {
+        return ret.result.n > 0;
+      });
+  }
 
-	fetchAllTypeInterest(id) {
+  fetchAllTypeInterest(id) {
     return MoongoseHelper.aggregate(this.Interesse, [
-      { $match: { refInteressado : mongoose.Types.ObjectId(id) } },
+      { $match: { refInteressado: mongoose.Types.ObjectId(id) } },
       {
         $lookup: {
           from: "menors",
@@ -184,7 +184,7 @@ export default class Adapter {
       },
       {
         $project: {
-            _id: 0,
+          _id: 0,
           menores: 1
         }
       }
@@ -192,9 +192,9 @@ export default class Adapter {
   }
 
   fetchAllTypeInterestFiltered(id, type) {
-		return MoongoseHelper.aggregate(this.Interesse, [
-			{ $match: { refInteressado: mongoose.Types.ObjectId(id) } },
-			{ $match: { tipoInteresse: type } },
+    return MoongoseHelper.aggregate(this.Interesse, [
+      { $match: { refInteressado: mongoose.Types.ObjectId(id) } },
+      { $match: { tipoInteresse: type } },
       {
         $lookup: {
           from: "menors",
@@ -205,7 +205,7 @@ export default class Adapter {
       },
       {
         $project: {
-            _id: 0,
+          _id: 0,
           menores: 1
         }
       }

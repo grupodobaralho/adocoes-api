@@ -32,10 +32,10 @@ export default class Adapter {
 		return this.Conteudo.findOneAndUpdate({
 			_id: body.id
 		}, {
-			new: true
-		}, body, (err, doc) => {
-			return doc;
-		});
+				new: true
+			}, body, (err, doc) => {
+				return doc;
+			});
 	}
 
 	fetch(id) {
@@ -45,10 +45,12 @@ export default class Adapter {
 		});
 	}
 
-	delete(id) {
-
+	deleteContentById(id_conteudo) {
 		return this.Conteudo.remove({
-			_id: id
-		});
+			_id: id_conteudo
+		})
+			.then(resultado => {
+				return resultado.result.n > 0;
+			});
 	}
 }

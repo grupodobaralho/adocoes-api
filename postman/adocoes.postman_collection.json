@@ -238,7 +238,7 @@
 			"headers": "Authorization: {{token-type}} {{access-token}}\nContent-Type: {{content-type}}",
 			"dataMode": "raw",
 			"data": [],
-			"rawModeData": "{}",
+			"rawModeData": "{  \r\n   \"nome\": \"Página de Adoções\",\r\n   \"pagina\": \"Inserir texto grande descritivo aqui\",\r\n   \"timestampCriacao\": \"2010-12-12T00:00:00.000Z\",\r\n   \"ativo\": true}",
 			"url": "{{url}}/conteudos",
 			"responses": [],
 			"pathVariableData": [],

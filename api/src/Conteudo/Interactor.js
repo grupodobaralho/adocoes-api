@@ -2,13 +2,11 @@
 
 export default class Interactor {
 	constructor(deps = {}) {
-		this.Entity = deps.Entity ? new deps.Entity() : new(require("./Entity").default)();
+		this.Entity = deps.Entity ? new deps.Entity() : new (require("./Entity").default)();
 	}
 
-	create(body) {
-		return this.Entity.validate(body).then(body => {
-			return this.Entity.create(body);
-		});
+	createContent(body) {
+		return this.Entity.createContent(body);
 	}
 
 	fetchAll() {
@@ -19,8 +17,8 @@ export default class Interactor {
 		return this.Entity.update(body);
 	}
 
-	remove(body) {
-		return this.Entity.remove(body);
+	deleteContentById(id_conteudo) {
+		return this.Entity.deleteContentById(id_conteudo);
 	}
 
 	findConteudo(body) {
