@@ -15,5 +15,9 @@ export const config = {
   },
   "charSet": "utf-8",
   "genderWeigth": 2.0,
-  "ageWeigth": 1.0
+  "ageWeigth": 1.0,
+  "defaultAgePoint": 9.0,
+  "defaultGenderPoint": 0.5,
+  "maximumAgePoint": 18.0,
+  "maximumGenderPoint": 1.0
 };
