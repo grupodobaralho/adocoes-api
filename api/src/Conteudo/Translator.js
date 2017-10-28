@@ -19,20 +19,6 @@ export default class Translator {
 			});
 	}
 
-	getAllVideos(request, response) {
-		const {
-			id
-		} = request.params;
-
-		this.Interactor.fetchAllVideos(id)
-			.then(message => {
-				response.send(200, message);
-			})
-			.catch(error => {
-				console.log(error);
-			});
-	}
-
 	put(request, response) {
 		const {
 			body
@@ -55,19 +41,6 @@ export default class Translator {
 			});
 	}
 
-	deleteVideo(request, response) {
-		const {
-			body
-		} = request;
-		this.Interactor.deleteVideo(body)
-			.then(message => {
-				console.log(200, message);
-			})
-			.catch(error => {
-				console.log(error);
-			});
-	}
-
 	delete(request, response) {
 		let {
 			body
@@ -80,48 +53,6 @@ export default class Translator {
 			.catch(error => {
 				console.log(error);
 			});
-	}
-
-	getImage(request, response) {
-		let {
-			body
-		} = request;
-		body.id = request.params.id;
-		this.Interactor.getImage(body)
-			.then(message => {})
-			.catch(error => {
-				console.log(error);
-			});
-	}
-
-	postImages(request, response) {
-		let {
-			body
-		} = request;
-		body.id = request.params.id;
-		this.Interactor.addImage(body)
-			.then(message => {
-				response.send(200, message);
-			})
-			.catch(error => {
-				console.log(error);
-			});
-	}
-
-	postVideo(request, response) {
-		let {
-			body
-		} = request;
-		body.id = request.params.id;
-		this.Interactor.createVideo(body).then(message => {
-			response.send(200, message);
-		}).catch(error => {
-			console.log(error);
-		});
-	}
-
-	fetchAllImages(request, response) {
-		
 	}
 	
 }

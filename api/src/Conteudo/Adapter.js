@@ -28,19 +28,6 @@ export default class Adapter {
 		});
 	}
 
-	fetchAndAddImage(body) {
-		return this.Conteudo.findOneAndUpdate({
-			_id: body.id
-		}, {
-			$pushAll: {
-				"images": body.images
-			}
-		}, {
-			upsert: true,
-			new: true
-		});
-	}
-
 	fetchAndUpdate(body) {
 		return this.Conteudo.findOneAndUpdate({
 			_id: body.id
@@ -48,13 +35,6 @@ export default class Adapter {
 			new: true
 		}, body, (err, doc) => {
 			return doc;
-		});
-	}
-
-	getImage(id) {
-
-		return this.Conteudo.find({
-			_id: id
 		});
 	}
 
@@ -70,16 +50,5 @@ export default class Adapter {
 		return this.Conteudo.remove({
 			_id: id
 		});
-	}
-
-	addVideo(body) {
-		return this.Conteudo;
-	}
-
-	fetchAllVideos(id) {
-
-		return this.Conteudo.find({
-			_id: id
-		}).select("nome");
 	}
 }

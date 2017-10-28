@@ -107,64 +107,6 @@
 	"public": false,
 	"requests": [
 		{
-			"id": "053be0aa-e41b-e587-3f79-21feb69a20be",
-			"name": "/conteudos/{id_conteudo}/videos/{id_video}",
-			"description": "",
-			"collectionId": "5923063c-ba64-888c-b8d8-93889492f0d6",
-			"method": "GET",
-			"headers": "Authorization: {{token-type}} {{access-token}}\nContent-Type: {{content-type}}",
-			"dataMode": "raw",
-			"data": [],
-			"rawModeData": "",
-			"url": "{{url}}/conteudos/{id_conteudo}/videos/{id_video}",
-			"responses": [],
-			"pathVariableData": [],
-			"queryParams": [],
-			"headerData": [
-				{
-					"key": "Authorization",
-					"value": "{{token-type}} {{access-token}}",
-					"description": ""
-				},
-				{
-					"key": "Content-Type",
-					"value": "{{content-type}}",
-					"description": ""
-				}
-			],
-			"collection_id": "5923063c-ba64-888c-b8d8-93889492f0d6",
-			"folder": "87b6cbdb-b46f-df48-56c9-7486e74e73a1"
-		},
-		{
-			"id": "07d298a0-2c64-922d-6de1-5aa03447a8c4",
-			"name": "/menores/{id_menor}/videos",
-			"description": "",
-			"collectionId": "5923063c-ba64-888c-b8d8-93889492f0d6",
-			"method": "GET",
-			"headers": "Authorization: {{token-type}} {{access-token}}\nContent-Type: {{content-type}}",
-			"dataMode": "raw",
-			"data": [],
-			"rawModeData": "",
-			"url": "{{url}}/menores/{id_menor}/videos",
-			"responses": [],
-			"pathVariableData": [],
-			"queryParams": [],
-			"headerData": [
-				{
-					"key": "Authorization",
-					"value": "{{token-type}} {{access-token}}",
-					"description": ""
-				},
-				{
-					"key": "Content-Type",
-					"value": "{{content-type}}",
-					"description": ""
-				}
-			],
-			"collection_id": "5923063c-ba64-888c-b8d8-93889492f0d6",
-			"folder": "81deb2c0-430f-0098-4410-4f4a1d21565b"
-		},
-		{
 			"id": "08468587-7e72-1bac-3fda-ebadab77691e",
 			"name": "/menores/{id_menor}/interessados",
 			"description": "",
@@ -288,64 +230,6 @@
 			"folder": "81deb2c0-430f-0098-4410-4f4a1d21565b"
 		},
 		{
-			"id": "1c0df069-ebe0-75b8-d71f-6527abf4aa86",
-			"name": "/menores/{id_menor}/videos",
-			"description": "",
-			"collectionId": "5923063c-ba64-888c-b8d8-93889492f0d6",
-			"method": "POST",
-			"headers": "Authorization: {{token-type}} {{access-token}}\nContent-Type: {{content-type}}",
-			"dataMode": "raw",
-			"data": [],
-			"rawModeData": "{}",
-			"url": "{{url}}/menores/{id_menor}/videos",
-			"responses": [],
-			"pathVariableData": [],
-			"queryParams": [],
-			"headerData": [
-				{
-					"key": "Authorization",
-					"value": "{{token-type}} {{access-token}}",
-					"description": ""
-				},
-				{
-					"key": "Content-Type",
-					"value": "{{content-type}}",
-					"description": ""
-				}
-			],
-			"collection_id": "5923063c-ba64-888c-b8d8-93889492f0d6",
-			"folder": "81deb2c0-430f-0098-4410-4f4a1d21565b"
-		},
-		{
-			"id": "1cdc0c82-9261-cfab-a151-de1ce663ce7b",
-			"name": "/menores/{id_menor}/imagens/{id_imagem}",
-			"description": "",
-			"collectionId": "5923063c-ba64-888c-b8d8-93889492f0d6",
-			"method": "DELETE",
-			"headers": "Authorization: {{token-type}} {{access-token}}\nContent-Type: {{content-type}}",
-			"dataMode": "raw",
-			"data": [],
-			"rawModeData": "",
-			"url": "{{url}}/menores/{id_menor}/imagens/{id_imagem}",
-			"responses": [],
-			"pathVariableData": [],
-			"queryParams": [],
-			"headerData": [
-				{
-					"key": "Authorization",
-					"value": "{{token-type}} {{access-token}}",
-					"description": ""
-				},
-				{
-					"key": "Content-Type",
-					"value": "{{content-type}}",
-					"description": ""
-				}
-			],
-			"collection_id": "5923063c-ba64-888c-b8d8-93889492f0d6",
-			"folder": "81deb2c0-430f-0098-4410-4f4a1d21565b"
-		},
-		{
 			"id": "2871a601-4815-374c-b677-ccc810a4b430",
 			"name": "/conteudos",
 			"description": "",
@@ -356,64 +240,6 @@
 			"data": [],
 			"rawModeData": "{}",
 			"url": "{{url}}/conteudos",
-			"responses": [],
-			"pathVariableData": [],
-			"queryParams": [],
-			"headerData": [
-				{
-					"key": "Authorization",
-					"value": "{{token-type}} {{access-token}}",
-					"description": ""
-				},
-				{
-					"key": "Content-Type",
-					"value": "{{content-type}}",
-					"description": ""
-				}
-			],
-			"collection_id": "5923063c-ba64-888c-b8d8-93889492f0d6",
-			"folder": "87b6cbdb-b46f-df48-56c9-7486e74e73a1"
-		},
-		{
-			"id": "28c2c678-3d87-d80c-b763-d7a62568d3db",
-			"name": "/conteudos/{id_conteudo}/videos",
-			"description": "",
-			"collectionId": "5923063c-ba64-888c-b8d8-93889492f0d6",
-			"method": "GET",
-			"headers": "Authorization: {{token-type}} {{access-token}}\nContent-Type: {{content-type}}",
-			"dataMode": "raw",
-			"data": [],
-			"rawModeData": "",
-			"url": "{{url}}/conteudos/{id_conteudo}/videos",
-			"responses": [],
-			"pathVariableData": [],
-			"queryParams": [],
-			"headerData": [
-				{
-					"key": "Authorization",
-					"value": "{{token-type}} {{access-token}}",
-					"description": ""
-				},
-				{
-					"key": "Content-Type",
-					"value": "{{content-type}}",
-					"description": ""
-				}
-			],
-			"collection_id": "5923063c-ba64-888c-b8d8-93889492f0d6",
-			"folder": "87b6cbdb-b46f-df48-56c9-7486e74e73a1"
-		},
-		{
-			"id": "28db20a2-3269-f4c2-e148-aa4c42ba7930",
-			"name": "/conteudos/{id_conteudo}/imagens",
-			"description": "",
-			"collectionId": "5923063c-ba64-888c-b8d8-93889492f0d6",
-			"method": "GET",
-			"headers": "Authorization: {{token-type}} {{access-token}}\nContent-Type: {{content-type}}",
-			"dataMode": "raw",
-			"data": [],
-			"rawModeData": "",
-			"url": "{{url}}/conteudos/{id_conteudo}/imagens",
 			"responses": [],
 			"pathVariableData": [],
 			"queryParams": [],
@@ -614,35 +440,6 @@
 			"folder": "81deb2c0-430f-0098-4410-4f4a1d21565b"
 		},
 		{
-			"id": "51f9491e-510c-175a-5823-2291b1e68078",
-			"name": "/menores/{id_menor}/imagens",
-			"description": "",
-			"collectionId": "5923063c-ba64-888c-b8d8-93889492f0d6",
-			"method": "POST",
-			"headers": "Authorization: {{token-type}} {{access-token}}\nContent-Type: {{content-type}}",
-			"dataMode": "raw",
-			"data": [],
-			"rawModeData": "{}",
-			"url": "{{url}}/menores/{id_menor}/imagens",
-			"responses": [],
-			"pathVariableData": [],
-			"queryParams": [],
-			"headerData": [
-				{
-					"key": "Authorization",
-					"value": "{{token-type}} {{access-token}}",
-					"description": ""
-				},
-				{
-					"key": "Content-Type",
-					"value": "{{content-type}}",
-					"description": ""
-				}
-			],
-			"collection_id": "5923063c-ba64-888c-b8d8-93889492f0d6",
-			"folder": "81deb2c0-430f-0098-4410-4f4a1d21565b"
-		},
-		{
 			"id": "5584614a-1e38-1a5d-01fa-98264c25a833",
 			"name": "/menores/{id_menor}",
 			"description": "",
@@ -794,35 +591,6 @@
 			"folder": "81deb2c0-430f-0098-4410-4f4a1d21565b"
 		},
 		{
-			"id": "6b7f9161-a6d6-d668-8ab4-835496207a05",
-			"name": "/conteudos/{id_conteudo}/videos/{id_video}",
-			"description": "",
-			"collectionId": "5923063c-ba64-888c-b8d8-93889492f0d6",
-			"method": "DELETE",
-			"headers": "Authorization: {{token-type}} {{access-token}}\nContent-Type: {{content-type}}",
-			"dataMode": "raw",
-			"data": [],
-			"rawModeData": "",
-			"url": "{{url}}/conteudos/{id_conteudo}/videos/{id_video}",
-			"responses": [],
-			"pathVariableData": [],
-			"queryParams": [],
-			"headerData": [
-				{
-					"key": "Authorization",
-					"value": "{{token-type}} {{access-token}}",
-					"description": ""
-				},
-				{
-					"key": "Content-Type",
-					"value": "{{content-type}}",
-					"description": ""
-				}
-			],
-			"collection_id": "5923063c-ba64-888c-b8d8-93889492f0d6",
-			"folder": "87b6cbdb-b46f-df48-56c9-7486e74e73a1"
-		},
-		{
 			"id": "6c0b55d8-41b3-bbae-717d-960ae8923841",
 			"name": "/usuarios/{id_usuario}/perfis",
 			"description": "",
@@ -939,35 +707,6 @@
 			"folder": "cc2480b6-fd01-de6e-1cc5-06f336a85a06"
 		},
 		{
-			"id": "759d8a91-9fba-7dc1-7a4c-a6b9fbde8165",
-			"name": "/conteudos/{id_conteudo}/imagens/{id_imagem}",
-			"description": "",
-			"collectionId": "5923063c-ba64-888c-b8d8-93889492f0d6",
-			"method": "GET",
-			"headers": "Authorization: {{token-type}} {{access-token}}\nContent-Type: {{content-type}}",
-			"dataMode": "raw",
-			"data": [],
-			"rawModeData": "",
-			"url": "{{url}}/conteudos/{id_conteudo}/imagens/{id_imagem}",
-			"responses": [],
-			"pathVariableData": [],
-			"queryParams": [],
-			"headerData": [
-				{
-					"key": "Authorization",
-					"value": "{{token-type}} {{access-token}}",
-					"description": ""
-				},
-				{
-					"key": "Content-Type",
-					"value": "{{content-type}}",
-					"description": ""
-				}
-			],
-			"collection_id": "5923063c-ba64-888c-b8d8-93889492f0d6",
-			"folder": "87b6cbdb-b46f-df48-56c9-7486e74e73a1"
-		},
-		{
 			"id": "7d4add88-408b-5b84-e63d-927554f8e3cf",
 			"name": "/menores/{id_menor}/interessados",
 			"description": "",
@@ -1055,35 +794,6 @@
 			"folder": "d8668ff5-181e-7475-450b-f11400110789"
 		},
 		{
-			"id": "86711c03-b18b-42b8-3082-5f5bb39c6689",
-			"name": "/conteudos/{id_conteudo}/videos",
-			"description": "",
-			"collectionId": "5923063c-ba64-888c-b8d8-93889492f0d6",
-			"method": "POST",
-			"headers": "Authorization: {{token-type}} {{access-token}}\nContent-Type: {{content-type}}",
-			"dataMode": "raw",
-			"data": [],
-			"rawModeData": "{}",
-			"url": "{{url}}/conteudos/{id_conteudo}/videos",
-			"responses": [],
-			"pathVariableData": [],
-			"queryParams": [],
-			"headerData": [
-				{
-					"key": "Authorization",
-					"value": "{{token-type}} {{access-token}}",
-					"description": ""
-				},
-				{
-					"key": "Content-Type",
-					"value": "{{content-type}}",
-					"description": ""
-				}
-			],
-			"collection_id": "5923063c-ba64-888c-b8d8-93889492f0d6",
-			"folder": "87b6cbdb-b46f-df48-56c9-7486e74e73a1"
-		},
-		{
 			"id": "927f5ccd-2b2d-6d26-5a23-590c01cf73bc",
 			"name": "/interessados/{id_interessado}",
 			"description": "",
@@ -1142,35 +852,6 @@
 			"folder": "87b6cbdb-b46f-df48-56c9-7486e74e73a1"
 		},
 		{
-			"id": "a0d38039-ad22-a73a-0bb0-9551231a4a1d",
-			"name": "/conteudos/{id_conteudo}/imagens/{id_imagem}",
-			"description": "",
-			"collectionId": "5923063c-ba64-888c-b8d8-93889492f0d6",
-			"method": "DELETE",
-			"headers": "Authorization: {{token-type}} {{access-token}}\nContent-Type: {{content-type}}",
-			"dataMode": "raw",
-			"data": [],
-			"rawModeData": "",
-			"url": "{{url}}/conteudos/{id_conteudo}/imagens/{id_imagem}",
-			"responses": [],
-			"pathVariableData": [],
-			"queryParams": [],
-			"headerData": [
-				{
-					"key": "Authorization",
-					"value": "{{token-type}} {{access-token}}",
-					"description": ""
-				},
-				{
-					"key": "Content-Type",
-					"value": "{{content-type}}",
-					"description": ""
-				}
-			],
-			"collection_id": "5923063c-ba64-888c-b8d8-93889492f0d6",
-			"folder": "87b6cbdb-b46f-df48-56c9-7486e74e73a1"
-		},
-		{
 			"id": "a151e1a1-2ee6-4cc3-2fd9-1f2b1ac3ce50",
 			"name": "/oauth",
 			"description": "",
@@ -1208,35 +889,6 @@
 			"collection_id": "5923063c-ba64-888c-b8d8-93889492f0d6"
 		},
 		{
-			"id": "a3ba8a82-f233-a55d-490d-3af0fbcf96eb",
-			"name": "/menores/{id_menor}/videos/{id_video}",
-			"description": "",
-			"collectionId": "5923063c-ba64-888c-b8d8-93889492f0d6",
-			"method": "GET",
-			"headers": "Authorization: {{token-type}} {{access-token}}\nContent-Type: {{content-type}}",
-			"dataMode": "raw",
-			"data": [],
-			"rawModeData": "",
-			"url": "{{url}}/menores/{id_menor}/videos/{id_video}",
-			"responses": [],
-			"pathVariableData": [],
-			"queryParams": [],
-			"headerData": [
-				{
-					"key": "Authorization",
-					"value": "{{token-type}} {{access-token}}",
-					"description": ""
-				},
-				{
-					"key": "Content-Type",
-					"value": "{{content-type}}",
-					"description": ""
-				}
-			],
-			"collection_id": "5923063c-ba64-888c-b8d8-93889492f0d6",
-			"folder": "81deb2c0-430f-0098-4410-4f4a1d21565b"
-		},
-		{
 			"id": "a7add4bf-b26d-5171-eba3-8a4f01333e28",
 			"name": "/interessados/{id_interessado}/visualizacoes",
 			"description": "",
@@ -1264,35 +916,6 @@
 			],
 			"collection_id": "5923063c-ba64-888c-b8d8-93889492f0d6",
 			"folder": "cc2480b6-fd01-de6e-1cc5-06f336a85a06"
-		},
-		{
-			"id": "b0465182-2129-bc61-2b3a-5c284dbf858c",
-			"name": "/menores/{id_menor}/videos/{id_video}",
-			"description": "",
-			"collectionId": "5923063c-ba64-888c-b8d8-93889492f0d6",
-			"method": "DELETE",
-			"headers": "Authorization: {{token-type}} {{access-token}}\nContent-Type: {{content-type}}",
-			"dataMode": "raw",
-			"data": [],
-			"rawModeData": "",
-			"url": "{{url}}/menores/{id_menor}/videos/{id_video}",
-			"responses": [],
-			"pathVariableData": [],
-			"queryParams": [],
-			"headerData": [
-				{
-					"key": "Authorization",
-					"value": "{{token-type}} {{access-token}}",
-					"description": ""
-				},
-				{
-					"key": "Content-Type",
-					"value": "{{content-type}}",
-					"description": ""
-				}
-			],
-			"collection_id": "5923063c-ba64-888c-b8d8-93889492f0d6",
-			"folder": "81deb2c0-430f-0098-4410-4f4a1d21565b"
 		},
 		{
 			"id": "b6c4de90-69bb-024f-ed00-f8a365b25c22",
@@ -1358,35 +981,6 @@
 			"collectionId": "5923063c-ba64-888c-b8d8-93889492f0d6",
 			"responses": [],
 			"rawModeData": "{\n\t\"type\": \"foto\",\n\t\"conteudo\": \"body do base 64 aqui\",\n\t\"descricao\": \"Descrição do conteúdo aqui\",\n\t\"anonymous\": true,\n\t\"principal\": true\n}"
-		},
-		{
-			"id": "c3063a4e-b6a2-5024-794a-33beebb2d9ae",
-			"name": "/conteudos/{id_conteudo}/imagens",
-			"description": "",
-			"collectionId": "5923063c-ba64-888c-b8d8-93889492f0d6",
-			"method": "POST",
-			"headers": "Authorization: {{token-type}} {{access-token}}\nContent-Type: {{content-type}}",
-			"dataMode": "raw",
-			"data": [],
-			"rawModeData": "{}",
-			"url": "{{url}}/conteudos/{id_conteudo}/imagens",
-			"responses": [],
-			"pathVariableData": [],
-			"queryParams": [],
-			"headerData": [
-				{
-					"key": "Authorization",
-					"value": "{{token-type}} {{access-token}}",
-					"description": ""
-				},
-				{
-					"key": "Content-Type",
-					"value": "{{content-type}}",
-					"description": ""
-				}
-			],
-			"collection_id": "5923063c-ba64-888c-b8d8-93889492f0d6",
-			"folder": "87b6cbdb-b46f-df48-56c9-7486e74e73a1"
 		},
 		{
 			"id": "caf5ebe0-a381-0790-bd5c-e50e9582d682",

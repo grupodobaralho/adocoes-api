@@ -20,7 +20,7 @@ export default class Entity {
 	validate(body) {
 		const schema = Joi.object({
 			nome: Joi.string().required(),
-			pagina: Joi.object().required(),
+			pagina: Joi.String().required(),
 			midia: Joi.object().required(),
 			ativo: Joi.boolean().required(),
 			timeStampCriacao: Joi.date().default().required(),
@@ -60,26 +60,6 @@ export default class Entity {
 
 	remove(body) {
 		return this.Adapter.delete(body.id);
-	}
-
-	addImage(body) {
-		return this.Adapter.fetchAndAddImage(body);
-	}
-
-	getImage(body) {
-		return this.Adapter.getImagem(body.id);
-	}
-
-	createVideo(body) {
-		return this.Adapter.addVideo(body);
-	}
-
-	deleteVideo(body) {
-		return this.Adapter.deleteVideo(body.id);
-	}
-
-	fetchAllVideos(id) {
-		return this.Adapter.fetchAllVideos(id);
 	}
 
 }
