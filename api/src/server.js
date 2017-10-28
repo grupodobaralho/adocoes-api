@@ -356,11 +356,7 @@ server.get("/interessados/:id_interessado/documentos", AuthManager.userAuthentic
 // RFC01: POST /conteudos
 server.post("/conteudos", AuthManager.userAuthenticated, function(req, res) {
     const conteudoTranslator = new ConteudoTranslator();
-    conteudoTranslator.postConteudo(req, res);
-});
-server.post("/conteudos/:id_conteudo/pagina", AuthManager.userAuthenticated, function(req, res) {
-    const conteudoTranslator = new ConteudoTranslator();
-    conteudoTranslator.postConteudoPagina(req, res);
+    conteudoTranslator.postContent(req, res);
 });
 
 // P0
