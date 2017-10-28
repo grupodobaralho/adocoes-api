@@ -147,7 +147,7 @@ server.post("/menores", AuthManager.userAuthenticated, function(req, res) {
 // P0
 // RFM02: GET /menores
 // RFM06: GET /menores?idade=:idade,sexo=:sexo
-server.get("/menores", AuthManager.anonymousAuthenticated, function(req, res) {
+server.get("/menores?pontoSexo=:genderPoint&pontoIdade=:agePoint", AuthManager.anonymousAuthenticated, function(req, res) {
     const menorTranslator = new MenorTranslator();
     menorTranslator.getAll(req, res);
 });
