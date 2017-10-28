@@ -13,5 +13,7 @@ export const config = {
   "prod": {
     databaseUri: "mongodb://administrador:adocoesages2017@123@ds119302.mlab.com:19302/adocoes"
   },
-  "charSet": "utf-8"
+  "charSet": "utf-8",
+  "genderWeigth": 1,
+  "ageWeigth": 2
 };
