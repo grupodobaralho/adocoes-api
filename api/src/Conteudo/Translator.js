@@ -5,17 +5,20 @@ export default class Translator {
 		this.Interactor = deps.Interactor ? new deps.Interactor() : new(require("./Interactor").default)();
 	}
 
-	post(request, response) {
+	postContent(request, response) {
 		const {
 			body
 		} = request;
 
-		this.Interactor.create(body)
+		console.log(body);
+		this.Interactor.createContent(body)
 			.then(message => {
+				console.log("super gesiel");
 				response.send(200, message);
 			})
 			.catch(error => {
-				console.log(error);
+				console.log("grande gesiel");
+				console.log(500, error);
 			});
 	}
 

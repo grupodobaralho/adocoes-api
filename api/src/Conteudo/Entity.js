@@ -7,7 +7,8 @@ export default class Entity {
 		this.Adapter = deps.Adapter ? new deps.Adapter() : new(require("./Adapter").default)();
 	}
 
-	create(body) {
+	createContent(body) {
+		console.log("zanfroni deus");
 		return this.Adapter.save(body);
 	}
 
