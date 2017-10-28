@@ -25,10 +25,10 @@ export default class Translator {
         const { body } = request;
 
         //check undefined and default values for age
-        const agePoint = this._normalizeAgePoint(request.query.agePoint) || 9;
+        const agePoint = this._normalizeAgePoint(request.query.pontoIdade) || 9.0;
 
         //check undefined and default values for gender
-        const genderPoint = this._normalizeGenderPoint(request.query.genderPoint) || 0.5;
+        const genderPoint = this._normalizeGenderPoint(request.query.pontoSexo) || 0.5;
 
         let interactorResult;
 
@@ -107,11 +107,11 @@ export default class Translator {
     }
 
     _normalizeAgePoint(agePoint) {
-        return (agePoint < 0 || agePoint > 18) ? undefined : agePoint;
+        return (agePoint < 0.0 || agePoint > 18.0) ? undefined : agePoint;
     }
 
     _normalizeGenderPoint(genderPoint) {
-        return (genderPoint < 0 || genderPoint > 1) ? undefined : genderPoint;
+        return (genderPoint < 0.0 || genderPoint > 1.0) ? undefined : genderPoint;
     }
 
     // ## MEDIAS ##
