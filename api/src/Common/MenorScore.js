@@ -13,12 +13,12 @@ export default class MenorScore {
     static getOrder(age, genderScore, agePoint, genderPoint, ageWeigth, genderWeigth) {
         return Math.sqrt(
             Math.pow(Math.abs(
-                (agePoint/18 * (genderWeigth/ageWeigth)) +
-                (age/18 * (genderWeigth/ageWeigth))
-            ), 2) +
+                (agePoint/18.0 * (genderWeigth/ageWeigth)) -
+                (age/18.0 * (genderWeigth/ageWeigth))
+            ), 2.0) +
             Math.pow(Math.abs(
                 genderPoint - genderScore
-            ), 2)
+            ), 2.0)
         );
     }
 }
