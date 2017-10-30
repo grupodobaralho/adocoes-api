@@ -65,6 +65,7 @@ server.post("/oauth", AuthManager.isClientAuthenticated, Oauth2Manager.token);
 import UsuarioTranslator from "./Usuario/Translator";
 import ConteudoTranslator from "./Conteudo/Translator";
 import MenorTranslator from "./Menor/Translator";
+import TermoTranslator from "./Termo/Translator";
 import InteressadoTranslator from "./Interessado/Translator";
 
 //
@@ -347,6 +348,11 @@ server.get("/interessados/:id_interessado/documentos", AuthManager.userAuthentic
 	interessadoTranslator.getDocuments(req, res);
 });
 // RFI21 (2017-2): GET /interessados/:id_interessado/documentos/:id_documento
+
+server.get("/termo", AuthManager.anonymousAuthenticated, function(req, res) {
+    const termoTranslator = new TermoTranslator();
+    termoTranslator.get(req, res);
+});
 
 //
 //resource: Conteudos

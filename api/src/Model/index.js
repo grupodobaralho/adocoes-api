@@ -15,6 +15,7 @@ import Midia from "./midia.js";
 import Processo from "./processo.js";
 import Rede from "./rede.js";
 import Telefone from "./telefone.js";
+import Termo from "./termo.js";
 import TipoRede from "./tipoRede.js";
 import Usuario from "./usuario.js";
 import Vinculo from "./vinculo.js";
@@ -36,6 +37,7 @@ export {
 	Processo,
 	Rede,
 	Telefone,
+    Termo,
 	TipoRede,
 	Usuario,
 	Vinculo,
