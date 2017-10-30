@@ -6,7 +6,9 @@ export default class Interactor {
 	}
 
 	createContent(body) {
-		return this.Entity.createContent(body);
+		return this.Entity.validate(body).then(body => {
+			return this.Entity.createContent(body);
+		})
 	}
 
 	fetchAll() {

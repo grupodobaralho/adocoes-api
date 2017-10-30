@@ -8,7 +8,6 @@ export default class Entity {
 	}
 
 	createContent(body) {
-		console.log("zanfroni deus");
 		return this.Adapter.save(body);
 	}
 
@@ -21,12 +20,12 @@ export default class Entity {
 	validate(body) {
 		const schema = Joi.object({
 			nome: Joi.string().required(),
-			pagina: Joi.String().required(),
-			midia: Joi.object().required(),
+			pagina: Joi.string().required(),
+			midia: Joi.object(),
 			ativo: Joi.boolean().required(),
-			timeStampCriacao: Joi.date().default().required(),
-			timeStampInicio: Joi.date().default().required(),
-			timeStampFim: Joi.date().default().required()
+			timestampCriacao: Joi.date().default().required(),
+			timestampInicio: Joi.date().default(),
+			timestampFim: Joi.date().default()
 		});
 
 		const {
