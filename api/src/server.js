@@ -285,7 +285,7 @@ server.del("/interessados/:id_interesse/menores/", AuthManager.anonymousAuthenti
     interessadoTranslator.deleteInterested(req, res);
 });
 
-server.post("/interessados/:id_interessado/ordenacao", AuthManager.userAuthenticated, function(req, res) {
+server.put("/interessados/:id_interessado/ordenacao", AuthManager.userAuthenticated, function(req, res) {
     const interessadoTranslator = new InteressadoTranslator();
     interessadoTranslator.postOrdenacao(req, res);
 });

@@ -596,7 +596,7 @@
 					"name": "/interessados/{id_interessado}/ordenacao",
 					"request": {
 						"url": "{{url}}/interessados/{id_interessado}/ordenacao",
-						"method": "POST",
+						"method": "PUT",
 						"header": [
 							{
 								"key": "Authorization",
