@@ -10,13 +10,11 @@ export default class Adapter {
 	}
 
 	post(body) {
-		console.log(body);
 		const interessado = new this.Interessado(body);
 		return interessado.save();
 	}
 
 	getInteressado(id) {
-		console.log(id);
 		return this.Interessado.findById(id, (err, result) => {
 			return new Promise((resolve, reject) => {
 				resolve(result);
@@ -45,6 +43,12 @@ export default class Adapter {
 			upsert: true,
 			new: true
 		}, body);
+	}
+
+    postOrdenacao(body) {
+        return this.Interessado.findOneAndUpdate({
+            _id: body.id
+        }, body);
 	}
 
 	//

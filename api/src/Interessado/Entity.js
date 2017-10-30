@@ -18,6 +18,10 @@ export default class Entity {
 		return this.Adapter.getInteressado(id);
 	}
 
+    postOrdenacao(body) {
+        return this.Adapter.postOrdenacao(body);
+	}
+
 	//
 	// Interesse
 	//
@@ -69,6 +73,28 @@ validateTypeInterest(type){
 		return new Promise((resolve, reject) => {
 			resolve(body);
 		});
+	}
+
+	validateOrdenacao(body) {
+        const schema = Joi.object({
+        	id: Joi.string().required(),
+            pontoIdade: Joi.number().required().min(0).max(18),
+            pontoSexo: Joi.number().required().min(0).max(1)
+        });
+
+        const { error, value } = Joi.validate(body, schema);
+        return new Promise((resolve, reject) => {
+            if (error) {
+                let messages = error.details.map(e => e.message);
+                reject({
+                    status: 400,
+                    messages
+                });
+            }
+            else {
+                resolve(value);
+            }
+        });
 	}
 
 	validateDocument(body) {

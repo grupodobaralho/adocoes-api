@@ -285,6 +285,11 @@ server.del("/interessados/:id_interesse/menores/", AuthManager.anonymousAuthenti
     interessadoTranslator.deleteInterested(req, res);
 });
 
+server.post("/interessados/:id_interessado/ordenacao", AuthManager.userAuthenticated, function(req, res) {
+    const interessadoTranslator = new InteressadoTranslator();
+    interessadoTranslator.postOrdenacao(req, res);
+});
+
 // P0
 // RFI09: POST /interessados/:id_interessado/visualizacoes
 server.post("/interessados/:id_interessado/visualizacoes", AuthManager.userAuthenticated, function(req, res) {

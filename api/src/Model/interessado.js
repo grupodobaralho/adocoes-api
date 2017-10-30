@@ -56,7 +56,15 @@ const interessadoSchema = new Schema({
 		type: Boolean,
 		required: true,
 		default: true
-	}
+	},
+    pontoIdade: {
+        type: Number,
+        required: false
+    },
+    pontoSexo: {
+        type: Number,
+        required: false
+    }
 });
 
 mongoose.model("Interessado", interessadoSchema);

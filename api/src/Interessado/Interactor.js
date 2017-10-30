@@ -46,6 +46,17 @@ export default class Interactor {
 			});
 	}
 
+    postOrdenacaoValidatingUser(body, currentUser) {
+		
+	}
+
+    postOrdenacao(body) {
+        return this.Entity.validateOrdenacao(body)
+            .then(body => {
+                this.Entity.postOrdenacao(body);
+            });
+    }
+
 	//
 	// Interesse
 	//

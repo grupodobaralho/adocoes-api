@@ -1,9 +1,34 @@
 "use strict";
 
+import Roles from '../Common/Roles';
+
 export default class Translator {
 
 	constructor(deps = {}) {
 		this.Interactor = deps.Interactor ? new deps.Interactor() : new(require("./Interactor").default)();
+	}
+
+    postOrdenacao(req, res) {
+        let interactorResult = null;
+		const body = {
+            id: req.params.id_interessado,
+            ...req.body
+        }
+
+        //check if the current user has ADMIN profile
+		//In case the user does not have, validate user's integrity
+        if (req.user.perfis.indexOf(Roles.ADMINISTRADOR) === -1)
+            interactorResult = this.Interactor.postOrdenacaoValidatingUser(body, req.user);
+        else
+            interactorResult = this.Interactor.postOrdenacao(body);
+
+        interactorResult
+            .then(body => {
+                res.send(200, {});
+            })
+            .catch(error => {
+                res.send(500, error);
+            });
 	}
 
 	post(request, response) {
