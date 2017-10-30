@@ -8,7 +8,6 @@ export default class Entity {
 	}
 
 	createContent(body) {
-		console.log("zanfroni deus");
 		return this.Adapter.save(body);
 	}
 

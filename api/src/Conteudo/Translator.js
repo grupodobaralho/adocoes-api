@@ -10,15 +10,13 @@ export default class Translator {
 			body
 		} = request;
 
-		console.log(body);
 		this.Interactor.createContent(body)
 			.then(message => {
 				console.log("super gesiel");
 				response.send(200, message);
 			})
 			.catch(error => {
-				console.log("grande gesiel");
-				console.log(500, error);
+				response.send(500, error);
 			});
 	}
 
