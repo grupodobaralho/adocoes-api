@@ -12,7 +12,6 @@ export default class Translator {
 
 		this.Interactor.createContent(body)
 			.then(message => {
-				console.log("super gesiel");
 				response.send(200, message);
 			})
 			.catch(error => {
