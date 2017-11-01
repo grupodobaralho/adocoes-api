@@ -19,12 +19,16 @@ export default class Interactor {
 		return this.Entity.update(body);
 	}
 
-	deleteContentById(id_conteudo) {
-		return this.Entity.deleteContentById(id_conteudo);
+	fetchAllContentMedias(id) {
+		return this.Entity.fetchAllContentMedias(id);
 	}
 
-	findConteudo(body) {
-		return this.Entity.find(body);
+	fetchContentMediaById(id_conteudo, id_midia){
+		return this.Entity.fetchContentMediaById(id_conteudo, id_midia)
+	}
+
+	deleteContentById(id_conteudo) {
+		return this.Entity.deleteContentById(id_conteudo);
 	}
 
 }

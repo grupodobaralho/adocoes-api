@@ -30,7 +30,7 @@ export default class Translator {
 			});
 	}
 
-	get(request, response) {
+	fetchAll(request, response) {
 		return this.Interactor.fetchAll()
 			.then(result => {
 				response.json(200, result);
@@ -54,6 +54,31 @@ export default class Translator {
 			.catch(error => {
 				console.log(error);
 				response.send(500, "Ocorreu um erro ao deletar o cadastro");
+			});
+	}
+
+	fetchAllContentMedias(request, response) {
+		const id = request.params.id_conteudo;
+		return this.Interactor.fetchAllContentMedias(id)
+			.then(result => {
+				response.json(200, result);
+			})
+			.catch(error => {
+				let status = error.status || 500;
+				response.json(status, error);
+			});
+	}
+
+	fetchContentMediaById(request, response) {
+		const id_conteudo = request.params.id_conteudo;
+		const id_midia = request.params.id_midia;
+		return this.Interactor.fetchContentMediaById(id_conteudo, id_midia)
+			.then(result => {
+				response.json(200, result);
+			})
+			.catch(error => {
+				let status = error.status || 500;
+				response.json(status, error);
 			});
 	}
 }
