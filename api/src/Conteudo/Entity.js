@@ -1,6 +1,7 @@
 "use strict";
 
 import Joi from "joi";
+Joi.objectId = require('joi-objectid')(Joi)
 
 export default class Entity {
 	constructor(deps = {}) {
@@ -21,7 +22,15 @@ export default class Entity {
 		const schema = Joi.object({
 			nome: Joi.string().required(),
 			pagina: Joi.string().required(),
-			midia: Joi.object(),
+
+			midia: Joi.array().items(Joi.object({ 
+				id: Joi.objectId(),
+				type: Joi.string().required(),
+				conteudo: Joi.string(),
+				descricao: Joi.string(),
+				principal: Joi.boolean()
+			})),
+			
 			ativo: Joi.boolean().required(),
 			timestampCriacao: Joi.date().default().required(),
 			timestampInicio: Joi.date().default(),
@@ -50,8 +59,12 @@ export default class Entity {
 		return this.Adapter.fetchAll();
 	}
 
-	find(body) {
-		return this.Adapter.fetch(body.id);
+	fetchAllContentMedias(id) {
+		return this.Adapter.fetchAllContentMedias(id);
+	}
+
+	fetchContentMediaById(id_conteudo, id_midia){
+		return this.Adapter.fetchContentMediaById(id_conteudo, id_midia)
 	}
 
 	update(body) {

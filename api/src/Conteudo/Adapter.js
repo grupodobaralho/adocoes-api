@@ -1,6 +1,7 @@
 "use strict";
 
 import mongoose from "mongoose";
+import MoongoseHelper from "../Common/MoongoseHelper";
 
 export default class Adapter {
 	constructor(deps = {}) {
@@ -38,12 +39,26 @@ export default class Adapter {
 			});
 	}
 
-	fetch(id) {
+	fetchAllContentMedias(id) {
+		return this.Conteudo.findById(id , (err, content) => {
+			return new Promise((resolve, reject) => {
+				resolve(content)
+			});
+		}).then(doc => {
+			return doc.midia
+		})
+  }
 
-		return this.Conteudo.find({
-			_id: id
-		});
-	}
+	fetchContentMediaById(id_conteudo, id_midia) {
+    return this.Conteudo.findById(id_conteudo , (err, content) => {
+			return new Promise((resolve, reject) => {
+				resolve(content)
+			});
+		}).then(doc => {
+			doc.midia =  doc.midia.filter(x => { return x.id == id_midia })
+			return doc.midia;
+		})
+  }
 
 	deleteContentById(id_conteudo) {
 		return this.Conteudo.remove({

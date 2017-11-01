@@ -374,7 +374,7 @@ server.post("/conteudos", AuthManager.userAuthenticated, function(req, res) {
 // RFC02: GET /conteudos
 server.get("/conteudos", AuthManager.userAuthenticated, function(req, res) {
     const conteudoTranslator = new ConteudoTranslator();
-    conteudoTranslator.getConteudos(req, res);
+    conteudoTranslator.fetchAll(req, res);
 });
 
 // P1
@@ -407,14 +407,14 @@ server.post("/conteudos/:id_conteudo/midias/:id_midia/midia", AuthManager.userAu
 // RFC06: GET /conteudos/:id_conteudo/midias
 server.get("/conteudos/:id_conteudo/midias", AuthManager.userAuthenticated, function(req, res) {
     const conteudoTranslator = new ConteudoTranslator();
-    conteudoTranslator.getConteudoMidias(req, res);
+    conteudoTranslator.fetchAllContentMedias(req, res);
 });
 
 // P0
 // RFC07: GET /conteudos/:id_conteudo/midias/:id_midia
 server.get("/conteudos/:id_conteudo/midias/:id_midia", AuthManager.userAuthenticated, function(req, res) {
     const conteudoTranslator = new ConteudoTranslator();
-    conteudoTranslator.deleteConteudoMidia(req, res);
+    conteudoTranslator.fetchContentMediaById(req, res);
 });
 
 // P1
