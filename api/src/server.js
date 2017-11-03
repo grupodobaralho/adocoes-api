@@ -425,48 +425,10 @@ server.del("/conteudos/:id_conteudo/midias/:id_midia", AuthManager.userAuthentic
     conteudoTranslator.deleteMediaByContent(req, res);
 });
 
-//
-// Resource: mensagem
-//
-
-// RFM01 (2017-2): POST /mensagens
-// RFM02 (2017-2): GET /mensagens
-// RFM03 (2017-2): GET /mensagens?query=data_inicial=:data_inicial&data_final=:data_final
-// RFM04 (2017-2): PUT /mensagens/:id_mensagem
-// RFM05 (2017-2): POST /mensagens/:id_mensagem/resposta
-// RFM06 (2017-2): DELETE /mensagens/:id_mensagem
-
-//
-// Resource: abrigo
-//
-
-// RFA01 (2017-2): POST /abrigos
-// RFA02 (2017-2): GET /abrigos
-// RFA03 (2017-2): PUT /abrigos/:id_abrigo
-// RFA04 (2017-2): DELETE /abrigos/:id_abrigo
-
-//
-// Resource: familia
-//
-
-// RFF01 (2017-2): POST /familias
-// RFF02 (2017-2): GET /familias
-// RFF03 (2017-2): PUT /familias/:id_familia
-// RFF04 (2017-2): DELETE /familias/:id_familia
-
-//
-// Resource: processo
-//
-
-// RFO01 (2017-2): POST /processos
-// RFO02 (2017-2): GET /processos
-// RFO03 (2017-2): PUT /processos/:id_processo
-// RFO04 (2017-2): DELETE /processos/:id_processo
-// RFO05 (2017-2): POST /processos/:id_processo/movimentos
-// RFO06 (2017-2): GET /processos/:id_processo/movimentos
-// RFO07 (2017-2): PUT /processos/:id_processo/movimentos/:id_movimento
-// RFO08 (2017-2): DELETE /processos/:id_processo/movimentos/:id_movimento
-// Resource: conteudo
+server.get("/conteudos/video/:video", (req, res) => {
+    const conteudoTranslator = new ConteudoTranslator();
+    conteudoTranslator.getVideo(req, res);
+});
 
 server.listen(port);
 console.log("Adoções API URI: " + server.url);
