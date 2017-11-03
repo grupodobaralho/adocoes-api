@@ -413,10 +413,11 @@ server.get("/conteudos/:id_conteudo/midias/:id_midia", AuthManager.userAuthentic
 });
 
 // P1
-// RFC08: DELETE /conteudos/:id_conteudo
+// RFC08: DELETE /conteudos/:id_conteudo/midias/:id_midia
 server.del("/conteudos/:id_conteudo/midias/:id_midia", AuthManager.userAuthenticated, function(req, res) {
     const conteudoTranslator = new ConteudoTranslator();
-    conteudoTranslator.deleteConteudo(req, res);
+    console.log("gesiel Server");
+    conteudoTranslator.deleteMediaByContent(req, res);
 });
 
 //

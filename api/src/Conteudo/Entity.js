@@ -90,4 +90,9 @@ export default class Entity {
 				}
 		});
   }
+	deleteMediaByContent(id_midia) {
+		console.log("gesiel Entity");
+		return this.Adapter.deleteMediaByContent(id_midia);
+	}
+
 }
