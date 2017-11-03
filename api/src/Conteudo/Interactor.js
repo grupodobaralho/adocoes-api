@@ -21,12 +21,12 @@ export default class Interactor {
 		});
 	}
 
-	fetchAllContentMedias(id) {
-		return this.Entity.fetchAllContentMedias(id);
+	fetchAllContentMedias(id_conteudo) {
+		return this.Entity.fetchAllContentMedias(id_conteudo);
 	}
 
-	fetchContentMediaById(id_conteudo, id_midia) {
-		return this.Entity.fetchContentMediaById(id_conteudo, id_midia)
+	fetchContentMediaById(id_midia) {
+		return this.Entity.fetchContentMediaById(id_midia)
 	}
 
 	deleteContentById(id_conteudo) {

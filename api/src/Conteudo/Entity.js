@@ -50,12 +50,12 @@ export default class Entity {
 		return this.Adapter.fetchAll();
 	}
 
-	fetchAllContentMedias(id) {
-		return this.Adapter.fetchAllContentMedias(id);
+	fetchAllContentMedias(id_conteudo) {
+		return this.Adapter.fetchAllContentMedias(id_conteudo);
 	}
 
-	fetchContentMediaById(id_conteudo, id_midia){
-		return this.Adapter.fetchContentMediaById(id_conteudo, id_midia)
+	fetchContentMediaById(id_midia){
+		return this.Adapter.fetchContentMediaById(id_midia)
 	}
 
 	updateContent(id_conteudo, body) {
