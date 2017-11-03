@@ -4,7 +4,7 @@ import MenorScore from '../Common/MenorScore';
 
 export default class Interactor {
     constructor(deps = {}) {
-		this.Entity = deps.Entity || new(require("./Entity").default)();
+        this.Entity = deps.Entity || new (require("./Entity").default)();
     }
 
     // ## MENORES ##
@@ -84,11 +84,15 @@ export default class Interactor {
         return this.Entity.deleteMediaById(id_menor, id_midia);
     }
 
+    deleteAllMedia(id_menor) {
+        return this.Entity.deleteAllMedia(id_menor);
+    }
+
     // ## INTERESSES ##
     postInterested(body) {
         //Adiciona a data junto com o "corpo" que veio do Translator
         body.timeStamp = Date.now();
-        
+
         return this.Entity.postInterested(body);
     }
 
@@ -97,14 +101,14 @@ export default class Interactor {
         return this.Entity.deleteInterested(_id);
     }
 
-	fetchAllTypeInterest(id) {
-		return this.Entity.fetchAllTypeInterest(id);
-}
+    fetchAllTypeInterest(id) {
+        return this.Entity.fetchAllTypeInterest(id);
+    }
 
-fetchAllTypeInterestFiltered(id, type) {	
-		return this.Entity.validateTypeInterest(type).then(type => {
-			return this.Entity.fetchAllTypeInterestFiltered(id, type);
-		})		
-}
+    fetchAllTypeInterestFiltered(id, type) {
+        return this.Entity.validateTypeInterest(type).then(type => {
+            return this.Entity.fetchAllTypeInterestFiltered(id, type);
+        })
+    }
 
 }

@@ -155,6 +155,15 @@ export default class Adapter {
     });
   }
 
+  deleteAllMedia(id_menor) {
+    return this.Menor.update(
+      { _id: id_menor },
+      { $set: { refMidias: [] } })
+      .then(resultado => {
+        return resultado.nModified > 0
+      });
+  }
+
   // ## INTERESSES ##
   postInterested(body) {
     const interesse = new this.Interesse(body);

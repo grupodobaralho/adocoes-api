@@ -213,6 +213,12 @@ server.post("/menores/:id_menor/midias", AuthManager.userAuthenticated, function
     menorTranslator.postMedia(req, res);
 });
 
+
+server.del("/menores/:id_menor/midias", AuthManager.userAuthenticated, function(req, res) {  
+    const menorTranslator = new MenorTranslator();  
+    menorTranslator.deleteAllMedia(req, res);  
+});
+
 // P1
 // RFM13: DELETE /menores/:id_menor/midias/:id_midia
 server.del("/menores/:id_menor/midias/:id_midia", AuthManager.userAuthenticated, function(req, res) {
