@@ -63,8 +63,9 @@ export default class Translator {
 	}
 
 	fetchAllContentMedias(request, response) {
-		const id = request.params.id_conteudo;
-		return this.Interactor.fetchAllContentMedias(id)
+		const { id_conteudo } = request.params;
+
+		return this.Interactor.fetchAllContentMedias(id_conteudo)
 			.then(result => {
 				response.json(200, result);
 			})
@@ -75,9 +76,9 @@ export default class Translator {
 	}
 
 	fetchContentMediaById(request, response) {
-		const id_conteudo = request.params.id_conteudo;
-		const id_midia = request.params.id_midia;
-		return this.Interactor.fetchContentMediaById(id_conteudo, id_midia)
+		const { id_conteudo, id_midia } = request.params;
+
+		return this.Interactor.fetchContentMediaById(id_midia)
 			.then(result => {
 				response.json(200, result);
 			})

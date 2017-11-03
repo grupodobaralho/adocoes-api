@@ -43,26 +43,58 @@ export default class Adapter {
 		);
 	}
 
-	fetchAllContentMedias(id) {
-		return this.Conteudo.findById(id, (err, content) => {
+	/*fetchAllContentMedias(id_conteudo, id_midia) {
+		return this.Conteudo.findById(id_conteudo, (err, content) => {
 			return new Promise((resolve, reject) => {
 				resolve(content)
 			});
 		}).then(doc => {
 			return doc.midia
 		})
-	}
+	}*/
 
-	fetchContentMediaById(id_conteudo, id_midia) {
-		return this.Conteudo.findById(id_conteudo, (err, content) => {
-			return new Promise((resolve, reject) => {
-				resolve(content)
-			});
-		}).then(doc => {
-			doc.midia = doc.midia.filter(x => { return x.id == id_midia })
-			return doc.midia;
-		})
-	}
+	fetchAllContentMedias(id_conteudo, shouldRenderAllMedias) {
+    let aggregatePipepline = [];
+
+    if (!shouldRenderAllMedias)
+      aggregatePipepline.push({
+        $match: {
+          anonymous: true
+        }
+      });
+
+    //Faz o "inner join" com o documento de mídias
+    aggregatePipepline.push({
+      $lookup: {
+        from: "conteudos",
+        localField: "_id",
+        foreignField: "refMidias",
+        as: "conteudo"
+      }
+    });
+
+    aggregatePipepline.push({
+      $match: {
+        "conteudo._id": mongoose.Types.ObjectId(id_conteudo)
+      }
+    });
+
+    //Habilitar somente os campos que serão úteis
+    aggregatePipepline.push({
+      $project: {
+        type: 1,
+        descricao: 1,
+        principal: 1,
+        anonymous: 1
+      }
+    });
+
+    return MoongoseHelper.aggregate(this.Midia, aggregatePipepline);
+  }
+
+	fetchContentMediaById(id_midia) {
+    return this.Midia.findById(id_midia);
+  }
 
 	deleteContentById(id_conteudo) {
 		return this.Conteudo.remove({
