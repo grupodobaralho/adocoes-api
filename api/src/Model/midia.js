@@ -8,14 +8,14 @@ const midiaSchema = new Schema({
 		type: mongoose.Schema.Types.ObjectId,
 		ref: 'Menor'
 	},
+	refConteudo: {
+		type: mongoose.Schema.Types.ObjectId,
+		ref: 'Conteudo'
+	},
 	type: {
 		type: String,
 		enum: ["foto", "foto-blur", "video", "carta", "html"],
 		required: true
-	},
-	conteudo: {
-		type: String, // base64 do binário da midia
-		required: false
 	},
 	descricao: {
 		type: String,

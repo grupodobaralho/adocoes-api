@@ -6,6 +6,7 @@ import MoongoseHelper from "../Common/MoongoseHelper";
 export default class Adapter {
 	constructor(deps = {}) {
 		this.Conteudo = mongoose.model("Conteudo");
+		this.Midia = mongoose.model("Midia");
 	}
 
 	save(body) {
@@ -68,4 +69,28 @@ export default class Adapter {
 				return resultado.result.n > 0;
 			});
 	}
+
+	saveConteudoMidia(body, id_conteudo){
+			const media = this.Midia(body);
+
+			media.save();
+
+			return this.Conteudo.update(
+				{ _id: id_conteudo },
+				{ $push: {refMidias: media.id} },
+				{ multi: false }
+			).then(result => {
+				return {};
+		});
+	}
+
+	deleteMediaByContent(id_conteudo, id_midia) {
+    return this.Conteudo.update(
+      { _id: id_conteudo },
+      { $pull: { refMidias: id_midia } },
+      { multi: false }
+    ).then(resultado => {
+      return resultado.nModified > 0
+    });
+  }
 }

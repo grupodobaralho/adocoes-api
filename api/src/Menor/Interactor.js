@@ -65,7 +65,7 @@ export default class Interactor {
     postMedia(body, id_menor) {
         return this.Entity.validateMedia(body, id_menor).then(body => {
             return this.Entity.postMedia(body, id_menor);
-        });   
+        });
     }
 
     fetchMediaAnonymous(id_menor, id_media) {

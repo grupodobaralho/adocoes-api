@@ -24,7 +24,7 @@
 							},
 							{
 								"key": "Content-Type",
-								"value": "{{content-type}}",
+								"value": "application/json",
 								"description": ""
 							}
 						],
@@ -124,13 +124,13 @@
 							},
 							{
 								"key": "Content-Type",
-								"value": "{{content-type}}",
+								"value": "application/json",
 								"description": ""
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": ""
+							"raw": "{\n\t\"refMenor\": \"59cadeb7d214e03e3c713907\", \n\t\"type\": \"foto\", \n\t\"descricao\": \"Descrição do conteúdo aqui\", \n\t\"anonymous\": true, \n\t\"principal\": true\n}"
 						},
 						"description": ""
 					},
@@ -790,7 +790,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"type\": \"foto\",\n\t\"conteudo\": \"body do base 64 aqui\",\n\t\"descricao\": \"Descrição do conteúdo aqui\",\n\t\"anonymous\": true,\n\t\"principal\": true\n}"
+							"raw": "{\n\t\"type\": \"foto\",\n\t\"descricao\": \"Descrição do conteúdo aqui\",\n\t\"anonymous\": true,\n\t\"principal\": true\n}"
 						},
 						"description": ""
 					},
