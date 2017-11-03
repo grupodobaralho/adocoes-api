@@ -246,13 +246,13 @@ export default class Translator {
         this.Interactor.deleteAllMedia(id_menor)
             .then(sucesso => {
                 if (!sucesso) {
-                    return response.send(400, "Nenhum cadastro com o ID informado foi encontrado");
+                    return response.send(400, "Nenhuma mídia com o ID informado foi encontrada");
                 }
-                response.send(200, "Cadastro deletado com sucesso");
+                response.send(200, "Mídias deletadas com sucesso");
             })
             .catch(error => {
                 console.log(error);
-                response.send(500, "Ocorreu um erro ao deletar o cadastro");
+                response.send(500, "Ocorreu um erro ao deletar as mídias");
             });
 
     }
@@ -271,13 +271,13 @@ export default class Translator {
         this.Interactor.deleteMediaById(id_menor, id_midia)
             .then(sucesso => {
                 if (!sucesso) {
-                    return response.send(400, "Nenhum cadastro com o ID informado foi encontrado");
+                    return response.send(400, "Nenhuma mídia com o ID informado foi encontrada");
                 }
-                response.send(200, "Cadastro deletado com sucesso");
+                response.send(200, "Mídia deletado com sucesso");
             })
             .catch(error => {
                 console.log(error);
-                response.send(500, "Ocorreu um erro ao deletar o cadastro");
+                response.send(500, "Ocorreu um erro ao deletar a mídia");
             });
     }
 }
