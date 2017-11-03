@@ -226,12 +226,6 @@ server.del("/menores/:id_menor/midias/:id_midia", AuthManager.userAuthenticated,
     menorTranslator.deleteMediaById(req, res);
 });
 
-// RFM18 (2017-2): PUT /menores/:id_menor (seta o id_abrigo)
-// RFM09 (2017-2): POST /menores/:id_menor/processos
-// RFM20 (2017-2): GET /menores/:id_menor/processos
-// RFM21 (2017-2): GET /menores/:id_menor/processos/:id_processo
-// RFM22 (2017-2): DELETE /menores/:id_menor/processos/:id_processo
-
 //
 // Resource: interessado
 //
@@ -317,42 +311,6 @@ server.put("/interessados/:id_interessado/visualizacoes", AuthManager.userAuthen
     interessadoTranslator.updateVisualizacao(req, res);
 });
 
-
-// RFI16 (2017-2): POST /interessados/:id_interessado/menores/:id_menor/compartilhamentos
-// RFI17 (2017-2): GET /interessados/:id_interessado/mensagens
-// RFI18 (2017-2): PUT /usuarios/:id_usuario/mensagens
-// RFI19 (2017-2): POST /interessados/:id_interessado/docmento
-/**
-	* @api {post} /interessados/:id_interessado/documento Post User Document
-	* @apiGroup Interessado
-	* @apiSuccessExample {json} Success-Response
-	*     HTTP/1.1 200 OK
-	*     {
-	*
-	*     }
-	*/
-// server.post("/interessados/:id_interessado/documento", AuthManager.userAuthenticated, (req, res) => {
-// 	const interessadoTranslator = new InteressadoTranslator();
-// 	interessadoTransalator.postDocument(req, res);
-// });
-// RFI20 (2017-2): GET /interessados/:id_interessado/documentos
-	/**
-	* @api {get} /interessados/:id_interessado/documentos Request User Documents
-	* @apiGroup Interessado
-	* @apiSuccessExample {json} Success-Response:
-	*     HTTP/1.1 200 OK
-	*     {
-	*      "documentos": [
-	*         {
-	*           "numero": "233837164",
-	*           "dataEmissao": "1991-12-12T00:00:00.000Z",
-	*           "orgaoEmissor": "SSP",
-	*           "tipoDocumento": "RG",
-	*           "imagem": null
-	*         }
-	*       ]
-	*     }
-	*/
 // RFI20 (2017-2): GET /interessados/:id_interessado/documentos
 server.get("/interessados/:id_interessado/documentos", AuthManager.userAuthenticated, (req, res) => {
 	const interessadoTranslator = new InteressadoTranslator();
@@ -425,7 +383,7 @@ server.del("/conteudos/:id_conteudo/midias/:id_midia", AuthManager.userAuthentic
     conteudoTranslator.deleteMediaByContent(req, res);
 });
 
-server.get("/conteudos/video/:video", (req, res) => {
+server.get("/conteudos/video/:video", AuthManager.anonymousAuthenticated, (req, res) => {
     const conteudoTranslator = new ConteudoTranslator();
     conteudoTranslator.getVideo(req, res);
 });
