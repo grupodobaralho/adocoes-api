@@ -1,4 +1,5 @@
 module.exports = {
 	ANONYMOUS: "Bearer anonymous",
-	ADMINISTRADOR: "administrador"
+	ADMINISTRADOR: "Administrador",
+	INTERESSADO: "Interessado"
 }
