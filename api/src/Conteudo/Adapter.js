@@ -68,4 +68,14 @@ export default class Adapter {
 				return {};
 		});
 	}
+
+	deleteMediaByContent(id_conteudo, id_midia) {
+    return this.Conteudo.update(
+      { _id: id_conteudo },
+      { $pull: { refMidias: id_midia } },
+      { multi: false }
+    ).then(resultado => {
+      return resultado.nModified > 0
+    });
+  }
 }

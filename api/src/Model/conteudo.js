@@ -14,9 +14,9 @@ const conteudoSchema = new Schema({
 		type: String,
 		required: true
 	},
-	refMidia: [{
+	refMidias: [{
 		type: mongoose.Schema.Types.ObjectId,
-		ref: "midia"
+		ref: 'midia'
 	}],
 	timestampCriacao: {
 		type: Date,

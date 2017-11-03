@@ -21,7 +21,6 @@ export default class Entity {
 		const schema = Joi.object({
 			nome: Joi.string().required(),
 			pagina: Joi.string().required(),
-			midia: Joi.object(),
 			ativo: Joi.boolean().required(),
 			timestampCriacao: Joi.date().default().required(),
 			timestampInicio: Joi.date().default(),
@@ -64,6 +63,10 @@ export default class Entity {
 
 	postConteudoMidia(body, id_conteudo) {
 		return this.Adapter.saveConteudoMidia(body, id_conteudo);
+	}
+
+	deleteMediaByContent(id_conteudo, id_midia) {
+		return this.Adapter.deleteMediaByContent(id_conteudo, id_midia);
 	}
 
 	validateMedia(body, id_conteudo) {

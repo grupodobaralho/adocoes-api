@@ -33,4 +33,7 @@ export default class Interactor {
 		return this.Entity.find(body);
 	}
 
+	deleteMediaByContent(id_conteudo, id_midia) {
+		return this.Entity.deleteMediaByContent(id_conteudo, id_midia);
+	}
 }
