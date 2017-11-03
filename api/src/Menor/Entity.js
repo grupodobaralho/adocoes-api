@@ -101,6 +101,10 @@ export default class Entity {
         return this.Adapter.deleteMediaById(id_menor, id_midia);
     }
 
+    deleteAllMedia(id_menor) {  
+        return this.Adapter.deleteAllMedia(id_menor);  
+    }
+
     _isMediaAnonymous(anon) {
         return (anon !== undefined && anon === true);
     }

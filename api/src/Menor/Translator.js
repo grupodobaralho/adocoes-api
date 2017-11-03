@@ -1,6 +1,6 @@
 "use strict";
 
-import {config} from '../config';
+import { config } from '../config';
 import Roles from '../Common/Roles';
 
 export default class Translator {
@@ -12,7 +12,7 @@ export default class Translator {
     post(request, response) {
         const { body } = request;
 
-        
+
         this.Interactor.create(body)
             .then(message => {
                 response.send(200, message);
@@ -53,7 +53,7 @@ export default class Translator {
 
     get(request, response) {
         const { id_menor } = request.params;
-        
+
         let interactorResult;
 
         //Validar se a requisição atual possui escopo Anônimo
@@ -93,7 +93,7 @@ export default class Translator {
     deleteMenor(request, response) {
         const { id_menor } = request.params;
 
-        
+
         this.Interactor.delete(id_menor)
             .then(sucesso => {
                 if (!sucesso) {
@@ -118,7 +118,7 @@ export default class Translator {
     // ## MEDIAS ##
     getMedia(request, response) {
         const { id_menor, id_media } = request.params;
-        
+
         let interactorResult;
 
         //Validar se a requisição atual possui escopo Anônimo
@@ -167,7 +167,7 @@ export default class Translator {
     postMedia(request, response) {
         const { body } = request;
         const { id_menor } = request.params;
-        
+
         this.Interactor.postMedia(body, id_menor)
             .then(message => {
                 response.send(200, message);
@@ -179,7 +179,7 @@ export default class Translator {
 
     // ## INTERESSES ##
     deleteInterested(request, response) {
-         let _id = request.params.id_interesse          
+        let _id = request.params.id_interesse
 
         //Ação padrão para resultado do interactor
         this.Interactor
@@ -212,29 +212,50 @@ export default class Translator {
     }
 
     fetchAllTypeInterest(request, response) {
-		const id = request.params.id_interessado;
-			if(request.query.interesse) {
-				const type = request.query.interesse;            
-				this.Interactor.fetchAllTypeInterestFiltered(id, type)
-								.then(message => {
-										response.send(200, message);
-								})
-								.catch(error => {
-										console.log(error);
-										response.send(400, error)
-								});
-						}
-						else{
-								this.Interactor.fetchAllTypeInterest(id)
-								.then(message => {
-										response.send(200, message);
-								})
-								.catch(error => {
-										console.log(error);
-										response.send(400, error)
-								});
-						}
-				}
+        const id = request.params.id_interessado;
+        if (request.query.interesse) {
+            const type = request.query.interesse;
+            this.Interactor.fetchAllTypeInterestFiltered(id, type)
+                .then(message => {
+                    response.send(200, message);
+                })
+                .catch(error => {
+                    console.log(error);
+                    response.send(400, error)
+                });
+        }
+        else {
+            this.Interactor.fetchAllTypeInterest(id)
+                .then(message => {
+                    response.send(200, message);
+                })
+                .catch(error => {
+                    console.log(error);
+                    response.send(400, error)
+                });
+        }
+    }
+
+    deleteAllMedia(request, response) {
+
+        const {
+                  id_menor
+              } = request.params;
+
+
+        this.Interactor.deleteAllMedia(id_menor)
+            .then(sucesso => {
+                if (!sucesso) {
+                    return response.send(400, "Nenhum cadastro com o ID informado foi encontrado");
+                }
+                response.send(200, "Cadastro deletado com sucesso");
+            })
+            .catch(error => {
+                console.log(error);
+                response.send(500, "Ocorreu um erro ao deletar o cadastro");
+            });
+
+    }
 
     deleteMediaById(request, response) {
 
@@ -248,15 +269,15 @@ export default class Translator {
 
 
         this.Interactor.deleteMediaById(id_menor, id_midia)
-        .then(sucesso => {
-            if (!sucesso) {
-                return response.send(400, "Nenhum cadastro com o ID informado foi encontrado");
-            }
-            response.send(200, "Cadastro deletado com sucesso");
-        })
-        .catch(error => {
-            console.log(error);
-            response.send(500, "Ocorreu um erro ao deletar o cadastro");
-        });
+            .then(sucesso => {
+                if (!sucesso) {
+                    return response.send(400, "Nenhum cadastro com o ID informado foi encontrado");
+                }
+                response.send(200, "Cadastro deletado com sucesso");
+            })
+            .catch(error => {
+                console.log(error);
+                response.send(500, "Ocorreu um erro ao deletar o cadastro");
+            });
     }
 }
