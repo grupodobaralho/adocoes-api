@@ -56,4 +56,21 @@ export default class Translator {
 				response.send(500, "Ocorreu um erro ao deletar o cadastro");
 			});
 	}
+
+	postConteudoMidia(request, response){
+
+		const { id_conteudo } = request.params;
+		const { body } = request;
+
+		this.Interactor.postConteudoMidia(body, id_conteudo)
+			.then(sucesso => {
+				if(!sucesso) {
+					response.send(400, "Nenhum cadastro com o ID informado foi encontrado");
+				}
+				response.send(200, "Item cadastrado com sucesso");
+			})
+			.catch(error => {
+					response.send(500, "Ocorreu um erro durante o cadastro do item");
+		});
+	}
 }

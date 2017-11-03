@@ -397,11 +397,6 @@ server.post("/conteudos/:id_conteudo/midias", AuthManager.userAuthenticated, fun
     const conteudoTranslator = new ConteudoTranslator();
     conteudoTranslator.postConteudoMidia(req, res);
 });
-// Post com multipart-form-data
-server.post("/conteudos/:id_conteudo/midias/:id_midia/midia", AuthManager.userAuthenticated, function(req, res) {
-    const conteudoTranslator = new ConteudoTranslator();
-    conteudoTranslator.postConteudoMidiaConteudo(req, res);
-});
 
 // P0
 // RFC06: GET /conteudos/:id_conteudo/midias

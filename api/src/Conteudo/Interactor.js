@@ -23,6 +23,12 @@ export default class Interactor {
 		return this.Entity.deleteContentById(id_conteudo);
 	}
 
+	postConteudoMidia(body, id_conteudo) {
+		return this.Entity.validateMedia(body, id_conteudo).then(body => {
+			return this.Entity.postConteudoMidia(body, id_conteudo);
+		})
+	}
+
 	findConteudo(body) {
 		return this.Entity.find(body);
 	}
