@@ -997,6 +997,56 @@
 					"response": []
 				},
 				{
+					"name": "/menores/{id_menor}/midias",
+					"request": {
+						"url": "{{url}}/menores/{id_menor}/midias",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token-type}} {{access-token}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"type\": \"foto\",\n\t\"descricao\": \"Descrição do conteúdo aqui\",\n\t\"anonymous\": true,\n\t\"principal\": true\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "/menores/{id_menor}/midias",
+					"request": {
+						"url": "{{url}}/menores/{id_menor}/midias",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token-type}} {{access-token}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "{{content-type}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
 					"name": "/menores/{id_menor}/videos",
 					"request": {
 						"url": "{{url}}/menores/{id_menor}/videos",
