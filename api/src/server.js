@@ -374,7 +374,11 @@ server.post("/conteudos", AuthManager.userAuthenticated, function(req, res) {
 // RFC02: GET /conteudos
 server.get("/conteudos", AuthManager.userAuthenticated, function(req, res) {
     const conteudoTranslator = new ConteudoTranslator();
+<<<<<<< HEAD
     conteudoTranslator.fetchAll(req, res);
+=======
+    conteudoTranslator.getAllContent(req, res);
+>>>>>>> f-103
 });
 
 // P1

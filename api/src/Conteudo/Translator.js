@@ -30,7 +30,7 @@ export default class Translator {
 			});
 	}
 
-	fetchAll(request, response) {
+	getAllContent(request, response) {
 		return this.Interactor.fetchAll()
 			.then(result => {
 				response.json(200, result);
