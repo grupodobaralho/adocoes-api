@@ -381,7 +381,7 @@ server.get("/conteudos", AuthManager.userAuthenticated, function(req, res) {
 // RFC03: PUT /conteudos/:id_conteudo
 server.put("/conteudos/:id_conteudo", AuthManager.userAuthenticated, function(req, res) {
     const conteudoTranslator = new ConteudoTranslator();
-    conteudoTranslator.updateConteudo(req, res);
+    conteudoTranslator.updateContent(req, res);
 });
 
 // P1
