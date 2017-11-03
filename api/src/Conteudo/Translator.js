@@ -19,14 +19,19 @@ export default class Translator {
 			});
 	}
 
-	put(request, response) {
-		const {
-			body
-		} = request;
+	updateContent(request, response) {
+		const { body } = request;
 
-		this.Interactor.update(body)
-			.then(message => {
-				response.send(200, message);
+		this.Interactor.updateContent(request.params.id_conteudo, body)
+			.then(conteudo => {
+				if (!conteudo) {
+					return response.send(400, "Nenhum conteúdo com o ID informado foi encontrado");
+				}
+				response.send(200, conteudo);
+			})
+			.catch(error => {
+				console.log(error);
+				response.send(500, "Ocorreu um erro ao atualizar o conteúdo");
 			});
 	}
 
@@ -82,34 +87,34 @@ export default class Translator {
 			});
 	}
 
-	postConteudoMidia(request, response){
+	postConteudoMidia(request, response) {
 
 		const { id_conteudo } = request.params;
 		const { body } = request;
 
 		this.Interactor.postConteudoMidia(body, id_conteudo)
 			.then(sucesso => {
-				if(!sucesso) {
+				if (!sucesso) {
 					response.send(400, "Nenhum cadastro com o ID informado foi encontrado");
 				}
 				response.send(200, "Item cadastrado com sucesso");
 			})
 			.catch(error => {
-					response.send(500, "Ocorreu um erro durante o cadastro do item");
-		});
+				response.send(500, "Ocorreu um erro durante o cadastro do item");
+			});
 	}
 
 	deleteMediaByContent(request, response) {
-		
+
 		const { id_conteudo } = request.params;
 		const { id_midia } = request.params;
-		
+
 		this.Interactor.deleteMediaByContent(id_conteudo, id_midia)
 			.then(sucesso => {
-					response.send(200, "Mídia deletada com sucesso");
-				})
-				.catch(error => {
-					response.send(500, "Ocorreu um erro ao deletar a Mídia");
+				response.send(200, "Mídia deletada com sucesso");
+			})
+			.catch(error => {
+				response.send(500, "Ocorreu um erro ao deletar a Mídia");
 			});
-	}			
+	}
 }

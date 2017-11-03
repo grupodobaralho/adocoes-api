@@ -58,8 +58,8 @@ export default class Entity {
 		return this.Adapter.fetchContentMediaById(id_conteudo, id_midia)
 	}
 
-	update(body) {
-		return this.Adapter.fetchAndUpdate(body);
+	updateContent(id_conteudo, body) {
+		return this.Adapter.updateContent(id_conteudo, body);
 	}
 
 	deleteContentById(id_conteudo) {

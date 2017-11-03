@@ -30,36 +30,39 @@ export default class Adapter {
 		});
 	}
 
-	fetchAndUpdate(body) {
-		return this.Conteudo.findOneAndUpdate({
-			_id: body.id
-		}, {
+	updateContent(id_conteudo, body) {
+		return this.Conteudo.findOneAndUpdate(
+			{
+				_id: id_conteudo
+			},
+			body,
+			{
+				upsert: false,
 				new: true
-			}, body, (err, doc) => {
-				return doc;
-			});
+			}
+		);
 	}
 
 	fetchAllContentMedias(id) {
-		return this.Conteudo.findById(id , (err, content) => {
+		return this.Conteudo.findById(id, (err, content) => {
 			return new Promise((resolve, reject) => {
 				resolve(content)
 			});
 		}).then(doc => {
 			return doc.midia
 		})
-  }
+	}
 
 	fetchContentMediaById(id_conteudo, id_midia) {
-    return this.Conteudo.findById(id_conteudo , (err, content) => {
+		return this.Conteudo.findById(id_conteudo, (err, content) => {
 			return new Promise((resolve, reject) => {
 				resolve(content)
 			});
 		}).then(doc => {
-			doc.midia =  doc.midia.filter(x => { return x.id == id_midia })
+			doc.midia = doc.midia.filter(x => { return x.id == id_midia })
 			return doc.midia;
 		})
-  }
+	}
 
 	deleteContentById(id_conteudo) {
 		return this.Conteudo.remove({
@@ -70,27 +73,27 @@ export default class Adapter {
 			});
 	}
 
-	saveConteudoMidia(body, id_conteudo){
-			const media = this.Midia(body);
+	saveConteudoMidia(body, id_conteudo) {
+		const media = this.Midia(body);
 
-			media.save();
+		media.save();
 
-			return this.Conteudo.update(
-				{ _id: id_conteudo },
-				{ $push: {refMidias: media.id} },
-				{ multi: false }
-			).then(result => {
-				return {};
+		return this.Conteudo.update(
+			{ _id: id_conteudo },
+			{ $push: { refMidias: media.id } },
+			{ multi: false }
+		).then(result => {
+			return {};
 		});
 	}
 
 	deleteMediaByContent(id_conteudo, id_midia) {
-    return this.Conteudo.update(
-      { _id: id_conteudo },
-      { $pull: { refMidias: id_midia } },
-      { multi: false }
-    ).then(resultado => {
-      return resultado.nModified > 0
-    });
-  }
+		return this.Conteudo.update(
+			{ _id: id_conteudo },
+			{ $pull: { refMidias: id_midia } },
+			{ multi: false }
+		).then(resultado => {
+			return resultado.nModified > 0
+		});
+	}
 }
