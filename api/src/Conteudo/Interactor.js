@@ -33,9 +33,4 @@ export default class Interactor {
 		return this.Entity.find(body);
 	}
 
-	deleteMediaByContent(id_midia) {
-		console.log("gesiel Interactor");
-		return this.Entity.deleteMediaByContent(id_midia);
-	}
-
 }

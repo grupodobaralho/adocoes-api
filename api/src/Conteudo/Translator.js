@@ -73,18 +73,4 @@ export default class Translator {
 					response.send(500, "Ocorreu um erro durante o cadastro do item");
 		});
 	}
-
-	deleteMediaByContent(request, response) {
-		const id_midia = request.params.id_midia;
-		console.log(id_midia);
-		return this.Interactor.deleteMediaByContent(id_midia)
-			.then(sucesso => {
-				console.log("gesiel sucesso");
-				response.send(200, "Mídia deletada com sucesso");
-			})
-			.catch(error => {
-				console.log("gesiel fracasso");
-				response.send(500, "Ocorreu um problema ao deletar a Mídia");
-			});
-	}
 }

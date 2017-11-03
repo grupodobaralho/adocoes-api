@@ -68,14 +68,4 @@ export default class Adapter {
 				return {};
 		});
 	}
-
-	deleteMediaByContent(id_midia) {
-		console.log("gesiel adapter");
-		return this.Conteudo.remove({
-			midia: id_midia
-		})
-		.then(resultado => {
-			return resultado.result.n > 0;
-		});
-	}
 }
