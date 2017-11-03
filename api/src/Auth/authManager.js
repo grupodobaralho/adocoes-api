@@ -57,7 +57,7 @@ passport.use(new BearerStrategy(
 
 				// Permitir a definição de escopo de acordo com o perfil do usuario
 				callback(null, usuario, {
-					scope: Roles.USER
+					scope: usuario.perfis
 				});
 			});
 		});
