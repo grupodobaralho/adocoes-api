@@ -1,5 +1,7 @@
 "use strict";
 
+import Roles from '../Common/Roles';
+
 export default class Translator {
     constructor(deps = {}) {
         this.Interactor = deps.Interactor || new (require("./Interactor").default)();
@@ -17,6 +19,10 @@ export default class Translator {
     
     post(request, response) {
         let body = request.body.body;
+
+        //Check if the current user has permission to perform this action
+        if (request.user.perfis.indexOf(Roles.ADMINISTRADOR) === -1)
+            return response.send(401);
 
         //Ação padrão para resultado do interactor
         this.Interactor.post(body)
