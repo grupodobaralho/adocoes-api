@@ -740,38 +740,12 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"type\": \"foto\",\n\t\"descricao\": \"Descrição do conteúdo aqui\",\n\t\"anonymous\": true,\n\t\"principal\": true\n}"
+							"raw": "{\n\t\"type\": \"foto\",\n\t\"conteudo\": \"body do base 64 aqui\",\n\t\"descricao\": \"Descrição do conteúdo aqui\",\n\t\"anonymous\": true,\n\t\"principal\": true\n}"
 						},
 						"description": ""
 					},
 					"response": []
 				},
-				{
-					"name": "/menores/{id_menor}/midias",
-					"request": {
-						"url": "{{url}}/menores/{id_menor}/midias",
-						"method": "DELETE",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "{{token-type}} {{access-token}}",
-								"description": ""
-							},
-							{
-								"key": "Content-Type",
-								"value": "{{content-type}}",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"description": ""
-					},
-					"response": []
-				},
-
 				{
 					"name": "/menores/{id_menor}/midias",
 					"request": {
@@ -796,138 +770,12 @@
 						"description": ""
 					},
 					"response": []
-				},			
-				{	"name": "/menores/{id_menor}/midias/{id_midias}",
+				},
+				{
+					"name": "/menores/{id_menor}/midias/{id_midias}",
 					"request": {
 						"url": "{{url}}/menores/{id_menor}/midias/{id_midias}",
 						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "{{token-type}} {{access-token}}",
-								"description": ""
-							},
-							{
-								"key": "Content-Type",
-								"value": "{{content-type}}",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-				"name": "/menores/{id_menor}/midias/{id_midias}",
-				"request": {
-					"url": "{{url}}/menores/{id_menor}/midias/{id_midias}",
-					"method": "DELETE",
-					"header": [
-						{
-							"key": "Authorization",
-							"value": "{{token-type}} {{access-token}}",
-							"description": ""
-						},
-						{
-							"key": "Content-Type",
-							"value": "{{content-type}}",
-							"description": ""
-						}
-					],
-					"body": {
-						"mode": "raw",
-						"raw": ""
-					},
-					"description": ""
-				},
-				"response": []
-			},
-				{
-					"name": "/menores/{id_menor}/videos",
-					"request": {
-						"url": "{{url}}/menores/{id_menor}/videos",
-						"method": "POST",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "{{token-type}} {{access-token}}",
-								"description": ""
-							},
-							{
-								"key": "Content-Type",
-								"value": "{{content-type}}",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{}"
-						},
-						"description": ""
-					},
-					"response": []
-				},
-			
-			
-				{
-					"name": "/menores/{id_menor}/videos",
-					"request": {
-						"url": "{{url}}/menores/{id_menor}/videos",
-						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "{{token-type}} {{access-token}}",
-								"description": ""
-							},
-							{
-								"key": "Content-Type",
-								"value": "{{content-type}}",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "/menores/{id_menor}/videos/{id_video}",
-					"request": {
-						"url": "{{url}}/menores/{id_menor}/videos/{id_video}",
-						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "{{token-type}} {{access-token}}",
-								"description": ""
-							},
-							{
-								"key": "Content-Type",
-								"value": "{{content-type}}",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "/menores/{id_menor}/videos/{id_video}",
-					"request": {
-						"url": "{{url}}/menores/{id_menor}/videos/{id_video}",
-						"method": "DELETE",
 						"header": [
 							{
 								"key": "Authorization",
@@ -958,6 +806,31 @@
 					"name": "/termo",
 					"request": {
 						"url": "{{url}}/termo",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token-type}} {{access-token}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"body\": \"Body do novo termo aqui\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "/termo",
+					"request": {
+						"url": "{{url}}/termo",
 						"method": "GET",
 						"header": [
 							{
@@ -967,7 +840,7 @@
 							},
 							{
 								"key": "Content-Type",
-								"value": "{{content-type}}",
+								"value": "application/json",
 								"description": ""
 							}
 						],
