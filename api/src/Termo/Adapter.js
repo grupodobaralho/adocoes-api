@@ -8,7 +8,7 @@ export default class Adapter {
   }
 
   get() {
-    return this.Termo.findOne();
+    return this.Termo.findOne().sort({timeStamp: -1});
   }
 
   post(body) {
