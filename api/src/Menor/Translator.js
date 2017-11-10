@@ -12,6 +12,9 @@ export default class Translator {
     post(request, response) {
         const { body } = request;
 
+        //Check if the current user has permission to perform this action
+        if (request.user.perfis.indexOf(Roles.ADMINISTRADOR) === -1)
+            return response.send(401);
 
         this.Interactor.create(body)
             .then(message => {
@@ -77,6 +80,10 @@ export default class Translator {
     updateMenor(request, response) {
         const { body } = request;
 
+        //Check if the current user has permission to perform this action
+        if (request.user.perfis.indexOf(Roles.ADMINISTRADOR) === -1)
+            return response.send(401);
+
         this.Interactor.update(request.params.id_menor, body)
             .then(menor => {
                 if (!menor) {
@@ -85,7 +92,6 @@ export default class Translator {
                 response.send(200, menor);
             })
             .catch(error => {
-                console.log(error);
                 response.send(500, "Ocorreu um erro ao atualizar o menor");
             });
     }
@@ -93,6 +99,9 @@ export default class Translator {
     deleteMenor(request, response) {
         const { id_menor } = request.params;
 
+        //Check if the current user has permission to perform this action
+        if (request.user.perfis.indexOf(Roles.ADMINISTRADOR) === -1)
+            return response.send(401);
 
         this.Interactor.delete(id_menor)
             .then(sucesso => {
@@ -102,7 +111,6 @@ export default class Translator {
                 response.send(200, "Cadastro deletado com sucesso");
             })
             .catch(error => {
-                console.log(error);
                 response.send(500, "Ocorreu um erro ao deletar o cadastro");
             });
     }
@@ -168,12 +176,56 @@ export default class Translator {
         const { body } = request;
         const { id_menor } = request.params;
 
+        //Check if the current user has permission to perform this action
+        if (request.user.perfis.indexOf(Roles.ADMINISTRADOR) === -1)
+            return response.send(401);
+
         this.Interactor.postMedia(body, id_menor)
             .then(message => {
                 response.send(200, message);
             })
             .catch(error => {
                 response.send(500, error);
+            });
+    }
+
+    deleteAllMedia(request, response) {
+        const { id_menor } = request.params;
+
+        //Check if the current user has permission to perform this action
+        if (request.user.perfis.indexOf(Roles.ADMINISTRADOR) === -1)
+            return response.send(401);
+
+        this.Interactor.deleteAllMedia(id_menor)
+            .then(sucesso => {
+                if (!sucesso) {
+                    return response.send(400, "Nenhuma mídia com o ID informado foi encontrada.");
+                }
+                response.send(200, "Mídias deletadas com sucesso.");
+            })
+            .catch(error => {
+                response.send(500, "Ocorreu um erro ao deletar as mídias.");
+            });
+
+    }
+
+    deleteMediaById(request, response) {
+        const { id_menor } = request.params;
+        const { id_midia } = request.params;
+
+        //Check if the current user has permission to perform this action
+        if (request.user.perfis.indexOf(Roles.ADMINISTRADOR) === -1)
+            return response.send(401);
+
+        this.Interactor.deleteMediaById(id_menor, id_midia)
+            .then(sucesso => {
+                if (!sucesso) {
+                    return response.send(400, "Nenhuma mídia com o ID informado foi encontrada.");
+                }
+                response.send(200, "Mídia deletada com sucesso.");
+            })
+            .catch(error => {
+                response.send(500, "Ocorreu um erro ao deletar a mídia.");
             });
     }
 
@@ -193,7 +245,6 @@ export default class Translator {
     }
 
     postInterested(request, response) {
-
         let body = {
             refMenor: request.params.id_menor,
             refInteressado: request.user._id,
@@ -213,71 +264,16 @@ export default class Translator {
 
     fetchAllTypeInterest(request, response) {
         const id = request.params.id_interessado;
-        if (request.query.interesse) {
-            const type = request.query.interesse;
-            this.Interactor.fetchAllTypeInterestFiltered(id, type)
-                .then(message => {
-                    response.send(200, message);
-                })
-                .catch(error => {
-                    console.log(error);
-                    response.send(400, error)
-                });
-        }
-        else {
-            this.Interactor.fetchAllTypeInterest(id)
-                .then(message => {
-                    response.send(200, message);
-                })
-                .catch(error => {
-                    console.log(error);
-                    response.send(400, error)
-                });
-        }
-    }
 
-    deleteAllMedia(request, response) {
+        let interactor = request.query.interesse ?
+            this.Interactor.fetchAllTypeInterestFiltered(id, request.query.interesse) :
+            this.Interactor.fetchAllTypeInterest(id);
 
-        const {
-                  id_menor
-              } = request.params;
-
-
-        this.Interactor.deleteAllMedia(id_menor)
-            .then(sucesso => {
-                if (!sucesso) {
-                    return response.send(400, "Nenhuma mídia com o ID informado foi encontrada");
-                }
-                response.send(200, "Mídias deletadas com sucesso");
-            })
-            .catch(error => {
-                console.log(error);
-                response.send(500, "Ocorreu um erro ao deletar as mídias");
-            });
-
-    }
-
-    deleteMediaById(request, response) {
-
-        const {
-                    id_menor
-                } = request.params;
-
-        const {
-                    id_midia
-                } = request.params;
-
-
-        this.Interactor.deleteMediaById(id_menor, id_midia)
-            .then(sucesso => {
-                if (!sucesso) {
-                    return response.send(400, "Nenhuma mídia com o ID informado foi encontrada");
-                }
-                response.send(200, "Mídia deletado com sucesso");
-            })
-            .catch(error => {
-                console.log(error);
-                response.send(500, "Ocorreu um erro ao deletar a mídia");
-            });
+        interactor.then(message => {
+            response.send(200, message);
+        })
+        .catch(error => {
+            response.send(400, error)
+        });
     }
 }
