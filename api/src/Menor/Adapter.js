@@ -105,9 +105,6 @@ export default class Adapter {
       $project: { "midias.conteudo": 0 }
     });
 
-    return MoongoseHelper.aggregate(this.Menor, aggregatePipepline); //Acho que ficou em um conflito de merge
-
-
     return MoongoseHelper.aggregate(this.Menor, aggregatePipepline, isSingleRecord);
   }
 
