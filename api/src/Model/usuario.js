@@ -24,11 +24,11 @@ const usuarioSchema = new Schema({
 		unique: true,
 		required: true
 	},
-	perfis: {
+	perfis: [{
 		type: String,
 		enum: ["Administrador", "Interessado"],
 		required: true
-	},
+	}],
 	refPerfilAdministrador: {
 		type: mongoose.Schema.Types.ObjectId,
 		ref: "administradores",
