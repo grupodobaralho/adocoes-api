@@ -4,14 +4,10 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const midiaSchema = new Schema({
-	refMenor: {
-		type: mongoose.Schema.Types.ObjectId,
-		ref: 'Menor'
-	},
-	refConteudo: {
-		type: mongoose.Schema.Types.ObjectId,
-		ref: 'Conteudo'
-	},
+	conteudo: {
+        type: String,
+        required: true
+    },
 	type: {
 		type: String,
 		enum: ["foto", "foto-blur", "video", "carta", "html"],

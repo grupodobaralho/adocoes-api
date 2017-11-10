@@ -192,8 +192,7 @@ validateTypeInterest(type){
 
     validateMedia(body, id_menor) {
         const schema = Joi.object({
-            refMenor: id_menor,
-            refConteudo: Joi.string(),
+            conteudo: Joi.string().required(),
             type: Joi.string().required(),
             descricao: Joi.string(),
             principal: Joi.boolean(),
