@@ -8,12 +8,39 @@ export default class Adapter {
     this.Menor = mongoose.model("Menor");
     this.Interesse = mongoose.model("Interesse");
     this.Midia = mongoose.model("Midia");
+    this.Vinculo = mongoose.model("Vinculo");
   }
 
   // ## MENORES ##
   save(body) {
-    const menor = new this.Menor(body);
-    return menor.save();
+    const menor = new this.Menor(body);   
+    menor.save()
+    if(menor.menoresVinculados.length > 0){
+      let idVinculo = [], type = null, vinculo = {};
+      idVinculo = menor.menoresVinculados;
+
+      for(let v of idVinculo){
+        
+        this.Menor.findById(v.refMenor, (err, m) => {
+
+          vinculo = {
+              refMenor: [ menor._id, m._id],
+              tipoVinculo: type
+            };
+ /*CONFIRMAR COM O HASS COMO FUNCIONA O GETALL, PARA BUSCAR SOMENTE A FOTO PRINCIPAL
+ E SALVAR NO ATRIBUTO MENORESVINCULADOS(NO CASO TERIA QUE MUDAR TODA A LÓGICA)*/
+            postVinculo(vinculo); 
+            return true;
+          
+        });
+      }
+    }
+    return menor;
+  }
+
+  postVinculo(body){
+    const vinculo = new this.Vinculo(body);
+    return vinculo.save();
   }
 
   delete(_id) {

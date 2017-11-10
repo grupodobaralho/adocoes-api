@@ -14,6 +14,12 @@ export default class Interactor {
         });
     }
 
+    postVinculo(body) {
+        return this.Entity.validateVinculo(body).then(body => {
+            return this.Entity.postVinculo(body);
+        });
+    }
+
     delete(id) {
         return this.Entity.delete(id);
     }

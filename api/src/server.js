@@ -145,6 +145,13 @@ server.post("/menores", AuthManager.userAuthenticated, function(req, res) {
     menorTranslator.post(req, res);
 });
 
+// P1
+// RFM01: POST /menores/id_menor/vinculo
+server.post("/menores/:id_menor/vinculo", AuthManager.userAuthenticated, function(req, res) {
+    const menorTranslator = new MenorTranslator();
+    menorTranslator.postVinculo(req, res);
+});
+
 // P0
 // RFM02: GET /menores
 // RFM06: GET /menores?idade=:idade,sexo=:sexo
