@@ -10,4 +10,9 @@ export default class Adapter {
   get() {
     return this.Termo.findOne();
   }
+
+  post(body) {
+      const term = new this.Termo(body);
+      return term.save();
+  }
 }

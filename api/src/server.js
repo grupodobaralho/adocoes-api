@@ -323,6 +323,11 @@ server.get("/termo", AuthManager.anonymousAuthenticated, function(req, res) {
     termoTranslator.get(req, res);
 });
 
+server.post("/termo", AuthManager.userAuthenticated, function(req, res) {
+    const termoTranslator = new TermoTranslator();
+    termoTranslator.post(req, res);
+});
+
 //
 //resource: Conteudos
 //

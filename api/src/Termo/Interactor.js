@@ -8,4 +8,17 @@ export default class Interactor {
     get() {
         return this.Entity.get();
     }
+
+    post(body) {
+        let bag = {
+            //Adiciona a data junto com o "corpo" que veio do Translator
+            timeStamp: Date.now(),
+
+            body: body
+        };
+
+        return this.Entity.validate(bag).then(validatedBag => {
+            return this.Entity.post(validatedBag);
+        })
+    }
 }
