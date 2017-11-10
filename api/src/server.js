@@ -190,7 +190,7 @@ server.get("/menores/:id_interessado/interessados?interesse=favoritar|adotar|apa
 
 // P1
 // RFM09: DELETE /menores/:id_interesse/interessados/
-server.del("/menores/:id_interesse/interessados/", AuthManager.anonymousAuthenticated, function(req, res) {
+server.del("/menores/:id_interesse/interessados/", AuthManager.userAuthenticated, function(req, res) {
     const menorTranslator = new MenorTranslator();
     menorTranslator.deleteInterested(req, res);
 });
@@ -280,7 +280,7 @@ server.get("/interessados/:id_interessado/menores?interesse=favoritar|adotar|apa
 
 // P1
 // RFI15: DELETE /interessados/:id_interesse/menores/
-server.del("/interessados/:id_interesse/menores/", AuthManager.anonymousAuthenticated, function(req, res) {
+server.del("/interessados/:id_interesse/menores/", AuthManager.userAuthenticated, function(req, res) {
     const interessadoTranslator = new InteressadoTranslator();
     interessadoTranslator.deleteInterested(req, res);
 });
