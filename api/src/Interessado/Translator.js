@@ -123,6 +123,9 @@ export default class Translator {
     // ## INTERESSE ##
     // RFI13: POST /interessados/:id_interessado}/menores
     postInterested(request, response) {
+        //Check if the current user has permission to perform this action
+        if (request.user.perfis.indexOf(Roles.ADMINISTRADOR) === -1)
+            return response.send(401);
 
         let body = {
             refMenor: request.body.refMenor,
