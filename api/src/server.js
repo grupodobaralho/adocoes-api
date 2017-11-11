@@ -307,7 +307,7 @@ server.del("/interessados/:id_interesse/menores/", AuthManager.userAuthenticated
 
 server.put("/interessados/:id_interessado/ordenacao", AuthManager.userAuthenticated, function(req, res) {
     const interessadoTranslator = new InteressadoTranslator();
-    interessadoTranslator.postOrdenacao(req, res);
+    interessadoTranslator.putOrdenacao(req, res);
 });
 
 server.put("/eu/ordenacao", AuthManager.userAuthenticated, function(req, res) {
