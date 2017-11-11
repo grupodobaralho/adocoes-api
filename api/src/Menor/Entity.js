@@ -48,6 +48,17 @@ export default class Entity {
         });
     }
 
+    fetchVinculos(id) {
+        return this.Adapter.fetchVinculos(id, true);
+    }
+
+    fetchVinculosAnonymous(id) {
+        return this.Adapter.fetchVinculos(id, false).then(dto => {
+            //Para cada entidade, reduzir a quantidade das informações
+            return this._createNewAnonymousDTO(dto);
+        });
+    }
+
     delete(id) {
         return this.Adapter.delete(id);
     }
@@ -165,10 +176,6 @@ validateTypeInterest(type){
             dataNascimento: Joi.date().required().max("now").min(new Date().setFullYear(new Date().getFullYear() - 18)), //somar data atual + 18 anos
             etnia: Joi.string().required(),
             certidaoNascimento: Joi.string().required(),
-            menoresVinculados: Joi.array().items(Joi.object({  
-                refMenor: Joi.objectId().required(), 
-                tipoVinculo: Joi.string().required().regex(/irmãos|primos/)
-              })), 
             saudavel: Joi.boolean().required(),
             descricaoSaude: Joi.string().required(),
             curavel: Joi.boolean().required(),
@@ -226,8 +233,10 @@ validateTypeInterest(type){
 
     validateVinculo(body) {
         const schema = Joi.object({
-            refMenor: Joi.array().items([objectId()]).required(), 
-            tipoVinculo: Joi.string().required().regex(/irmãos|primos/)
+            refMenorOne: Joi.objectId().required(),
+            refMenorTwo: Joi.objectId().required(), 
+            tipoVinculo: Joi.string().required().regex(/irmãos|primos/),
+            adocaoConjunta: Joi.boolean().required()
         });
 
         const { error, value } = Joi.validate(body, schema);

@@ -14,32 +14,11 @@ export default class Adapter {
   // ## MENORES ##
   save(body) {
     const menor = new this.Menor(body);   
-    menor.save()
-    if(menor.menoresVinculados.length > 0){
-      let idVinculo = [], type = null, vinculo = {};
-      idVinculo = menor.menoresVinculados;
-
-      for(let v of idVinculo){
-        
-        this.Menor.findById(v.refMenor, (err, m) => {
-
-          vinculo = {
-              refMenor: [ menor._id, m._id],
-              tipoVinculo: type
-            };
- /*CONFIRMAR COM O HASS COMO FUNCIONA O GETALL, PARA BUSCAR SOMENTE A FOTO PRINCIPAL
- E SALVAR NO ATRIBUTO MENORESVINCULADOS(NO CASO TERIA QUE MUDAR TODA A LÓGICA)*/
-            postVinculo(vinculo); 
-            return true;
-          
-        });
-      }
-    }
-    return menor;
+    return menor.save();
   }
 
   postVinculo(body){
-    const vinculo = new this.Vinculo(body);
+    const vinculo = new this.Vinculo(body);  
     return vinculo.save();
   }
 
@@ -86,6 +65,36 @@ export default class Adapter {
     ];
 
     return this._cursorMenoresAggregatingMedias(shouldRenderAllMedias, aggregatePipepline, true);
+  }
+
+  fetchVinculos(id, shouldRenderAllMedias) {
+    let ids = [];
+    let menores = [];
+    return this.Vinculo.find({ refMenorOne: id }, (err, resp) => {
+      for(var m of resp){
+        ids.push(m.refMenorTwo);
+      }
+      return this.Vinculo.find({ refMenorTwo: id }, (err, resp) => {
+        for(var m of resp){
+          ids.push(m.refMenorOne);
+          return ids;
+        }
+      })
+  }).then(res => {
+    for(let m of res){
+    //Busca pelo ID
+    let aggregatePipepline = [
+      {
+        $match: {
+          _id: mongoose.Types.ObjectId(m)
+        }
+      }
+    ];
+
+    menores.push(this._cursorMenoresAggregatingMedias(shouldRenderAllMedias, aggregatePipepline, true));
+  }
+  return menores;
+})
   }
 
   _cursorMenoresAggregatingMedias(shouldRenderAllMedias, aggregatePipepline = [], isSingleRecord = false) {

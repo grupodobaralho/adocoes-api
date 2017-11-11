@@ -146,8 +146,8 @@ server.post("/menores", AuthManager.userAuthenticated, function(req, res) {
 });
 
 // P1
-// RFM01: POST /menores/id_menor/vinculo
-server.post("/menores/:id_menor/vinculo", AuthManager.userAuthenticated, function(req, res) {
+// RFM01/2: POST /menores/vinculo
+server.post("/menores/vinculo", AuthManager.userAuthenticated, function(req, res) {
     const menorTranslator = new MenorTranslator();
     menorTranslator.postVinculo(req, res);
 });
@@ -165,6 +165,13 @@ server.get("/menores?pontoSexo=:genderPoint&pontoIdade=:agePoint", AuthManager.a
 server.get("/menores/:id_menor", AuthManager.anonymousAuthenticated, function(req, res) {
     const menorTranslator = new MenorTranslator();
     menorTranslator.get(req, res);
+});
+
+// P0
+// RFM03/2: GET /menores/:id_menor
+server.get("/menores/vinculos/:id_menor", AuthManager.anonymousAuthenticated, function(req, res) {
+    const menorTranslator = new MenorTranslator();
+    menorTranslator.getVinculos(req, res);
 });
 
 // P1

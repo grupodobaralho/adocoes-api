@@ -12,7 +12,6 @@ export default class Translator {
     post(request, response) {
         const { body } = request;
 
-
         this.Interactor.create(body)
             .then(message => {
                 response.send(200, message);
@@ -23,11 +22,7 @@ export default class Translator {
     }
 
     postVinculo(request, response) {
-        let body = {
-            refMenor: request.params.id_menor,
-            tipoVinculo: request.body.tipoVinculo
-        };
-
+        let { body } = request;
 
         this.Interactor.postVinculo(body)
             .then(message => {
@@ -79,6 +74,29 @@ export default class Translator {
         //Ou se possui escopo de Usuário/Admin
         else
             interactorResult = this.Interactor.fetchById(id_menor);
+
+        //Ação padrão para resultado do interactor
+        interactorResult
+            .then(message => {
+                response.send(200, message);
+            })
+            .catch(error => {
+                response.send(500, error);
+            });
+    }
+
+    getVinculos(request, response) {
+        const { id_menor } = request.params;
+
+        let interactorResult;
+
+        //Validar se a requisição atual possui escopo Anônimo
+        if (request.authInfo === undefined)
+            interactorResult = this.Interactor.fetchVinculosAnonymous(id_menor);
+
+        //Ou se possui escopo de Usuário/Admin
+        else
+            interactorResult = this.Interactor.fetchVinculosById(id_menor);
 
         //Ação padrão para resultado do interactor
         interactorResult
