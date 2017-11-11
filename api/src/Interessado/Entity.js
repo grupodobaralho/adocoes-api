@@ -153,7 +153,7 @@ validateTypeInterest(type){
 	}
 
 	updateInteressado(body) {
-		return this.Adapter.updateInteressado(body);
+		return this.Adapter.postOrdenacao(body);
 	}
 
 	addInterest() {

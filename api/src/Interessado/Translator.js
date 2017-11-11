@@ -90,26 +90,32 @@ export default class Translator {
 
 		delete body._id;
 
-		this.Interactor.updateInteressado(body)
+        //Check if the current user has permission to perform this action
+        if (request.user.perfis.indexOf(Roles.ADMINISTRADOR) === -1)
+            return response.send(401);
+
+		this.Interactor
+			.updateInteressado(body)
 			.then(message => {
 				response.send(200, message);
 			})
 			.catch(error => {
-				console.log(error);
+				response.send(500, error);
 			});
 	}
 
 	deleteInteressado(request, response) {
-		const {
-			body
-		} = request;
+        //Check if the current user has permission to perform this action
+        if (request.user.perfis.indexOf(Roles.ADMINISTRADOR) === -1)
+            return response.send(401);
 
-		this.Interactor.delete(request.params.id)
+		this.Interactor
+			.delete(request.params.id)
 			.then(message => {
-				response.send(204, message);
+				response.send(200, message);
 			})
 			.catch(error => {
-				console.log(error);
+				response.send(500, error);
 			});
 	}
 
