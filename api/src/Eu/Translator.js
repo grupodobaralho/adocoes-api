@@ -7,6 +7,28 @@ export default class Translator {
         this.Interactor = deps.Interactor || new (require("../Interessado/Interactor").default)();
     }
 
+    getInteressado(request, response) {
+        //Check if the current user has permission to perform this action
+        if (request.user.perfis.indexOf(Roles.INTERESSADO) === -1)
+            return response.send(401);
+
+        this.Interactor
+            .getInteressadoByUser(request.user._id)
+            .then(interessado => {
+                this.Interactor
+                    .getInteressado({ id: interessado._id })
+                    .then(bag => {
+                        response.send(200, bag);
+                    })
+                    .catch(error => {
+                        response.send(500, error);
+                    });
+            })
+            .catch(error => {
+                response.send(400, error);
+            });
+    }
+
     getAllInterest(request, response) {
         const id = request.params.id_interessado;
 

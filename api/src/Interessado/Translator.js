@@ -196,6 +196,10 @@ export default class Translator {
         response.send(501);
     }
 
+    getVisualizacoes(request, response) {
+        response.send(501);
+    }
+
     // ## DOCUMENTOS ##
     getDocuments(request, response) {
         const body = {

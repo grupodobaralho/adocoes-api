@@ -266,6 +266,11 @@ server.get("/interessados/:id_interessado", AuthManager.userAuthenticated, funct
     interessadoTranslator.getInteressado(req, res);
 });
 
+server.get("/eu/", AuthManager.userAuthenticated, function(req, res) {
+    const euTranslator = new EuTranslator();
+    euTranslator.getInteressado(req, res);
+});
+
 // P0
 // RFI04: PUT /interessados/:id_interessado
 server.put("/interessados/:id_interessado", AuthManager.userAuthenticated, function(req, res) {
