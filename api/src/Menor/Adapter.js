@@ -67,34 +67,8 @@ export default class Adapter {
     return this._cursorMenoresAggregatingMedias(shouldRenderAllMedias, aggregatePipepline, true);
   }
 
-  fetchVinculos(id, shouldRenderAllMedias) {
-    let ids = [];
-    let menores = [];
-    return this.Vinculo.find({ refMenorOne: id }, (err, resp) => {
-      for(var m of resp){
-        ids.push(m.refMenorTwo);
-      }
-      return this.Vinculo.find({ refMenorTwo: id }, (err, resp) => {
-        for(var m of resp){
-          ids.push(m.refMenorOne);
-          return ids;
-        }
-      })
-  }).then(res => {
-    for(let m of res){
-    //Busca pelo ID
-    let aggregatePipepline = [
-      {
-        $match: {
-          _id: mongoose.Types.ObjectId(m)
-        }
-      }
-    ];
-
-    menores.push(this._cursorMenoresAggregatingMedias(shouldRenderAllMedias, aggregatePipepline, true));
-  }
-  return menores;
-})
+  fetchVinculos(id) {
+    return this.Vinculo.find({ refMenor: id });
   }
 
   _cursorMenoresAggregatingMedias(shouldRenderAllMedias, aggregatePipepline = [], isSingleRecord = false) {

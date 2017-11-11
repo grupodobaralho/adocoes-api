@@ -4,19 +4,19 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const vinculoSchema = new Schema({
-	refMenorOne: {
+	refMenor: {
 		type: mongoose.Schema.Types.ObjectId,
 		ref: "menores",
 		required: true
 	},
-	refMenorTwo: {
+	refMenorVinculado: {
 		type: mongoose.Schema.Types.ObjectId,
 		ref: "menores",
 		required: true
 	},
 	tipoVinculo: {
 		type: String,
-		enum: ["irmãos", "primos"],
+		enum: ["Irmão", "Irmã", "Prima", "Primo"],
 		required: true
 	},
 	adocaoConjunta: {

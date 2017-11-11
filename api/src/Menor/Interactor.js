@@ -54,10 +54,6 @@ export default class Interactor {
         return this.Entity.fetchVinculos(id);
     }
 
-    fetchVinculsAnonymous(id) {
-        return this.Entity.fetchVinculsAnonymous(id);
-    }
-
     update(id, body) {
         return this.Entity.validate(body).then(body => {
             return this.Entity.update(id, body);

@@ -90,13 +90,7 @@ export default class Translator {
 
         let interactorResult;
 
-        //Validar se a requisição atual possui escopo Anônimo
-        if (request.authInfo === undefined)
-            interactorResult = this.Interactor.fetchVinculosAnonymous(id_menor);
-
-        //Ou se possui escopo de Usuário/Admin
-        else
-            interactorResult = this.Interactor.fetchVinculosById(id_menor);
+        interactorResult = this.Interactor.fetchVinculos(id_menor);
 
         //Ação padrão para resultado do interactor
         interactorResult

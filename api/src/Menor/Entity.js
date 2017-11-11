@@ -52,13 +52,6 @@ export default class Entity {
         return this.Adapter.fetchVinculos(id, true);
     }
 
-    fetchVinculosAnonymous(id) {
-        return this.Adapter.fetchVinculos(id, false).then(dto => {
-            //Para cada entidade, reduzir a quantidade das informações
-            return this._createNewAnonymousDTO(dto);
-        });
-    }
-
     delete(id) {
         return this.Adapter.delete(id);
     }
@@ -233,9 +226,9 @@ validateTypeInterest(type){
 
     validateVinculo(body) {
         const schema = Joi.object({
-            refMenorOne: Joi.objectId().required(),
-            refMenorTwo: Joi.objectId().required(), 
-            tipoVinculo: Joi.string().required().regex(/irmãos|primos/),
+            refMenor: Joi.objectId().required(),
+            refMenorVinculado: Joi.objectId().required(), 
+            tipoVinculo: Joi.string().required().regex(/Irmão|Irmã|Prima|Primo/),
             adocaoConjunta: Joi.boolean().required()
         });
 
