@@ -46,16 +46,19 @@ export default class Translator {
 	}
 
 	getInteressados(request, response) {
-		const {
-			body
-		} = request;
+		const { body } = request;
 
-		this.Interactor.getInteressados()
+        //Check if the current user has permission to perform this action
+        if (request.user.perfis.indexOf(Roles.ADMINISTRADOR) === -1)
+            return response.send(401);
+
+		this.Interactor
+			.getInteressados()
 			.then(message => {
 				response.send(200, message);
 			})
 			.catch(error => {
-				console.log(error);
+                response.send(500, error);
 			});
 	}
 
@@ -65,12 +68,17 @@ export default class Translator {
 			...request.body
 		}
 
-		this.Interactor.findOneInteressado(body)
+        //Check if the current user has permission to perform this action
+        if (request.user.perfis.indexOf(Roles.ADMINISTRADOR) === -1)
+            return response.send(401);
+
+		this.Interactor
+			.getInteressado(body)
 			.then(message => {
-				response.json(200, message);
+				response.send(200, message);
 			})
 			.catch(error => {
-				console.log(error);
+				response.send(500, error);
 			});
 	}
 
