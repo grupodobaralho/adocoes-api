@@ -33,13 +33,6 @@ const menorSchema = new Schema({
     familiares: [
         familiarSchema
     ],
-    menoresVinculados: [
-        vinculoSchema
-    ],
-    adocoesConjuntas: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "menores"
-    }],
     saudavel: {
         type: Boolean,
         required: true

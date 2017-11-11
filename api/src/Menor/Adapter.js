@@ -8,12 +8,18 @@ export default class Adapter {
     this.Menor = mongoose.model("Menor");
     this.Interesse = mongoose.model("Interesse");
     this.Midia = mongoose.model("Midia");
+    this.Vinculo = mongoose.model("Vinculo");
   }
 
   // ## MENORES ##
   save(body) {
-    const menor = new this.Menor(body);
+    const menor = new this.Menor(body);   
     return menor.save();
+  }
+
+  postVinculo(body){
+    const vinculo = new this.Vinculo(body);  
+    return vinculo.save();
   }
 
   delete(_id) {
@@ -59,6 +65,10 @@ export default class Adapter {
     ];
 
     return this._cursorMenoresAggregatingMedias(shouldRenderAllMedias, aggregatePipepline, true);
+  }
+
+  fetchVinculos(id) {
+    return this.Vinculo.find({ refMenor: id });
   }
 
   _cursorMenoresAggregatingMedias(shouldRenderAllMedias, aggregatePipepline = [], isSingleRecord = false) {

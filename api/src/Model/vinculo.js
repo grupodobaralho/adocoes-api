@@ -9,9 +9,18 @@ const vinculoSchema = new Schema({
 		ref: "menores",
 		required: true
 	},
+	refMenorVinculado: {
+		type: mongoose.Schema.Types.ObjectId,
+		ref: "menores",
+		required: true
+	},
 	tipoVinculo: {
 		type: String,
-		enum: ["irmão", "irmã", "primo", "prima"],
+		enum: ["Irmão", "Irmã", "Prima", "Primo"],
+		required: true
+	},
+	adocaoConjunta: {
+		type: Boolean,
 		required: true
 	}
 });

@@ -25,6 +25,18 @@ export default class Translator {
             });
     }
 
+    postVinculo(request, response) {
+        let { body } = request;
+
+        this.Interactor.postVinculo(body)
+            .then(message => {
+                response.send(200, message);
+            })
+            .catch(error => {
+                response.send(500, error);
+            });
+    }
+
     getAll(request, response) {
         const { body } = request;
 
@@ -66,6 +78,23 @@ export default class Translator {
         //Ou se possui escopo de Usuário/Admin
         else
             interactorResult = this.Interactor.fetchById(id_menor);
+
+        //Ação padrão para resultado do interactor
+        interactorResult
+            .then(message => {
+                response.send(200, message);
+            })
+            .catch(error => {
+                response.send(500, error);
+            });
+    }
+
+    getVinculos(request, response) {
+        const { id_menor } = request.params;
+
+        let interactorResult;
+
+        interactorResult = this.Interactor.fetchVinculos(id_menor);
 
         //Ação padrão para resultado do interactor
         interactorResult

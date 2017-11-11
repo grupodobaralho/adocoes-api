@@ -3,6 +3,8 @@
 import Joi from "joi";
 import StringHelper from "../Common/StringHelper";
 
+Joi.objectId = require('joi-objectid')(Joi) 
+
 export default class Entity {
     constructor(deps = {}) {
 		this.Adapter = deps.Adapter || new(require("./Adapter").default)();
@@ -13,6 +15,10 @@ export default class Entity {
     // ## MENORES ##
     create(body) {
         return this.Adapter.save(body);
+    }
+
+    postVinculo(body) {
+        return this.Adapter.postVinculo(body);
     }
 
     fetchAll() {
@@ -40,6 +46,10 @@ export default class Entity {
             //Para cada entidade, reduzir a quantidade das informações
             return this._createNewAnonymousDTO(dto);
         });
+    }
+
+    fetchVinculos(id) {
+        return this.Adapter.fetchVinculos(id, true);
     }
 
     delete(id) {
@@ -159,7 +169,6 @@ validateTypeInterest(type){
             dataNascimento: Joi.date().required().max("now").min(new Date().setFullYear(new Date().getFullYear() - 18)), //somar data atual + 18 anos
             etnia: Joi.string().required(),
             certidaoNascimento: Joi.string().required(),
-            familyReferences: Joi.object(),
             saudavel: Joi.boolean().required(),
             descricaoSaude: Joi.string().required(),
             curavel: Joi.boolean().required(),
@@ -197,6 +206,29 @@ validateTypeInterest(type){
             descricao: Joi.string(),
             principal: Joi.boolean(),
             anonymous: Joi.boolean()
+        });
+
+        const { error, value } = Joi.validate(body, schema);
+
+        return new Promise((resolve, reject) => {
+            if (error) {
+                let messages = error.details.map(e => e.message);
+                reject({
+                    status: 400,
+                    messages
+                });
+            } else if (value) {
+                resolve(value);
+            }
+        });
+    }
+
+    validateVinculo(body) {
+        const schema = Joi.object({
+            refMenor: Joi.objectId().required(),
+            refMenorVinculado: Joi.objectId().required(), 
+            tipoVinculo: Joi.string().required().regex(/Irmão|Irmã|Prima|Primo/),
+            adocaoConjunta: Joi.boolean().required()
         });
 
         const { error, value } = Joi.validate(body, schema);
