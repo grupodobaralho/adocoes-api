@@ -61,4 +61,33 @@ export default class Translator {
                 response.send(500, error);
             });
     }
+
+    postInterested(request, response) {
+        //Check if the current user has permission to perform this action
+        if (request.user.perfis.indexOf(Roles.INTERESSADO) === -1)
+            return response.send(401);
+
+        //Ação padrão para resultado do interactor
+        this.Interactor
+            .getInteressadoByUser(request.user._id)
+            .then(interessado => {
+                let body = {
+                    refMenor: request.body.refMenor,
+                    refInteressado: interessado._id.toString(),
+                    tipoInteresse: request.body.tipoInteresse
+                };
+
+                this.Interactor
+                    .postInterested(body)
+                    .then(message => {
+                        response.send(200, message);
+                    })
+                    .catch(error => {
+                        response.send(500, error);
+                    });
+            })
+            .catch(error => {
+                response.send(500, error);
+            });
+    }
 }

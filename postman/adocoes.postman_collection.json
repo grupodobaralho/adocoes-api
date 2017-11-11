@@ -216,6 +216,31 @@
 						"description": ""
 					},
 					"response": []
+				},
+				{
+					"name": "/eu/menores",
+					"request": {
+						"url": "{{url}}/eu/menores",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token-type}} {{access-token}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"refMenor\": \"59ea88222ddab7183ef16d85\",\n\t\"tipoInteresse\": \"adotar\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
 				}
 			]
 		},
@@ -301,7 +326,7 @@
 				{
 					"name": "/interessados/{id_interessado}",
 					"request": {
-						"url": "{{url}}/interessados/{id_interessado}",
+						"url": "{{url}}/interessados/5a072aae1786821e4837a798",
 						"method": "PUT",
 						"header": [
 							{
@@ -311,13 +336,13 @@
 							},
 							{
 								"key": "Content-Type",
-								"value": "{{content-type}}",
+								"value": "application/json",
 								"description": ""
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{}"
+							"raw": "{\n    \"name\" : \"blablabla\",\n    \"cpf\" : \"12345687902\",\n    \"nomeConjuge\" : \"maria 2\",\n    \"email\" : \"teste@gmail.com\",\n    \"dataNascimento\" : \"1991-12-12\",\n    \"renda\" : \"10000\",\n    \"comprovantesRenda\" : null,\n    \"outrosDocumentos\" : null,\n    \"enderecos\" : [\"rua das carmelias, 435\"],\n    \"telefones\" : [\"30257346\"],\n    \"refUsuario\" : \"59fce748b39c7caa53bde3cb\"\n}"
 						},
 						"description": ""
 					},
@@ -361,13 +386,13 @@
 							},
 							{
 								"key": "Content-Type",
-								"value": "{{content-type}}",
+								"value": "application/json",
 								"description": ""
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{}"
+							"raw": "{\n\t\"refMenor\": \"59ea88222ddab7183ef16d85\",\n\t\"tipoInteresse\": \"adotar\"\n}"
 						},
 						"description": ""
 					},

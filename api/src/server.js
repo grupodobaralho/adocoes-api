@@ -287,6 +287,11 @@ server.post("/interessados/:id_interessado/menores", AuthManager.userAuthenticat
     interessadoTranslator.postInterested(req, res);
 });
 
+server.post("/eu/menores", AuthManager.userAuthenticated, function(req, res) {
+    const euTranslator = new EuTranslator(req, res);
+    euTranslator.postInterested(req, res);
+});
+
 // #94 RFI14: GET /interessados/{id_interessado}/menores?tipo=favorito|apadrinhamento|adocao
 server.get("/interessados/:id_interessado/menores?interesse=favoritar|adotar|apadrinhar", AuthManager.userAuthenticated, function(req, res){
     const interessadoTranslator = new InteressadoTranslator(req, res);
