@@ -51,7 +51,7 @@ export default class Translator {
                 this.Interactor
                     .postOrdenacao(body)
                     .then(ret => {
-                        response.send(200, body);
+                        response.send(200, {});
                     })
                     .catch(error => {
                         response.send(500, error);

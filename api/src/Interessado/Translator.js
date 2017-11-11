@@ -9,21 +9,18 @@ export default class Translator {
 	}
 
     postOrdenacao(req, res) {
-        let interactorResult = null;
-		const body = {
+        const body = {
             id: req.params.id_interessado,
             ...req.body
         }
 
-        //check if the current user has ADMIN profile
-		//In case the user does not have, validate user's integrity
+        //Check if the current user has permission to perform this action
         if (req.user.perfis.indexOf(Roles.ADMINISTRADOR) === -1)
-            interactorResult = this.Interactor.postOrdenacaoValidatingUser(body, req.user);
-        else
-            interactorResult = this.Interactor.postOrdenacao(body);
+            return response.send(401);
 
-        interactorResult
-            .then(body => {
+        this.Interactor
+			.postOrdenacao(body)
+            .then(ret => {
                 res.send(200, {});
             })
             .catch(error => {

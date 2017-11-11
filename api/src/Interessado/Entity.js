@@ -44,7 +44,6 @@ export default class Entity {
 }
 
 fetchAllTypeInterestFiltered(id, type) {
-	console.log(type)
 		return this.Adapter.fetchAllTypeInterestFiltered(id, type);
 }
 
