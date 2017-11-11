@@ -65,6 +65,20 @@ export default class Adapter {
             });
     }
 
+    deleteInterestInMenor(interessadoId, menorId) {
+        console.log(interessadoId);
+        console.log(menorId);
+
+        return this.Interesse
+            .remove({
+                refInteressado: mongoose.Types.ObjectId(interessadoId),
+                refMenor: mongoose.Types.ObjectId(menorId)
+            })
+            .then(ret => {
+                return ret.result.n > 0;
+            });
+    }
+
     // #94 RFI14: GET /interessados/{id_interessado}/menores?tipo=favorito|apadrinhamento|adocao
     fetchAllTypeInterest(id) {
         return MoongoseHelper.aggregate(this.Interesse, [

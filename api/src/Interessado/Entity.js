@@ -96,6 +96,10 @@ export default class Entity {
         return this.Adapter.deleteInterested(_id);
     }
 
+    deleteInterestInMenor(interessadoId, menorId) {
+        return this.Adapter.deleteInterestInMenor(interessadoId, menorId);
+    }
+
     postInterested(body) {
         return this.Adapter.postInterested(body);
     }

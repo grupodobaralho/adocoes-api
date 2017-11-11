@@ -193,7 +193,7 @@ server.del("/menores/:id_menor", AuthManager.userAuthenticated, function(req, re
 // RFM07: POST /menores/:id_menor/interessados
 server.post("/menores/:id_menor/interessados", AuthManager.userAuthenticated, function(req, res) {
     const menorTranslator = new MenorTranslator();
-    menorTranslator.postInterested(req, res);
+    menorTranslator.postInxterested(req, res);
 });
 
 // P1
@@ -308,6 +308,11 @@ server.get("/eu/menores?interesse=favoritar|adotar|apadrinhar", AuthManager.user
 server.del("/interessados/:id_interesse/menores/", AuthManager.userAuthenticated, function(req, res) {
     const interessadoTranslator = new InteressadoTranslator();
     interessadoTranslator.deleteInterested(req, res);
+});
+
+server.del("/eu/menores/:id_menor", AuthManager.userAuthenticated, function(req, res) {
+    const euTranslator = new EuTranslator(req, res);
+    euTranslator.deleteInterested(req, res);
 });
 
 server.put("/interessados/:id_interessado/ordenacao", AuthManager.userAuthenticated, function(req, res) {

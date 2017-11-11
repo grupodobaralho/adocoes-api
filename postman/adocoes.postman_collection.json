@@ -241,6 +241,31 @@
 						"description": ""
 					},
 					"response": []
+				},
+				{
+					"name": "/eu/menores/{id_menor}",
+					"request": {
+						"url": "{{url}}/eu/menores/{id_menor}",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token-type}} {{access-token}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "{{content-type}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
 				}
 			]
 		},

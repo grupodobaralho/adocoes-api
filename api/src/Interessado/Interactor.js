@@ -45,6 +45,10 @@ export default class Interactor {
         return this.Entity.postInterested(body);
     }
 
+    deleteInterestInMenor(interessadoId, menorId) {
+        return this.Entity.deleteInterestInMenor(interessadoId, menorId);
+    }
+
 	//TODO: precisamos avisar o TJ quando o usuário remover o interesse.
     deleteInterested(_id) {
         return this.Entity.deleteInterested(_id);
