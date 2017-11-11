@@ -6,6 +6,7 @@ import Roles from '../Common/Roles';
 export default class Translator {
     constructor(deps = {}) {
         this.Interactor = deps.Interactor || new (require("./Interactor").default)();
+        this.InteressadoInteractor = deps.InteressadoInteractor || new (require("../Interessado/Interactor").default)();
     }
 
     // ## MENORES ##
@@ -274,20 +275,27 @@ export default class Translator {
     }
 
     postInterested(request, response) {
-        let body = {
-            refMenor: request.params.id_menor,
-            refInteressado: request.user._id,
-            tipoInteresse: request.body.tipoInteresse
-        };
-
         //Ação padrão para resultado do interactor
-        this.Interactor
-            .postInterested(body)
-            .then(message => {
-                response.send(200, message);
+        this.InteressadoInteractor
+            .getInteressadoByUser(request.user._id)
+            .then(interessado => {
+                let body = {
+                    refMenor: request.params.id_menor,
+                    refInteressado: interessado._id,
+                    tipoInteresse: request.body.tipoInteresse
+                };
+
+                this.Interactor
+                    .postInterested(body)
+                    .then(message => {
+                        response.send(200, message);
+                    })
+                    .catch(error => {
+                        response.send(500, error);
+                    });
             })
             .catch(error => {
-                response.send(500, error);
+               response.send(500, error);
             });
     }
 
