@@ -388,7 +388,7 @@ server.del("/conteudos/:id_conteudo/midias/:id_midia", AuthManager.userAuthentic
     conteudoTranslator.deleteMediaByContent(req, res);
 });
 
-server.get("/conteudos/video/:video", AuthManager.anonymousAuthenticated, (req, res) => {
+server.get("/conteudos/video/:video", (req, res) => {
     const conteudoTranslator = new ConteudoTranslator();
     conteudoTranslator.getVideo(req, res);
 });
