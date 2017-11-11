@@ -1,5 +1,7 @@
 "use strict";
 
+import { config } from '../config';
+
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
@@ -37,12 +39,10 @@ const interessadoSchema = new Schema({
 		documentoSchema
 	],
 	enderecos: [{
-		type: mongoose.Schema.Types.ObjectId,
-		ref: "enderecos"
+		type: String
 	}],
 	telefones: [{
-		type: mongoose.Schema.Types.ObjectId,
-		ref: "telefones"
+        type: String
 	}],
 	interesses: [{
 		type: mongoose.Schema.Types.ObjectId,
@@ -59,11 +59,13 @@ const interessadoSchema = new Schema({
 	},
     pontoIdade: {
         type: Number,
-        required: false
+        required: false,
+		default: config.defaultAgePoint
     },
     pontoSexo: {
         type: Number,
-        required: false
+        required: false,
+		default: config.defaultGenderPoint
     }
 });
 

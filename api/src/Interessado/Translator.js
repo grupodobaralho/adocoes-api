@@ -29,16 +29,19 @@ export default class Translator {
 	}
 
 	post(request, response) {
-		const {
-			body
-		} = request;
+		const { body } = request;
 
-		this.Interactor.post(body)
+        //Check if the current user has permission to perform this action
+        if (request.user.perfis.indexOf(Roles.ADMINISTRADOR) === -1)
+            return response.send(401);
+
+		this.Interactor
+			.post(body)
 			.then(message => {
-				response.send(201, message)
+				response.send(200, message)
 			})
 			.catch(error => {
-				console.log(error);
+				response.send(500, error);
 			});
 	}
 
