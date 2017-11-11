@@ -56,8 +56,8 @@ export default class Interactor {
 
     postOrdenacao(body) {
         return this.Entity.validateOrdenacao(body)
-            .then(body => {
-                this.Entity.postOrdenacao(body);
+            .then(ret => {
+                return this.Entity.postOrdenacao(body);
             });
     }
 

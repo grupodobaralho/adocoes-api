@@ -53,7 +53,7 @@ export default class Adapter {
 
     postOrdenacao(body) {
         return this.Interessado.findOneAndUpdate({
-            _id: body.id
+            _id: mongoose.Types.ObjectId(body.id)
         }, body);
 	}
 

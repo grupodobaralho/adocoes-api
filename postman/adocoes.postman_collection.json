@@ -191,6 +191,31 @@
 						"description": ""
 					},
 					"response": []
+				},
+				{
+					"name": "/eu/ordenacao",
+					"request": {
+						"url": "{{url}}/eu/ordenacao",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token-type}} {{access-token}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"pontoIdade\": 9,\n\t\"pontoSexo\": 0.5\n}"
+						},
+						"description": ""
+					},
+					"response": []
 				}
 			]
 		},

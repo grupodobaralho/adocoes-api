@@ -295,7 +295,7 @@ server.get("/interessados/:id_interessado/menores?interesse=favoritar|adotar|apa
 
 server.get("/eu/menores?interesse=favoritar|adotar|apadrinhar", AuthManager.userAuthenticated, function(req, res){
     const euTranslator = new EuTranslator(req, res);
-    euTranslator.fetchAllTypeInterest(req, res);
+    euTranslator.getAllInterest(req, res);
 });
 
 // P1
@@ -308,6 +308,11 @@ server.del("/interessados/:id_interesse/menores/", AuthManager.userAuthenticated
 server.put("/interessados/:id_interessado/ordenacao", AuthManager.userAuthenticated, function(req, res) {
     const interessadoTranslator = new InteressadoTranslator();
     interessadoTranslator.postOrdenacao(req, res);
+});
+
+server.put("/eu/ordenacao", AuthManager.userAuthenticated, function(req, res) {
+    const euTranslator = new EuTranslator(req, res);
+    euTranslator.setOrdenacao(req, res);
 });
 
 // P0
