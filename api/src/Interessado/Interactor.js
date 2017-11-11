@@ -17,6 +17,10 @@ export default class Interactor {
 		return this.Entity.getInteressado(body.id);
 	}
 
+	getInteressadoByUser(userId) {
+        return this.Entity.getInteressadoByUser(userId);
+	}
+
 	deleteInteressado(id) {
 		return this.Entity.deleteInteressado(id);
 	}

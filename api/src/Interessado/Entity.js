@@ -18,6 +18,10 @@ export default class Entity {
 		return this.Adapter.getInteressado(id);
 	}
 
+    getInteressadoByUser(userId) {
+        return this.Adapter.getInteressadoByUser(userId);
+	}
+
     postOrdenacao(body) {
         return this.Adapter.postOrdenacao(body);
 	}

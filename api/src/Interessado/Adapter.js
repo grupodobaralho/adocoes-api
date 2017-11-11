@@ -22,6 +22,12 @@ export default class Adapter {
 		});
 	}
 
+    getInteressadoByUser(userId) {
+        return this.Interessado.findOne({
+        	refUsuario: mongoose.Types.ObjectId(userId)
+		});
+	}
+
 	getInteressados() {
 		return this.Interessado.find((err, doc) => {
 			return new Promise((resolve, reject) => {

@@ -67,6 +67,7 @@ import ConteudoTranslator from "./Conteudo/Translator";
 import MenorTranslator from "./Menor/Translator";
 import TermoTranslator from "./Termo/Translator";
 import InteressadoTranslator from "./Interessado/Translator";
+import EuTranslator from "./Eu/Translator";
 
 //
 // Resource: usuario
@@ -290,7 +291,12 @@ server.post("/interessados/:id_interessado/menores", AuthManager.userAuthenticat
 server.get("/interessados/:id_interessado/menores?interesse=favoritar|adotar|apadrinhar", AuthManager.userAuthenticated, function(req, res){
     const interessadoTranslator = new InteressadoTranslator(req, res);
     interessadoTranslator.fetchAllTypeInterest(req, res);
-})
+});
+
+server.get("/eu/menores?interesse=favoritar|adotar|apadrinhar", AuthManager.userAuthenticated, function(req, res){
+    const euTranslator = new EuTranslator(req, res);
+    euTranslator.fetchAllTypeInterest(req, res);
+});
 
 // P1
 // RFI15: DELETE /interessados/:id_interesse/menores/
