@@ -291,6 +291,49 @@
 						"description": ""
 					},
 					"response": []
+				},
+				{
+					"name": "/eu/menores?interesse=favoritar|adotar|apadrinhar",
+					"request": {
+						"url": {
+							"raw": "{{url}}/eu/menores?interesse=favoritar|adotar|apadrinhar",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"eu",
+								"menores"
+							],
+							"query": [
+								{
+									"key": "interesse",
+									"value": "favoritar|adotar|apadrinhar",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token-type}} {{access-token}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "{{content-type}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
 				}
 			]
 		},
