@@ -1,6 +1,7 @@
 "use strict";
 
 import Joi from "joi";
+Joi.objectId = require('joi-objectid')(Joi);
 
 export default class Entity {
 	constructor(deps = {}) {
@@ -98,6 +99,8 @@ export default class Entity {
 			senha: Joi.string().required().min(5),
 			nome: Joi.string().required(),
 			cpf: Joi.string().required(),
+			refPerfilAdministrador: Joi.objectId(),
+			refPerfilInteressado: Joi.objectId(),
 			ativo: Joi.boolean().required(),
 			perfis: Joi.string().required().regex(/Usuario|Master|Administrador|Interessado/)
 		});
