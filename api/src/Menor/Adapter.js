@@ -215,8 +215,7 @@ export default class Adapter {
         $lookup: {
           from: "menors",
           localField: "refMenor",
-          foreignField: "_id",
-          as: "menores"
+          foreignField: "_id"
         }
       },
       {

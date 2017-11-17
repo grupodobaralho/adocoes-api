@@ -99,6 +99,7 @@ export default class Adapter {
 
     // #94 RFI14: GET /interessados/{id_interessado}/menores?tipo=favorito|apadrinhamento|adocao
     fetchAllTypeInterestFiltered(id, type) {
+        console.log(id)
         return MoongoseHelper.aggregate(this.Interesse, [
             { $match: { refInteressado: mongoose.Types.ObjectId(id) } },
             { $match: { tipoInteresse: type } },
@@ -106,8 +107,7 @@ export default class Adapter {
                 $lookup: {
                     from: "menors",
                     localField: "refMenor",
-                    foreignField: "_id",
-                    as: "menores"
+                    foreignField: "_id"
                 }
             },
             {

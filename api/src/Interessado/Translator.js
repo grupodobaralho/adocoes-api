@@ -163,7 +163,7 @@ export default class Translator {
     fetchAllTypeInterest(request, response) {
         const id = request.params.id_interessado;
         if(request.query.interesse) {
-            const type = request.query.interesse;
+            const type = request.query.interesse;            
             this.Interactor.fetchAllTypeInterestFiltered(id, type)
                 .then(message => {
                     response.send(200, message);
