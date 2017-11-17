@@ -1,7 +1,7 @@
 "use strict";
 
 import Joi from "joi";
-//Joi.objectId = require('joi-objectid')(Joi)
+Joi.objectId = require('joi-objectid')(Joi);
 
 export default class Entity {
 	constructor(deps = {}) {
