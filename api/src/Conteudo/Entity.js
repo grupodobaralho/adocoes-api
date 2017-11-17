@@ -76,7 +76,7 @@ export default class Entity {
 
 	validateMedia(body, id_conteudo) {
 		const schema = Joi.object({
-				refMenor: Joi.string(),
+				refMenor: Joi.objectId(),
 				refConteudo: id_conteudo,
 				type: Joi.string().required(),
 				descricao: Joi.string(),

@@ -24,13 +24,13 @@
 							},
 							{
 								"key": "Content-Type",
-								"value": "{{content-type}}",
+								"value": "application/json",
 								"description": ""
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{}"
+							"raw": "{\n\t\"nome\": \"Página de Adoções\",\n\t\"pagina\": \"Inserir texto grande descritivo aqui\",\n\t\"timestampCriacao\": \"2010-12-12T00:00:00.000Z\",\n\t\"ativo\": true\n}"
 						},
 						"description": ""
 					},
@@ -40,31 +40,6 @@
 					"name": "/conteudos",
 					"request": {
 						"url": "{{url}}/conteudos",
-						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "{{token-type}} {{access-token}}",
-								"description": ""
-							},
-							{
-								"key": "Content-Type",
-								"value": "{{content-type}}",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "/conteudos/{id_conteudo}",
-					"request": {
-						"url": "{{url}}/conteudos/{id_conteudo}",
 						"method": "GET",
 						"header": [
 							{
@@ -115,6 +90,106 @@
 					"name": "/conteudos/{id_conteudo}",
 					"request": {
 						"url": "{{url}}/conteudos/{id_conteudo}",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token-type}} {{access-token}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "{{content-type}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "/conteudos/{id_conteudo}/midias",
+					"request": {
+						"url": "{{url}}/conteudos/{id_conteudo}/midias",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token-type}} {{access-token}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "{{content-type}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "/conteudos/{id_conteudo}/midias",
+					"request": {
+						"url": "{{url}}/conteudos/{id_conteudo}/midias",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token-type}} {{access-token}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "{{content-type}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "/conteudos/{id_conteudo}/midias/{id_midia}",
+					"request": {
+						"url": "{{url}}/conteudos/{id_conteudo}/midias/{id_midia}",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token-type}} {{access-token}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "{{content-type}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "/conteudos/{id_conteudo}/midias/{id_midia}",
+					"request": {
+						"url": "{{url}}/conteudos/{id_conteudo}/midias/{id_midia}",
 						"method": "DELETE",
 						"header": [
 							{
