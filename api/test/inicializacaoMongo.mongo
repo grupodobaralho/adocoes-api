@@ -11,9 +11,9 @@ db.clientes.update( testCliente, testCliente, {upsert:true})
 
 testUsuario = {
     email: "admin@adocoes.ages.pucrs.br",
-    senha: "$2a$05$rK1K/Vy0z/Kj5INVusw4eeKpsgK5n6So0Bew3qlbn8t6QOyYxTBfK", // "a123456"
+    senha: "$2a$05$rK1K/Vy0z/Kj5INVusw4eeKpsgK5n6So0Bew3qlbn8t6QOyYxTBfK",
     nome: "Administrador",
-    perfis: "administrador",
+    perfis: "Administrador",
 	matricula: "1",
     ativo: true,
     cpf: "12345678900"

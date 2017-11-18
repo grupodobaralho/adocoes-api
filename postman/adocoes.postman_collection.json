@@ -1126,7 +1126,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{  \r\n   \"email\": \"usuario@email.com\",\r\n   \"senha\": \"a123456\",\r\n   \"nome\": \"Usuario\",\r\n   \"cpf\": \"89170236739\",\r\n   \"perfis\": [\"usuario\"],\r\n   \"refPerfilAdministrador\": null,\r\n   \"refPerfilInteressado\": null,\r\n   \"ativo\": true\r\n}"
+							"raw": "{  \r\n   \"email\": \"usuarioteste@email.com\",\r\n   \"senha\": \"a123456\",\r\n   \"nome\": \"Usuario\",\r\n   \"cpf\": \"27458039728\",\r\n   \"perfis\": \"Interessado\",\r\n   \"refPerfilAdministrador\": \"5a0f714ed348d005746ffc55\",\r\n   \"refPerfilInteressado\": \"59bc5bd5f0560d00145c3a3d\",\r\n   \"ativo\": true\r\n}"
 						},
 						"description": ""
 					},
