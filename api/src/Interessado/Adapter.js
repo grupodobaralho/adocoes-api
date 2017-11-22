@@ -7,6 +7,7 @@ export default class Adapter {
     constructor(deps = {}) {
         this.Interessado = mongoose.model("Interessado");
         this.Interesse = mongoose.model("Interesse");
+        this.Menor = mongoose.model("Menor");
     }
 
     // ## INTERESSADOS ##
@@ -78,20 +79,19 @@ export default class Adapter {
 
     // #94 RFI14: GET /interessados/{id_interessado}/menores
     fetchAllTypeInterest(id) {
-        return MoongoseHelper.aggregate(this.Interesse, [
-            { $match: { refInteressado: mongoose.Types.ObjectId(id) } },
+        return MoongoseHelper.aggregate(this.Menor, [
             {
                 $lookup: {
-                    from: "menors",
-                    localField: "refMenor",
-                    foreignField: "_id",
-                    as: "menores"
+                    from: "interesses",
+                    localField: "_id",
+                    foreignField: "refMenor",
+                    as: "interesse"
                 }
             },
+            { $match: { "interesse.refInteressado": mongoose.Types.ObjectId(id) } },
             {
                 $project: {
-                    _id: 0,
-                    menores: 1
+                    interesse: 0
                 }
             }
         ]);
@@ -99,21 +99,20 @@ export default class Adapter {
 
     // #94 RFI14: GET /interessados/{id_interessado}/menores?tipo=favorito|apadrinhamento|adocao
     fetchAllTypeInterestFiltered(id, type) {
-        return MoongoseHelper.aggregate(this.Interesse, [
-            { $match: { refInteressado: mongoose.Types.ObjectId(id) } },
-            { $match: { tipoInteresse: type } },
+        return MoongoseHelper.aggregate(this.Menor, [
             {
                 $lookup: {
-                    from: "menors",
-                    localField: "refMenor",
-                    foreignField: "_id",
-                    as: "menores"
+                    from: "interesses",
+                    localField: "_id",
+                    foreignField: "refMenor",
+                    as: "interesse"
                 }
             },
+            { $match: { "interesse.refInteressado": mongoose.Types.ObjectId(id) } },
+            { $match: { "interesse.tipoInteresse": type } },
             {
                 $project: {
-                    _id: 0,
-                    menores: 1
+                    interesse: 0
                 }
             }
         ]);
