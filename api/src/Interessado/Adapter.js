@@ -90,8 +90,17 @@ export default class Adapter {
             },
             { $match: { "interesse.refInteressado": mongoose.Types.ObjectId(id) } },
             {
+                $lookup: {
+                    from: "midias",
+                    localField: "refMidias",
+                    foreignField: "_id",
+                    as: "midias"
+                }
+            },
+            {
                 $project: {
-                    interesse: 0
+                    interesse: 0,
+                    "midias.conteudo": 0
                 }
             }
         ]);
@@ -111,8 +120,17 @@ export default class Adapter {
             { $match: { "interesse.refInteressado": mongoose.Types.ObjectId(id) } },
             { $match: { "interesse.tipoInteresse": type } },
             {
+                $lookup: {
+                    from: "midias",
+                    localField: "refMidias",
+                    foreignField: "_id",
+                    as: "midias"
+                }
+            },
+            {
                 $project: {
-                    interesse: 0
+                    interesse: 0,
+                    "midias.conteudo": 0
                 }
             }
         ]);
