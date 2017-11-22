@@ -101,7 +101,9 @@ export default class Entity {
     }
 
     postInterested(body) {
-        return this.Adapter.postInterested(body);
+        return this.validateSingularityOnInterest(body).then(() => {
+            this.Adapter.postInterested(body)
+        });
     }
 
     // #94 RFI14: GET /interessados/{id_interessado}/menores?tipo=favorito|apadrinhamento|adocao
@@ -146,4 +148,18 @@ export default class Entity {
         });
     }
 
+    validateSingularityOnInterest(body) {
+        return this.Adapter
+            .getInterestByMenorAndInterested(body.refInteressado, body.refMenor)
+            .then((interest) => {
+                return new Promise((resolve, reject) => {
+                    if (interest !== null && interest.tipoInteresse === body.tipoInteresse) {
+                        reject({ message: "Você já favoritou."});
+                    }
+                    else {
+                        resolve(body);
+                    }
+                });
+            });
+    }
 }

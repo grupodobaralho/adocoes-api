@@ -77,6 +77,13 @@ export default class Adapter {
             });
     }
 
+    getInterestByMenorAndInterested(interessadoId, menorId) {
+        return this.Interesse.findOne({
+            refInteressado: mongoose.Types.ObjectId(interessadoId),
+            refMenor: mongoose.Types.ObjectId(menorId)
+        });
+    }
+
     // #94 RFI14: GET /interessados/{id_interessado}/menores
     fetchAllTypeInterest(id) {
         return MoongoseHelper.aggregate(this.Menor, [
