@@ -231,7 +231,7 @@ server.post("/menores/:id_menor/midias", AuthManager.userAuthenticated, function
 
 server.del("/menores/:id_menor/midias", AuthManager.userAuthenticated, function(req, res) {  
     const menorTranslator = new MenorTranslator();  
-    menorTranslator.deleteAllMedia(req, res);  
+    menorTranslator.deleteAllMedia(req, res);
 });
 
 // P1
