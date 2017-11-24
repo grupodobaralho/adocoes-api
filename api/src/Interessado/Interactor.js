@@ -38,6 +38,10 @@ export default class Interactor {
     }
 
     // ## INTERESSE ##
+    getInterestByMenorAndInterested(interessadoId, menorId) {
+        return this.Entity.getInterestByMenorAndInterested(interessadoId, menorId);
+    }
+
     postInterested(body) {
         //Adiciona a data junto com o "corpo" que veio do Translator
         body.timeStamp = Date.now();

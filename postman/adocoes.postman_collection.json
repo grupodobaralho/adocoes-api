@@ -2,7 +2,7 @@
 	"variables": [],
 	"info": {
 		"name": "adocoes",
-		"_postman_id": "82573002-d364-c465-4335-26be89100d46",
+		"_postman_id": "6d36e316-9756-68a0-edfd-588ee5a33ac2",
 		"description": "Projeto Adoções da AGES/PUCRS",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},
@@ -389,6 +389,31 @@
 							],
 							"variable": []
 						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token-type}} {{access-token}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "{{content-type}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "/eu/menores/{id_menor}",
+					"request": {
+						"url": "{{url}}/eu/menores/{id_menor}",
 						"method": "GET",
 						"header": [
 							{

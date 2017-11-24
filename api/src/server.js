@@ -308,6 +308,11 @@ server.get("/eu/menores?interesse=favoritar|adotar|apadrinhar", AuthManager.user
     euTranslator.getAllInterest(req, res);
 });
 
+server.get("/eu/menores/:id_menor", AuthManager.userAuthenticated, function(req, res) {
+    const euTranslator = new EuTranslator();
+    euTranslator.getInterest(req, res);
+});
+
 // P1
 // RFI15: DELETE /interessados/:id_interesse/menores/
 server.del("/interessados/:id_interesse/menores/", AuthManager.userAuthenticated, function(req, res) {

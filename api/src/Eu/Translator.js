@@ -134,4 +134,26 @@ export default class Translator {
                 response.send(500, error);
             });
     }
+
+    getInterest(request, response) {
+        if (request.user.perfis.indexOf(Roles.INTERESSADO) === -1)
+            return response.send(401);
+
+        this.Interactor
+            .getInteressadoByUser(request.user._id)
+            .then(interessado => {
+                //Ação padrão para resultado do interactor
+                this.Interactor
+                    .getInterestByMenorAndInterested(interessado._id, request.params.id_menor)
+                    .then(message => {
+                        response.send(200, message || {});
+                    })
+                    .catch(error => {
+                        response.send(500, error);
+                    });
+            })
+            .catch(error => {
+                response.send(500, error);
+            });
+    }
 }

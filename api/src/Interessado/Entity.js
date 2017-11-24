@@ -134,6 +134,10 @@ export default class Entity {
         });
     }
 
+    getInterestByMenorAndInterested(interessadoId, menorId) {
+        return this.Adapter.getInterestByMenorAndInterested(interessadoId, menorId);
+    }
+
     // ## DOCUMENTOS ##
     getDocuments(id) {
         return this.Adapter.getDocuments(id);
