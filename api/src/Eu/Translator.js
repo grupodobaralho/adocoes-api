@@ -122,7 +122,7 @@ export default class Translator {
             .then(interessado => {
                 //Ação padrão para resultado do interactor
                 this.Interactor
-                    .deleteInterestInMenor(interessado._id, request.params.id_menor)
+                    .deleteInterestInMenor(interessado._id, request.params.id_menor, request.params.interesse)
                     .then(message => {
                         response.send(200, message);
                     })

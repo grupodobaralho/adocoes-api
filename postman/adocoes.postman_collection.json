@@ -330,7 +330,7 @@
 							},
 							{
 								"key": "Content-Type",
-								"value": "{{content-type}}",
+								"value": "application/json",
 								"description": ""
 							}
 						],
@@ -424,6 +424,50 @@
 							{
 								"key": "Content-Type",
 								"value": "{{content-type}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "/eu/menores/{id_menor}?interesse=favoritar|adotar|apadrinhar",
+					"request": {
+						"url": {
+							"raw": "{{url}}/eu/menores/{id_menor}?interesse=favoritar|adotar|apadrinhar",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"eu",
+								"menores",
+								"{id_menor}"
+							],
+							"query": [
+								{
+									"key": "interesse",
+									"value": "favoritar|adotar|apadrinhar",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token-type}} {{access-token}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
 								"description": ""
 							}
 						],

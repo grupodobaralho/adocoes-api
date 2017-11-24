@@ -77,6 +77,18 @@ export default class Adapter {
             });
     }
 
+    deleteInterestInMenorByTipo(interessadoId, menorId, tipoInteresse) {
+        return this.Interesse
+            .remove({
+                refInteressado: mongoose.Types.ObjectId(interessadoId),
+                refMenor: mongoose.Types.ObjectId(menorId),
+                tipoInteresse: tipoInteresse
+            })
+            .then(ret => {
+                return {success: ret.result.n > 0};
+            });
+    }
+
     getInterestByMenorAndInterested(interessadoId, menorId) {
         return this.Interesse.findOne({
             refInteressado: mongoose.Types.ObjectId(interessadoId),

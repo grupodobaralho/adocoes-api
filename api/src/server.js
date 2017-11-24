@@ -320,7 +320,7 @@ server.del("/interessados/:id_interesse/menores/", AuthManager.userAuthenticated
     interessadoTranslator.deleteInterested(req, res);
 });
 
-server.del("/eu/menores/:id_menor", AuthManager.userAuthenticated, function(req, res) {
+server.del("/eu/menores/:id_menor?interesse=favoritar|adotar|apadrinhar", AuthManager.userAuthenticated, function(req, res) {
     const euTranslator = new EuTranslator(req, res);
     euTranslator.deleteInterested(req, res);
 });

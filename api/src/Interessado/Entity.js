@@ -100,6 +100,10 @@ export default class Entity {
         return this.Adapter.deleteInterestInMenor(interessadoId, menorId);
     }
 
+    deleteInterestInMenorByTipo(interessadoId, menorId, tipoInteresse) {
+        return this.Adapter.deleteInterestInMenorByTipo(interessadoId, menorId, tipoInteresse);
+    }
+
     postInterested(body) {
         return this.validateSingularityOnInterest(body).then(() => {
             this.Adapter.postInterested(body)
