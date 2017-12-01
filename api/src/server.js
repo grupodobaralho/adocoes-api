@@ -148,7 +148,7 @@ server.post("/menores", AuthManager.userAuthenticated, function(req, res) {
 
 // P1
 // RFM01/2: POST /menores/vinculo
-server.post("/menores/vinculo", AuthManager.userAuthenticated, function(req, res) {
+server.post("/menores/vinculos", AuthManager.userAuthenticated, function(req, res) {
     const menorTranslator = new MenorTranslator();
     menorTranslator.postVinculo(req, res);
 });
