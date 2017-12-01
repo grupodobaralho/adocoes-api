@@ -68,7 +68,34 @@ export default class Adapter {
   }
 
   fetchVinculos(id) {
-    return this.Vinculo.find({ refMenor: id });
+    //return this.Vinculo.find({ refMenor: id });
+    return MoongoseHelper.aggregate(this.Menor, [
+      {
+          $lookup: {
+              from: "vinculos",
+              localField: "_id",
+              foreignField: "refMenorVinculado",
+              as: "vinculo"
+          }
+      },
+      { $match: { "vinculo.refMenor": mongoose.Types.ObjectId(id) } },      
+      {
+          $lookup: {
+              from: "midias",
+              localField: "refMidias",
+              foreignField: "_id",
+              as: "midias"
+          }
+      },
+      {
+          $project: {
+              "vinculo._id": 0,
+              "vinculo.refMenor": 0,
+              "vinculo.refMenorVinculado": 0,
+              "midias.conteudo": 0
+          }
+      }
+  ]);
   }
 
   _cursorMenoresAggregatingMedias(shouldRenderAllMedias, aggregatePipepline = [], isSingleRecord = false) {
