@@ -34,6 +34,10 @@ const conteudoSchema = new Schema({
 		type: Boolean,
 		required: true,
 		default: true
+	},
+	ordem: {
+		type: Number,
+		required: true
 	}
 });
 
