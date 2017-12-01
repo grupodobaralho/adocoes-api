@@ -158,10 +158,10 @@ export default class Entity {
 
     validateSingularityOnInterest(body) {
         return this.Adapter
-            .getInterestByMenorAndInterested(body.refInteressado, body.refMenor)
+            .getInterestByMenorAndInterestedAndType(body)
             .then((interest) => {
                 return new Promise((resolve, reject) => {
-                    if (interest !== null && interest.tipoInteresse === body.tipoInteresse) {
+                    if (interest._id !== undefined) {
                         reject({ message: "Você já favoritou."});
                     }
                     else {
