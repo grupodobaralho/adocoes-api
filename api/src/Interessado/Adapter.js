@@ -98,8 +98,8 @@ export default class Adapter {
 
     getInterestByMenorAndInterestedAndType(body) {
         return this.Interesse.findOne({
-            refInteressado: mongoose.Types.ObjectId(body.interessadoId),
-            refMenor: mongoose.Types.ObjectId(body.menorId),
+            refInteressado: mongoose.Types.ObjectId(body.refInteressado),
+            refMenor: mongoose.Types.ObjectId(body.refMenor),
             tipoInteresse: body.tipoInteresse
         });
     }
