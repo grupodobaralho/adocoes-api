@@ -226,7 +226,8 @@ validateTypeInterest(type){
     validateVinculo(body) {
         const schema = Joi.object({
             refMenor: Joi.objectId().required(),
-            refMenorVinculado: Joi.objectId().required(), 
+            refMenorVinculado: Joi.objectId().required(),
+            nome: Joi.string().required(), 
             tipoVinculo: Joi.string().required().regex(/Irmão|Irmã|Prima|Primo/),
             adocaoConjunta: Joi.boolean().required()
         });

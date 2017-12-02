@@ -14,6 +14,10 @@ const vinculoSchema = new Schema({
 		ref: "menores",
 		required: true
 	},
+	nome: {
+		type: String,
+		required: true
+	},
 	tipoVinculo: {
 		type: String,
 		enum: ["Irmão", "Irmã", "Prima", "Primo"],

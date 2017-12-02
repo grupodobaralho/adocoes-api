@@ -100,14 +100,40 @@ export default class Adapter {
 
   _cursorMenoresAggregatingMedias(shouldRenderAllMedias, aggregatePipepline = [], isSingleRecord = false) {
     //Faz o "inner join" com o documento de mídias
-    aggregatePipepline.push({
+    aggregatePipepline.push(
+      {      
       $lookup: {
         from: "midias",
         localField: "refMidias",
         foreignField: "_id",
         as: "midias"
       }
-    })
+      },
+      {
+        $lookup: {
+            from: "vinculos",
+            localField: "_id",
+            foreignField: "refMenor",
+            as: "vinculo"
+        }
+    },      
+    {
+        $lookup: {
+            from: "midias",
+            localField: "refMidias",
+            foreignField: "_id",
+            as: "midiasVinculo"
+        }
+    },
+    {
+        $project: {
+            "vinculo._id": 0,
+            "vinculo.refMenor": 0,
+            "midias.conteudo": 0,
+            "midiasVinculo.conteudo": 0
+        }
+    }
+    )
 
 
     //Remove o corpo da mídia
