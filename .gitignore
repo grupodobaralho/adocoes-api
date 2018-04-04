@@ -9,5 +9,5 @@ Thumbs.db
 build/
 *.lock
 adocoes.sublime*
-
+sonar-scanner-3.1.0.1141-macosx
 \.idea/

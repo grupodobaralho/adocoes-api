@@ -1,0 +1,9 @@
+# baixe o executavel aqui: https://docs.sonarqube.org/display/SCAN/Analyzing+with+SonarQube+Scanner para seu OS
+# entao, do diretorio raiz da aplicao, chame o executavel - que devera estar na pasta_baixada/bin
+sonar-scanner \
+  -Dsonar.projectKey=adocoes-api \
+  -Dsonar.organization=sua_organizacao \
+  -Dsonar.sources=. \
+  -Dsonar.host.url=https://sonarcloud.io \
+  -Dsonar.login=seu_token_de_autenticao
+
